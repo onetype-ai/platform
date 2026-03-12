@@ -24,7 +24,7 @@ commands.Item({
     },
     callback: function(properties, resolve)
     {
-        const item = editor.pages.Fn('activate', properties.id);
+        const item = sites.pages.Fn('activate', properties.id);
 
         if(!item)
         {

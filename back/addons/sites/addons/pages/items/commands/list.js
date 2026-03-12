@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import pages from '#pages/addon.js';
+import sites from '#sites/addon.js';
 
 commands.Item({
     id: 'pages:list',
@@ -23,7 +23,7 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
-        let query = pages.Find()
+        let query = sites.pages.Find()
             .filter('site_id', properties.site_id);
 
         if(properties.filters)

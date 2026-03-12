@@ -1,5 +1,3 @@
-import sections from '#sections/addon.js';
-
 /* Expose */
 import '#sections/expose.js';
 
@@ -9,5 +7,3 @@ import '#sections/items/commands/get.js';
 import '#sections/items/commands/create.js';
 import '#sections/items/commands/update.js';
 import '#sections/items/commands/delete.js';
-
-export default sections;

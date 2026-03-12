@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import pages from '#pages/addon.js';
+import sites from '#sites/addon.js';
 
 commands.Item({
     id: 'pages:create',
@@ -17,7 +17,7 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
-        const page = pages.Item({
+        const page = sites.pages.Item({
             team_id: properties.team_id,
             site_id: properties.site_id,
             title: properties.title,

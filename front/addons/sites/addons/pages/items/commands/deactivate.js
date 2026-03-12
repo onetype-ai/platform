@@ -6,7 +6,7 @@ commands.Item({
     description: 'Deactivate all editor pages',
     callback: function(_, resolve)
     {
-        editor.pages.Fn('deactivate');
+        sites.pages.Fn('deactivate');
 
         resolve();
     }

@@ -31,30 +31,6 @@ const editor = onetype.Addon('editor', (editor) =>
         addon.Field('render', ['string|function', null, true]);
     });
 
-    editor.pages = onetype.Addon('editor.pages', (addon) =>
-    {
-        addon.Field('id', ['string']);
-        addon.Field('title', ['string', null, true]);
-        addon.Field('slug', ['string', null, true]);
-        addon.Field('order', ['number', 0, true]);
-        addon.Field('route', ['string', null, true]);
-        addon.Field('active', ['boolean', false, true]);
-    });
-
-    editor.sections = onetype.Addon('editor.sections', (addon) =>
-    {
-        addon.Field('id', ['string']);
-        addon.Field('page_id', ['string', null, true]);
-        addon.Field('order', ['number', 0, true]);
-        addon.Field('columns', ['array', [], true]);
-        addon.Field('padding', ['object', null, true]);
-        addon.Field('margin', ['object', null, true]);
-        addon.Field('gap', ['number', 16, true]);
-        addon.Field('background', ['string', null, true]);
-        addon.Field('border', ['object', null, true]);
-        addon.Field('container', ['boolean', true, true]);
-    });
-
     editor.canvas = onetype.Addon('editor.canvas', (addon) =>
     {
         addon.Field('label', ['string', null, true]);

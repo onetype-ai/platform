@@ -1,6 +1,6 @@
-import sections from '#sections/addon.js';
+import sites from '#sites/addon.js';
 
-sections.Expose({
+sites.sections.Expose({
     filter: ['id', 'team_id', 'page_id'],
     sort: ['order', 'updated_at', 'created_at'],
     select: [

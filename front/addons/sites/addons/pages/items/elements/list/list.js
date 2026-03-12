@@ -16,12 +16,12 @@ elements.ItemAdd({
 
 		const init = () =>
 		{
-			this.pages = Object.values(editor.pages.Items()).sort((a, b) => a.Get('order') - b.Get('order')).map((item) => item.data);
+			this.pages = Object.values(sites.pages.Items()).sort((a, b) => a.Get('order') - b.Get('order')).map((item) => item.data);
 		};
 
 		const callback = (item) =>
 		{
-			if(item.addon.GetName() === 'editor.pages')
+			if(item.addon.GetName() === 'sites.pages')
 			{
 				init();
 			}
@@ -35,7 +35,7 @@ elements.ItemAdd({
 
 		this.select = (page) =>
 		{
-			editor.pages.Fn('activate', page.id);
+			sites.pages.Fn('activate', page.id);
 		};
 
 		this.settings = (page) =>
@@ -50,7 +50,7 @@ elements.ItemAdd({
 
 		this.create = () =>
 		{
-			editor.pages.Fn('create');
+			sites.pages.Fn('create');
 		};
 
 		return `

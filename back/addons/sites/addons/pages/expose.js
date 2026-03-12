@@ -1,6 +1,6 @@
-import pages from '#pages/addon.js';
+import sites from '#sites/addon.js';
 
-pages.Expose({
+sites.pages.Expose({
     filter: ['id', 'team_id', 'site_id'],
     sort: ['title', 'route', 'updated_at', 'created_at'],
     select: [

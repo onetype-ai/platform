@@ -27,7 +27,7 @@ commands.Item({
     },
     callback: function(properties, resolve)
     {
-        const item = editor.pages.Fn('create', properties.title, properties.slug);
+        const item = sites.pages.Fn('create', properties.title, properties.slug);
 
         $ot.command('editor:pages:activate', {id: item.Get('id')});
 

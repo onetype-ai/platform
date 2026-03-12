@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import pages from '#pages/addon.js';
+import sites from '#sites/addon.js';
 
 commands.Item({
     id: 'pages:get',
@@ -14,7 +14,7 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
-        const item = await pages.Find()
+        const item = await sites.pages.Find()
             .filter('id', properties.id)
             .one();
 

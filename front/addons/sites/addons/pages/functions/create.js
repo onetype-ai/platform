@@ -1,4 +1,4 @@
-editor.pages.Fn('create', function(title = 'Untitled', slug = '/untitled')
+sites.pages.Fn('create', function(title = 'Untitled', slug = '/untitled')
 {
 	const items = Object.values(this.Items());
 	const order = items.length ? Math.max(...items.map(item => item.Get('order'))) + 1 : 0;
@@ -6,7 +6,7 @@ editor.pages.Fn('create', function(title = 'Untitled', slug = '/untitled')
 
 	const item = this.Item({ id, title, slug, order });
 
-	onetype.Emit('editor.pages.create', item);
+	onetype.Emit('sites.pages.create', item);
 
 	return item;
 });

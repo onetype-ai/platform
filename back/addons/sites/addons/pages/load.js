@@ -1,5 +1,3 @@
-import pages from '#pages/addon.js';
-
 /* Expose */
 import '#pages/expose.js';
 
@@ -9,5 +7,3 @@ import '#pages/items/commands/get.js';
 import '#pages/items/commands/create.js';
 import '#pages/items/commands/update.js';
 import '#pages/items/commands/delete.js';
-
-export default pages;

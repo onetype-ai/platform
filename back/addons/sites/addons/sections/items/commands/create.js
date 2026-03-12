@@ -1,5 +1,5 @@
 import commands from '@onetype/framework/commands';
-import sections from '#sections/addon.js';
+import sites from '#sites/addon.js';
 
 commands.Item({
     id: 'sections:create',
@@ -16,7 +16,7 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
-        const section = sections.Item({
+        const section = sites.sections.Item({
             team_id: properties.team_id,
             page_id: properties.page_id,
             order: properties.order
