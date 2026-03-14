@@ -7,7 +7,6 @@ commands.Item({
     method: 'POST',
     endpoint: '/api/pages',
     in: {
-        team_id: ['string', null, true],
         site_id: ['string', null, true],
         title: ['string', null, true],
         route: ['string', null, true]
@@ -17,8 +16,15 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
+        const user = this.http?.state?.user;
+
+        if(!user || !user.team)
+        {
+            return resolve(null, 'Not authenticated.', 401);
+        }
+
         const page = sites.pages.Item({
-            team_id: properties.team_id,
+            team_id: user.team.id,
             site_id: properties.site_id,
             title: properties.title,
             route: properties.route
@@ -27,7 +33,7 @@ commands.Item({
         await page.Create();
 
         resolve({
-            page: page.Get(['id', 'team_id', 'site_id', 'title', 'route', 'updated_at', 'created_at'])
+            page: page.Get(['id', 'team_id', 'site_id', 'title', 'route', 'is_home', 'is_404', 'order', 'code_head', 'code_body', 'seo_title', 'seo_description', 'seo_tags', 'updated_at', 'created_at'])
         });
     }
 });

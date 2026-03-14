@@ -22,9 +22,15 @@ const sites = onetype.Addon('sites', (sites) =>
     {
         addon.Field('id', ['string']);
         addon.Field('title', ['string', null, true]);
-        addon.Field('slug', ['string', null, true]);
         addon.Field('order', ['number', 0, true]);
         addon.Field('route', ['string', null, true]);
+        addon.Field('is_home', ['boolean', false, true]);
+        addon.Field('is_404', ['boolean', false, true]);
+        addon.Field('code_head', ['string']);
+        addon.Field('code_body', ['string']);
+        addon.Field('seo_title', ['string']);
+        addon.Field('seo_description', ['string']);
+        addon.Field('seo_tags', ['array']);
         addon.Field('active', ['boolean', false, true]);
     });
 
@@ -33,12 +39,52 @@ const sites = onetype.Addon('sites', (sites) =>
         addon.Field('id', ['string']);
         addon.Field('page_id', ['string', null, true]);
         addon.Field('order', ['number', 0, true]);
-        addon.Field('columns', ['array', [], true]);
-        addon.Field('padding', ['object', null, true]);
-        addon.Field('margin', ['object', null, true]);
+        addon.Field('columns', {
+            type: 'array',
+            value: ['1fr'],
+            required: true,
+            each: { type: 'string' }
+        });
+        addon.Field('padding', {
+            type: 'object',
+            value: { top: 0, right: 0, bottom: 0, left: 0 },
+            required: true,
+            config: {
+                top: ['number', 0],
+                right: ['number', 0],
+                bottom: ['number', 0],
+                left: ['number', 0]
+            }
+        });
+        addon.Field('margin', {
+            type: 'object',
+            value: { top: 0, right: 0, bottom: 0, left: 0 },
+            required: true,
+            config: {
+                top: ['number', 0],
+                right: ['number', 0],
+                bottom: ['number', 0],
+                left: ['number', 0]
+            }
+        });
         addon.Field('gap', ['number', 16, true]);
-        addon.Field('background', ['string', null, true]);
-        addon.Field('border', ['object', null, true]);
-        addon.Field('container', ['boolean', true, true]);
+        addon.Field('background', ['string', '', true]);
+        addon.Field('border', {
+            type: 'object',
+            value: { width: 0, color: '', radius: 0 },
+            required: true,
+            config: {
+                width: ['number', 0],
+                color: ['string', ''],
+                radius: ['number', 0]
+            }
+        });
+        addon.Field('container', {
+            type: 'string',
+            value: 'm',
+            required: true,
+            options: ['none', 's', 'm', 'l', 'full']
+        });
+        addon.Field('active', ['boolean', false, true]);
     });
 });

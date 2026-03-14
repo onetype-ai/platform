@@ -18,9 +18,9 @@ elements.ItemAdd({
 		this.saved = false;
 		this.error = '';
 
-		this.change = (fonts) =>
+		this.change = ({ value }) =>
 		{
-			this.selected = fonts;
+			this.selected = value;
 		};
 
 		this.save = async () =>

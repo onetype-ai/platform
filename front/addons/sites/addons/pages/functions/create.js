@@ -1,10 +1,15 @@
-sites.pages.Fn('create', function(title = 'Untitled', slug = '/untitled')
+sites.pages.Fn('create', async function(title = 'Untitled', route = '/')
 {
-	const items = Object.values(this.Items());
-	const order = items.length ? Math.max(...items.map(item => item.Get('order'))) + 1 : 0;
-	const id = 'p' + Date.now();
+	const site = $ot.get('site');
 
-	const item = this.Item({ id, title, slug, order });
+	if(!site)
+	{
+		return null;
+	}
+
+	const result = await $ot.command('pages:create', { site_id: site.id, title, route }, true);
+	const page = result.data.page;
+	const item = this.Item(page);
 
 	onetype.Emit('sites.pages.create', item);
 

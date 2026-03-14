@@ -12,5 +12,7 @@ sites.pages.Fn('activate', function(id)
 	item.Set('active', true);
 	onetype.Emit('sites.pages.activate', {page: item});
 
+	$ot.set('site.page', item.data);
+
 	return item;
 });

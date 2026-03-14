@@ -11,4 +11,5 @@ sites.pages.Fn('deactivate', function()
 	}
 
 	onetype.Emit('sites.pages.deactivate');
+	$ot.set('site.page', null);
 });

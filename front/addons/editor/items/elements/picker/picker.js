@@ -137,11 +137,11 @@ elements.ItemAdd({
 			return 'https://preview.elements.onetype.ai/' + type + '?single:boolean=true';
 		};
 
-		this.select = (event, context) =>
+		this.select = ({ event }) =>
 		{
 			event.stopPropagation();
 
-			const type = context.node.getAttribute('data-type');
+			const type = event.currentTarget.getAttribute('data-type');
 
 			if(this._pick && type)
 			{
@@ -149,11 +149,11 @@ elements.ItemAdd({
 			}
 		};
 
-		this.tab = (event, context) =>
+		this.tab = ({ event }) =>
 		{
 			event.stopPropagation();
 
-			const id = context.node.getAttribute('data-id');
+			const id = event.currentTarget.getAttribute('data-id');
 
 			if(id)
 			{

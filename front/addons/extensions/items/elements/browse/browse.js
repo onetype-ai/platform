@@ -46,7 +46,7 @@ elements.ItemAdd({
 
 			if(this._change)
 			{
-				this._change([...this.selected]);
+				this._change({ value: [...this.selected] });
 			}
 		};
 

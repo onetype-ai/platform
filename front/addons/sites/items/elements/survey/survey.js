@@ -54,14 +54,14 @@ elements.ItemAdd({
 			this.categories = items.map(item => item.data);
 		});
 
-		this.changeFonts = (fonts) =>
+		this.changeFonts = ({ value }) =>
 		{
-			this.form.fonts = fonts;
+			this.form.fonts = value;
 		};
 
-		this.changeExtensions = (items) =>
+		this.changeExtensions = ({ value }) =>
 		{
-			this.form.extensions = items;
+			this.form.extensions = value;
 		};
 
 		/* Actions */
@@ -101,14 +101,14 @@ elements.ItemAdd({
 			this.Update();
 		};
 
-		this.change = (field, event, data) =>
+		this.change = (field, { value }) =>
 		{
-			this.form[field] = data.value;
+			this.form[field] = value;
 		};
 
-		this.changeColor = (event, data) =>
+		this.changeColor = ({ value }) =>
 		{
-			this.form.color = data.value;
+			this.form.color = value;
 			this.Update();
 		};
 
@@ -164,7 +164,7 @@ elements.ItemAdd({
 					</div>
 
 					<div ot-if="step === 1" class="panel">
-						<e-form-input :value="form.name" placeholder="My Awesome Site" :variant="['bg-3', 'border', 'size-l']" :_input="(event, data) => change('name', event, data)"></e-form-input>
+						<e-form-input :value="form.name" placeholder="My Awesome Site" :variant="['bg-3', 'border', 'size-l']" :_input="(data) => change('name', data)"></e-form-input>
 					</div>
 
 					<div ot-if="step === 2" class="panel">
@@ -189,7 +189,7 @@ elements.ItemAdd({
 					</div>
 
 					<div ot-if="step === 4" class="panel">
-						<e-form-textarea :value="form.description" placeholder="I want a portfolio site with a homepage, about page, projects gallery, and a contact form. Clean and minimal style, dark theme preferred." :variant="['bg-3', 'size-l']" :rows="6" :_input="(event, data) => change('description', event, data)"></e-form-textarea>
+						<e-form-textarea :value="form.description" placeholder="I want a portfolio site with a homepage, about page, projects gallery, and a contact form. Clean and minimal style, dark theme preferred." :variant="['bg-3', 'size-l']" :rows="6" :_input="(data) => change('description', data)"></e-form-textarea>
 					</div>
 
 					<div ot-if="step === 5" class="panel">

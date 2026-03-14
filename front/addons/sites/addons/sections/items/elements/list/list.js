@@ -8,97 +8,128 @@ elements.ItemAdd({
 	config: {},
 	render: function()
 	{
-		this.sections = [
+		this.sections = [];
+		this.page = null;
+
+		const active = () =>
+		{
+			const items = Object.values(sites.pages.Items());
+
+			for(const item of items)
 			{
-				id: 's1',
-				columns: [{ width: 1, elements: [
-					{ id: 'e1', type: 'hero-bold' }
-				] }]
-			},
-			{
-				id: 's2',
-				columns: [{ width: 1, elements: [
-					{ id: 'e2', type: 'features-grid' }
-				] }]
-			},
-			{
-				id: 's3',
-				columns: [{ width: 1, elements: [
-					{ id: 'e3', type: 'faq-fold' }
-				] }]
+				if(item.Get('active'))
+				{
+					return item.data;
+				}
 			}
-		];
 
-		this.active = '';
-
-		this.icon = (type) =>
-		{
-			const category = type.split('-')[0];
-			const icons = {
-				hero: 'star',
-				features: 'grid_view',
-				cta: 'ads_click',
-				faq: 'help',
-				pricing: 'payments',
-				testimonials: 'format_quote',
-				cards: 'dashboard',
-				footer: 'call_to_action',
-				navigation: 'menu',
-				stats: 'bar_chart',
-				logos: 'branding_watermark',
-				contact: 'mail',
-				team: 'group',
-				gallery: 'photo_library',
-				blog: 'article',
-				forms: 'edit_note',
-				process: 'route'
-			};
-
-			return icons[category] || 'widgets';
+			return null;
 		};
 
-		this.label = (element) =>
+		const load = () =>
 		{
-			return element.type.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+			this.page = active();
+
+			if(!this.page)
+			{
+				this.sections = [];
+				return;
+			}
+
+			this.sections = Object.values(sites.sections.Items())
+				.filter(item => item.Get('page_id') === this.page.id)
+				.sort((a, b) => a.Get('order') - b.Get('order'))
+				.map(item => item.data);
 		};
 
-		this.cols = (section) =>
+		const callback = (item) =>
 		{
-			return section.columns || [];
+			const name = item.addon.GetName();
+
+			if(name === 'sites.pages' || name === 'sites.sections')
+			{
+				load();
+			}
 		};
 
-		this.items = (column) =>
+		this.On('@addon.item.added', callback);
+		this.On('@addon.item.modified', callback);
+		this.On('@addon.item.removed', callback);
+
+		load();
+
+		this.select = (section) =>
 		{
-			return column.elements || [];
+			for(const item of Object.values(sites.sections.Items()))
+			{
+				if(item.Get('active') && item.Get('id') !== section.id)
+				{
+					item.Set('active', false);
+				}
+			}
+
+			const target = sites.sections.ItemGet(section.id);
+
+			if(target)
+			{
+				target.Set('active', !target.Get('active'));
+			}
 		};
 
-		this.select = (event, context) =>
+		this.remove = (section) =>
 		{
-			this.active = context.node.getAttribute('data-id');
+			sites.sections.Fn('delete', section.id);
 		};
 
-		this.cls = (id) =>
+		this.create = () =>
 		{
-			return id === this.active ? 'row active' : 'row';
+			if(this.page)
+			{
+				sites.sections.Fn('create', this.page.id);
+			}
+		};
+
+		this.reorder = (section, direction) =>
+		{
+			const index = this.sections.findIndex(s => s.id === section.id);
+			const swap = this.sections[index + direction];
+
+			if(!swap)
+			{
+				return;
+			}
+
+			sites.sections.Fn('update', section.id, { order: swap.order });
+			sites.sections.Fn('update', swap.id, { order: section.order });
+		};
+
+		this.layout = (section) =>
+		{
+			return section.columns.join(' ');
 		};
 
 		return `
 			<div class="tree">
-				<div ot-for="section in sections" class="section">
-					<div :class="cls(section.id)" :data-id="section.id" ot-click="select">
+				<div ot-for="section, index in sections" :class="'section' + (section.active ? ' active' : '')" ot-click="() => select(section)">
+					<div class="row">
 						<i class="icon">view_agenda</i>
-						<span class="name">Section</span>
-					</div>
-					<div ot-for="column, ci in cols(section)" class="column">
-						<div ot-if="cols(section).length > 1" class="row column-row">
-							<i class="icon">view_column</i>
-							<span class="name">Column {{ ci + 1 }}</span>
+						<div class="info">
+							<span class="name">Section {{ index + 1 }}</span>
+							<span class="detail">{{ layout(section) }}</span>
 						</div>
-						<div ot-for="element in items(column)" :class="cls(element.id)" :data-id="element.id" ot-click="select">
-							<i class="icon">{{ icon(element.type) }}</i>
-							<span class="name">{{ label(element) }}</span>
+						<div class="actions">
+							<i ot-if="index > 0" ot-click.stop="() => reorder(section, -1)">arrow_upward</i>
+							<i ot-if="index < sections.length - 1" ot-click.stop="() => reorder(section, 1)">arrow_downward</i>
+							<i class="delete" ot-click.stop="() => remove(section)">delete</i>
 						</div>
 					</div>
+				</div>
+				<div ot-if="page" class="create" ot-click="create">
+					<i>add</i>
+					<span>Add Section</span>
+				</div>
+				<div ot-if="!page" class="empty">
+					<span>Select a page</span>
 				</div>
 			</div>
 		`;

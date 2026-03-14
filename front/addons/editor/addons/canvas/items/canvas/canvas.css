@@ -41,83 +41,29 @@
 {
 	position: relative;
 	overflow: auto;
-	background: rgba(22, 22, 24, 1);
+	background-color: rgba(22, 22, 24, 1);
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+		linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+	background-size: 20px 20px, 20px 20px, 100px 100px, 100px 100px;
 }
 
-.e-3af06f62 > .holder > .canvas > .area::-webkit-scrollbar
-{
-	width: 8px;
-	height: 8px;
-}
-
-.e-3af06f62 > .holder > .canvas > .area::-webkit-scrollbar-track
-{
-	background: transparent;
-}
-
-.e-3af06f62 > .holder > .canvas > .area::-webkit-scrollbar-thumb
-{
-	background: rgba(255, 255, 255, 0.08);
-	border-radius: 4px;
-}
-
-.e-3af06f62 > .holder > .canvas > .area::-webkit-scrollbar-thumb:hover
-{
-	background: rgba(255, 255, 255, 0.14);
-}
 
 /* Viewports container */
 
 .e-3af06f62 > .holder > .canvas > .area > .viewports
 {
-	display: flex;
+	display: inline-flex;
+	align-items: flex-start;
 	justify-content: center;
 	gap: var(--ot-spacing-l);
 	padding: 60px var(--ot-spacing-l) 120px;
+	min-width: 100%;
 	min-height: 100%;
 	position: relative;
 	z-index: 10;
 }
 
-/* Sections inside viewport */
 
-.e-3af06f62 .sections
-{
-	display: flex;
-	flex-direction: column;
-	min-height: 400px;
-	padding: 5px;
-}
-
-/* Add first section — empty state */
-
-.e-3af06f62 .add-first
-{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: var(--ot-spacing-s);
-	min-height: 400px;
-	cursor: pointer;
-	transition: background 0.15s ease;
-	background: rgba(250, 250, 250, 1);
-}
-
-.e-3af06f62 .add-first:hover
-{
-	background: rgba(245, 245, 245, 1);
-}
-
-.e-3af06f62 .add-first > i
-{
-	font-size: 32px;
-	color: rgba(0, 0, 0, 0.15);
-}
-
-.e-3af06f62 .add-first > span
-{
-	font-size: var(--ot-size-m);
-	font-weight: 500;
-	color: rgba(0, 0, 0, 0.3);
-}

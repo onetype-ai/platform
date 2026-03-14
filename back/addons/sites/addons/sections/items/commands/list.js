@@ -23,7 +23,15 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
+        const user = this.http?.state?.user;
+
+        if(!user || !user.team)
+        {
+            return resolve(null, 'Not authenticated.', 401);
+        }
+
         let query = sites.sections.Find()
+            .filter('team_id', user.team.id)
             .filter('page_id', properties.page_id);
 
         if(properties.filters)
@@ -46,6 +54,6 @@ commands.Item({
 
         const items = await query.many();
 
-        resolve({ sections: items.map(item => item.Get(['id', 'team_id', 'page_id', 'order', 'updated_at', 'created_at'])) });
+        resolve({ sections: items.map(item => item.Get(['id', 'team_id', 'site_id', 'page_id', 'order', 'updated_at', 'created_at'])) });
     }
 });

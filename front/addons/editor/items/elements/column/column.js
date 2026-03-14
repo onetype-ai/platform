@@ -51,11 +51,11 @@ elements.ItemAdd({
 			}
 		};
 
-		this.choose = (event, context) =>
+		this.choose = ({ event }) =>
 		{
 			event.stopPropagation();
 
-			const node = context?.node || event.currentTarget;
+			const node = event.currentTarget;
 			const id = node.getAttribute('data-id');
 
 			if(this._select && id)

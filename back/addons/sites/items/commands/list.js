@@ -22,7 +22,14 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
-        let query = sites.Find();
+        const user = this.http?.state?.user;
+
+        if(!user || !user.team)
+        {
+            return resolve(null, 'Not authenticated.', 401);
+        }
+
+        let query = sites.Find().filter('team_id', user.team.id);
 
         if(properties.filters)
         {

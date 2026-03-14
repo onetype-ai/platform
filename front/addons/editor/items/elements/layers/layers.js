@@ -68,11 +68,11 @@ elements.ItemAdd({
 			return column.elements || [];
 		};
 
-		this.selectSection = (event, context) =>
+		this.selectSection = ({ event }) =>
 		{
 			event.stopPropagation();
 
-			const id = context.node.getAttribute('data-id');
+			const id = event.currentTarget.getAttribute('data-id');
 
 			if(this._section && id)
 			{
@@ -80,11 +80,11 @@ elements.ItemAdd({
 			}
 		};
 
-		this.selectElement = (event, context) =>
+		this.selectElement = ({ event }) =>
 		{
 			event.stopPropagation();
 
-			const node = context.node;
+			const node = event.currentTarget;
 			const id = node.getAttribute('data-id');
 			const sid = node.getAttribute('data-sid');
 

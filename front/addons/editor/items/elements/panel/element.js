@@ -60,14 +60,14 @@ elements.ItemAdd({
 			}
 		};
 
-		this.input = (key, event, data) =>
+		this.input = (key, { value }) =>
 		{
-			this.change(key, data.value);
+			this.change(key, value);
 		};
 
-		this.number = (key, event, data) =>
+		this.number = (key, { value }) =>
 		{
-			this.change(key, parseFloat(data.value) || 0);
+			this.change(key, parseFloat(value) || 0);
 		};
 
 		this.toggle = (key) =>
@@ -104,15 +104,15 @@ elements.ItemAdd({
 				<div ot-for="field in fields()" class="group">
 					<div ot-if="field.type === 'string' && !field.options" class="field">
 						<span class="label">{{ field.label }}</span>
-						<e-form-input :value="String(field.value || '')" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => input(field.key, event, data)"></e-form-input>
+						<e-form-input :value="String(field.value || '')" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => input(field.key, data)"></e-form-input>
 					</div>
 					<div ot-if="field.type === 'number'" class="field">
 						<span class="label">{{ field.label }}</span>
-						<e-form-input :value="String(field.value || 0)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => number(field.key, event, data)"></e-form-input>
+						<e-form-input :value="String(field.value || 0)" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => number(field.key, data)"></e-form-input>
 					</div>
 					<div ot-if="field.type === 'boolean'" class="field row">
 						<span class="label">{{ field.label }}</span>
-						<e-form-toggle :checked="field.value" :variant="['bg-3', 'size-s']" :_change="() => toggle(field.key)"></e-form-toggle>
+						<e-form-toggle :value="field.value" :variant="['bg-3', 'size-s']" :_change="() => toggle(field.key)"></e-form-toggle>
 					</div>
 					<div ot-if="field.type === 'array' && field.options" class="field">
 						<span class="label">{{ field.label }}</span>

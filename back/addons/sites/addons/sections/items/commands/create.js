@@ -7,7 +7,7 @@ commands.Item({
     method: 'POST',
     endpoint: '/api/sections',
     in: {
-        team_id: ['string', null, true],
+        site_id: ['string', null, true],
         page_id: ['string', null, true],
         order: ['number', 0]
     },
@@ -16,16 +16,27 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
+        const user = this.http?.state?.user;
+
+        if(!user || !user.team)
+        {
+            return resolve(null, 'Not authenticated.', 401);
+        }
+
         const section = sites.sections.Item({
-            team_id: properties.team_id,
+            team_id: user.team.id,
+            site_id: properties.site_id,
             page_id: properties.page_id,
-            order: properties.order
+            order: properties.order,
+            columns: ['1fr'],
+            gap: 16,
+            container: 'm'
         });
 
         await section.Create();
 
         resolve({
-            section: section.Get(['id', 'team_id', 'page_id', 'order', 'updated_at', 'created_at'])
+            section: section.Get(['id', 'team_id', 'site_id', 'page_id', 'order', 'columns', 'padding', 'margin', 'gap', 'background', 'border', 'container', 'updated_at', 'created_at'])
         });
     }
 });

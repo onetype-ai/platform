@@ -3,7 +3,7 @@ import commands from '@onetype/framework/commands';
 commands.Item({
     id: 'editor:pages:activate',
     exposed: true,
-    description: 'Activate an editor page by ID',
+    description: 'Activate a page by ID',
     in: {
         id: {
             type: 'string',
@@ -12,15 +12,7 @@ commands.Item({
         }
     },
     out: {
-        page: {
-            type: 'object',
-            config: {
-                id: ['string'],
-                title: ['string'],
-                slug: ['string'],
-                order: ['number']
-            }
-        }
+        page: ['object']
     },
     callback: function(properties, resolve)
     {
@@ -28,17 +20,9 @@ commands.Item({
 
         if(!item)
         {
-            resolve(null, 'Page not found', 404);
-            return;
+            return resolve(null, 'Page not found.', 404);
         }
 
-        resolve({
-            page: {
-                id: item.Get('id'),
-                title: item.Get('title'),
-                slug: item.Get('slug'),
-                order: item.Get('order')
-            }
-        });
+        resolve({ page: item.data });
     }
 });

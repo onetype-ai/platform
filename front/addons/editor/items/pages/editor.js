@@ -11,9 +11,21 @@ pages.Item({
             return $ot.page('/404');
         }
 
-        return {
-            site: item.data
-        };
+        const pages = await sites.pages.Find().filter('site_id', parameters.site).many();
+
+        for(const page of pages)
+        {
+            sites.pages.Item(page.data);
+        }
+
+        const sections = await sites.sections.Find().filter('site_id', parameters.site).many();
+
+        for(const section of sections)
+        {
+            sites.sections.Item(section.data);
+        }
+
+        $ot.set('site', item.data);
     },
     grid: {
         template: '"toolbar toolbar toolbar" "left content right"',
@@ -32,7 +44,15 @@ pages.Item({
         },
         content: function()
         {
+            this.loaded = false;
+
+            setTimeout(() => 
+            {
+                this.loaded = true;
+            }, 2500);
+
             return `
+                <e-editor-loader ot-if="!loaded"></e-editor-loader>
                 <e-editor-canvas></e-editor-canvas>
             `;
         },
@@ -40,5 +60,12 @@ pages.Item({
         {
             return `<e-editor-tabs position="right"></e-editor-tabs>`;
         }
-    }
+    },
+    onBeforeLeave: function()
+    {
+        $ot.set('site', null);
+
+        sites.pages.ItemsClear();
+        sites.sections.ItemsClear();
+    },
 });

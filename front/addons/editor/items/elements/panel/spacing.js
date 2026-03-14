@@ -26,19 +26,19 @@ elements.ItemAdd({
 			return this.section.margin || { top: 0, bottom: 0 };
 		};
 
-		this.changePadding = (side, event, data) =>
+		this.changePadding = (side, { value }) =>
 		{
 			const padding = { ...this.padding() };
 
-			padding[side] = Math.max(0, Math.min(200, parseInt(data.value) || 0));
+			padding[side] = Math.max(0, Math.min(200, parseInt(value) || 0));
 			this._update('padding', padding);
 		};
 
-		this.changeMargin = (side, event, data) =>
+		this.changeMargin = (side, { value }) =>
 		{
 			const margin = { ...this.margin() };
 
-			margin[side] = Math.max(0, Math.min(200, parseInt(data.value) || 0));
+			margin[side] = Math.max(0, Math.min(200, parseInt(value) || 0));
 			this._update('margin', margin);
 		};
 
@@ -48,19 +48,19 @@ elements.ItemAdd({
 					<span class="label">Padding</span>
 					<div class="box">
 						<div class="side top">
-							<e-form-input :value="String(padding().top)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => changePadding('top', event, data)"></e-form-input>
+							<e-form-input :value="String(padding().top)" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => changePadding('top', event, data)"></e-form-input>
 						</div>
 						<div class="middle">
 							<div class="side left">
-								<e-form-input :value="String(padding().left)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => changePadding('left', event, data)"></e-form-input>
+								<e-form-input :value="String(padding().left)" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => changePadding('left', event, data)"></e-form-input>
 							</div>
 							<div class="center"></div>
 							<div class="side right">
-								<e-form-input :value="String(padding().right)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => changePadding('right', event, data)"></e-form-input>
+								<e-form-input :value="String(padding().right)" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => changePadding('right', event, data)"></e-form-input>
 							</div>
 						</div>
 						<div class="side bottom">
-							<e-form-input :value="String(padding().bottom)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => changePadding('bottom', event, data)"></e-form-input>
+							<e-form-input :value="String(padding().bottom)" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => changePadding('bottom', event, data)"></e-form-input>
 						</div>
 					</div>
 				</div>
@@ -69,12 +69,12 @@ elements.ItemAdd({
 					<div class="margin">
 						<div class="field">
 							<span class="side-label">Top</span>
-							<e-form-input :value="String(margin().top)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => changeMargin('top', event, data)"></e-form-input>
+							<e-form-input :value="String(margin().top)" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => changeMargin('top', event, data)"></e-form-input>
 							<span class="unit">px</span>
 						</div>
 						<div class="field">
 							<span class="side-label">Bottom</span>
-							<e-form-input :value="String(margin().bottom)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => changeMargin('bottom', event, data)"></e-form-input>
+							<e-form-input :value="String(margin().bottom)" :variant="['bg-2', 'border', 'size-s']" :_change="(data) => changeMargin('bottom', event, data)"></e-form-input>
 							<span class="unit">px</span>
 						</div>
 					</div>

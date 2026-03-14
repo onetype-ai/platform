@@ -23,8 +23,16 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
+        const user = this.http?.state?.user;
+
+        if(!user || !user.team)
+        {
+            return resolve(null, 'Not authenticated.', 401);
+        }
+
         const site = await sites.Find()
             .filter('id', properties.id)
+            .filter('team_id', user.team.id)
             .one();
 
         if(!site)
@@ -36,7 +44,10 @@ commands.Item({
 
         for(const [key, value] of Object.entries(fields))
         {
-            site.Set(key, value);
+            if(value !== undefined)
+            {
+                site.Set(key, value);
+            }
         }
 
         await site.Update();

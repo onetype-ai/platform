@@ -94,11 +94,11 @@ elements.ItemAdd({
 			return this.section.gap || 16;
 		};
 
-		this.changeGap = (event, data) =>
+		this.changeGap = ({ value }) =>
 		{
-			const value = parseInt(data.value) || 0;
+			const parsed = parseInt(value) || 0;
 
-			this._update('gap', Math.max(0, Math.min(64, value)));
+			this._update('gap', Math.max(0, Math.min(64, parsed)));
 		};
 
 		this.presets = [
@@ -135,7 +135,7 @@ elements.ItemAdd({
 								<span class="size">{{ percent(column) }}%</span>
 							</div>
 							<div class="controls">
-								<e-form-input :value="String(column.width)" :variant="['bg-2', 'border', 'size-s']" :_change="(event, data) => resize($index, data.value)"></e-form-input>
+								<e-form-input :value="String(column.width)" :variant="['bg-2', 'border', 'size-s']" :_change="({ value }) => resize($index, value)"></e-form-input>
 								<span class="unit">fr</span>
 								<button ot-if="columns().length > 1" class="remove" ot-click="() => remove($index)"><i>close</i></button>
 							</div>
@@ -145,7 +145,7 @@ elements.ItemAdd({
 				<div class="group">
 					<div class="row">
 						<span class="label">Container</span>
-						<e-form-toggle :checked="container()" :variant="['bg-3', 'size-s']" :_change="toggleContainer"></e-form-toggle>
+						<e-form-toggle :value="container()" :variant="['bg-3', 'size-s']" :_change="toggleContainer"></e-form-toggle>
 					</div>
 				</div>
 				<div class="group">

@@ -1,36 +1,101 @@
 .e-10721c16
 {
-	display: flex;
+	display: grid;
 	width: 100%;
+	height: 100%;
 }
 
 .e-10721c16 > .holder
 {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
+	display: grid;
+	grid-template-rows: auto auto 1fr auto;
+	gap: 12px;
+	padding: 12px;
+	overflow-y: auto;
 }
 
-.e-10721c16 > .holder > .group > .field
+.e-10721c16 > .holder > .fields
 {
-	display: flex;
-	flex-direction: column;
-	gap: var(--ot-spacing-x);
-	padding: var(--ot-spacing-s) var(--ot-spacing-m);
+	display: grid;
+	gap: 12px;
+	align-content: start;
 }
 
-.e-10721c16 > .holder > .group > .field > .label
+.e-10721c16 > .holder > .fields > .field
+{
+	display: grid;
+	gap: 6px;
+}
+
+.e-10721c16 > .holder > .fields > .field > .label + .description
+{
+	margin-top: -4px;
+}
+
+.e-10721c16 > .holder > .fields > .field > .label
 {
 	font-size: 11px;
-	font-weight: 600;
+	font-weight: 700;
 	color: var(--ot-text-2);
-	text-transform: uppercase;
-	letter-spacing: 0.05em;
 }
 
-/* Actions */
+.e-10721c16 > .holder > .fields > .field > .description
+{
+	font-size: 11px;
+	color: var(--ot-text-2);
+}
+
+.e-10721c16 > .holder > .section
+{
+	display: grid;
+	gap: 12px;
+	padding-top: 12px;
+	border-top: 1px solid var(--ot-bg-2-border);
+}
+
+.e-10721c16 > .holder > .section > .title
+{
+	font-size: 11px;
+	font-weight: 700;
+	color: var(--ot-text-2);
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+}
+
+.e-10721c16 > .holder > .section > .fields
+{
+	display: grid;
+	gap: 12px;
+}
+
+.e-10721c16 > .holder > .section > .fields > .field
+{
+	display: grid;
+	gap: 6px;
+}
+
+.e-10721c16 > .holder > .section > .fields > .field > .label
+{
+	font-size: 11px;
+	font-weight: 700;
+	color: var(--ot-text-2);
+}
+
+.e-10721c16 > .holder > .section > .fields > .field > .label + .description
+{
+	margin-top: -4px;
+}
+
+.e-10721c16 > .holder > .section > .fields > .field > .description
+{
+	font-size: 11px;
+	color: var(--ot-text-2);
+}
 
 .e-10721c16 > .holder > .actions
 {
-	padding: var(--ot-spacing-s) var(--ot-spacing-m);
+	display: grid;
+	gap: 8px;
+	padding-top: 12px;
+	border-top: 1px solid var(--ot-bg-2-border);
 }

@@ -60,7 +60,7 @@ elements.ItemAdd({
 						<i class="icon">description</i>
 						<div class="info">
 							<span class="name">{{ page.title }}</span>
-							<span class="route">{{ page.slug }}</span>
+							<span class="route">{{ page.route }}</span>
 						</div>
 						<i class="action" ot-click.prevent="settings(page)">settings</i>
 					</div>

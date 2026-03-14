@@ -35,7 +35,9 @@ assets.Fn('import', [
     'elements/form/toggle',
     'elements/navigation/navbar',
     'elements/navigation/sidebar',
-    'elements/navigation/tabs'
+    'elements/navigation/tabs',
+    'elements/core/builder',
+    'elements/core/repeater'
 ]);
 
 assets.Item({ type: 'js', order: 10, path: resolve(root, 'front') });

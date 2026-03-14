@@ -14,8 +14,16 @@ commands.Item({
     },
     callback: async function(properties, resolve)
     {
+        const user = this.http?.state?.user;
+
+        if(!user || !user.team)
+        {
+            return resolve(null, 'Not authenticated.', 401);
+        }
+
         const item = await sites.Find()
             .filter('id', properties.id)
+            .filter('team_id', user.team.id)
             .one();
 
         if(!item)

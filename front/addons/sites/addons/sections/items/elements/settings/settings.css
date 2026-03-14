@@ -1,0 +1,35 @@
+/* Root */
+
+.e-155fcf68
+{
+	width: 100%;
+}
+
+/* Holder */
+
+.e-155fcf68 > .holder
+{
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 12px;
+	overflow-y: auto;
+}
+
+/* Actions */
+
+.e-155fcf68 > .holder > .actions
+{
+	display: flex;
+	flex-direction: column;
+	gap: var(--ot-spacing-s);
+}
+
+/* Empty */
+
+.e-155fcf68 > .empty
+{
+	display: flex;
+	width: 100%;
+	padding: var(--ot-spacing-l);
+}

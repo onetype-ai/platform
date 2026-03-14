@@ -3,41 +3,31 @@ import commands from '@onetype/framework/commands';
 commands.Item({
     id: 'editor:pages:create',
     exposed: true,
-    description: 'Create a new editor page',
+    description: 'Create a new page',
     in: {
         title: {
             type: 'string',
             description: 'Page title'
         },
-        slug: {
+        route: {
             type: 'string',
-            description: 'Page URL slug'
+            description: 'Page route'
         }
     },
     out: {
-        page: {
-            type: 'object',
-            config: {
-                id: ['string'],
-                title: ['string'],
-                slug: ['string'],
-                order: ['number']
-            }
-        }
+        page: ['object']
     },
-    callback: function(properties, resolve)
+    callback: async function(properties, resolve)
     {
-        const item = sites.pages.Fn('create', properties.title, properties.slug);
+        const item = await sites.pages.Fn('create', properties.title, properties.route);
 
-        $ot.command('editor:pages:activate', {id: item.Get('id')});
+        if(!item)
+        {
+            return resolve(null, 'Failed to create page.', 500);
+        }
 
-        resolve({
-            page: {
-                id: item.Get('id'),
-                title: item.Get('title'),
-                slug: item.Get('slug'),
-                order: item.Get('order')
-            }
-        });
+        $ot.command('editor:pages:activate', { id: item.Get('id') });
+
+        resolve({ page: item.data });
     }
 });

@@ -5,8 +5,11 @@ onetype.AddonReady('editor.tabs', () =>
         icon: 'layers',
         position: 'left',
         order: 20,
-        render: `
-            <e-editor-sections-list></e-editor-sections-list>
-        `
+        render: function() 
+        {
+            return `
+                <e-editor-sections-list></e-editor-sections-list>
+            `;
+        }
     });
 });

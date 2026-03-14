@@ -55,12 +55,12 @@ elements.ItemAdd({
 						<div class="border-row">
 							<i>border_top</i>
 							<span class="side-label">Top</span>
-							<e-form-toggle :checked="topEnabled()" :variant="['bg-3', 'size-s']" :_change="() => toggle('top')"></e-form-toggle>
+							<e-form-toggle :value="topEnabled()" :variant="['bg-3', 'size-s']" :_change="() => toggle('top')"></e-form-toggle>
 						</div>
 						<div class="border-row">
 							<i>border_bottom</i>
 							<span class="side-label">Bottom</span>
-							<e-form-toggle :checked="bottomEnabled()" :variant="['bg-3', 'size-s']" :_change="() => toggle('bottom')"></e-form-toggle>
+							<e-form-toggle :value="bottomEnabled()" :variant="['bg-3', 'size-s']" :_change="() => toggle('bottom')"></e-form-toggle>
 						</div>
 					</div>
 				</div>

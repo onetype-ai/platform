@@ -61,10 +61,10 @@ elements.ItemAdd({
 		};
 		this.fetch('');
 
-		this.input = (event, data) =>
+		this.input = ({ value }) =>
 		{
-			this.search = data.value;
-			this.fetch(data.value);
+			this.search = value;
+			this.fetch(value);
 		};
 
 		this.pick = (id) =>
@@ -98,7 +98,7 @@ elements.ItemAdd({
 
 			if(this._change)
 			{
-				this._change([...this.selected]);
+				this._change({ value: [...this.selected] });
 			}
 		};
 

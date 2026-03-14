@@ -21,9 +21,9 @@ elements.ItemAdd({
 			return this.section.background || '';
 		};
 
-		this.change = (event, data) =>
+		this.change = ({ value }) =>
 		{
-			this._update('background', data.value || '');
+			this._update('background', value || '');
 		};
 
 		this.clear = () =>
