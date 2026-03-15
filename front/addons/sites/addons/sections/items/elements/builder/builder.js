@@ -1,5 +1,5 @@
 elements.ItemAdd({
-	id: 'editor-sections-builder',
+	id: 'sites-sections-builder',
 	icon: 'view_agenda',
 	name: 'Sections Builder',
 	description: 'Visual page builder with sections and column layouts.',
@@ -31,7 +31,7 @@ elements.ItemAdd({
 		this.On('@addon.item.modified', callback);
 		this.On('@addon.item.removed', callback);
 
-		this.select = (section) =>
+		const select = (section) =>
 		{
 			for(const item of Object.values(sites.sections.Items()))
 			{
@@ -49,21 +49,8 @@ elements.ItemAdd({
 			}
 		};
 
-		this.add = () =>
+		const reorder = (section, direction) =>
 		{
-			sites.sections.Fn('create', this.page);
-		};
-
-		this.remove = (event, section) =>
-		{
-			event.stopPropagation();
-			sites.sections.Fn('delete', section.id);
-		};
-
-		this.reorder = (event, section, direction) =>
-		{
-			event.stopPropagation();
-
 			const index = this.items.findIndex(s => s.id === section.id);
 			const swap = this.items[index + direction];
 
@@ -76,14 +63,62 @@ elements.ItemAdd({
 			sites.sections.Fn('update', swap.id, { order: section.order });
 		};
 
-		this.container = (section) =>
+		this.toolbar = ({ event }, section, index) =>
 		{
-			if(section.container === 'none')
+			const count = this.items.length;
+
+			$ot.popup(event.target.closest('.section'), function()
 			{
-				return 'body';
+				this.toggle = () => select(section);
+				this.up = () => reorder(section, -1);
+				this.down = () => reorder(section, 1);
+
+				this.del = () =>
+				{
+					sites.sections.Fn('delete', section.id);
+					$ot.popup.close('section-toolbar');
+				};
+
+				return `
+					<div class="section-toolbar">
+						<span class="label">Section {{ ${index} + 1 }}</span>
+						<div class="actions">
+							<i :class="${section.active} ? 'active' : ''" ot-click="toggle">settings</i>
+							<i ot-if="${index} > 0" ot-click="up">arrow_upward</i>
+							<i ot-if="${index} < ${count - 1}" ot-click="down">arrow_downward</i>
+							<i ot-click="del">delete</i>
+						</div>
+					</div>
+				`;
+			}, { id: 'section-toolbar', position: { x: 'center', y: 'center' } });
+		};
+
+		this.toolbarClose = ({ event }) =>
+		{
+			if(event.relatedTarget && event.relatedTarget.closest('.ot-overlay'))
+			{
+				return;
 			}
 
-			return 'body container-' + section.container;
+			$ot.popup.close('section-toolbar');
+		};
+
+		this.add = () =>
+		{
+			sites.sections.Fn('create', this.page);
+		};
+
+		this.pick = (section) =>
+		{
+			$ot.modal(function()
+			{
+				return `<e-elements-browse :_pick="pick"></e-elements-browse>`;
+			});
+		};
+
+		this.container = (section) =>
+		{
+			return section.container === 'none' ? 'body' : 'body container-' + section.container;
 		};
 
 		this.grid = (section) =>
@@ -91,14 +126,9 @@ elements.ItemAdd({
 			return 'grid-template-columns:' + section.columns.join(' ') + ';gap:' + section.gap + 'px;';
 		};
 
-		this.margin = (section) =>
+		this.spacing = (value) =>
 		{
-			return section.margin.top + 'px ' + section.margin.right + 'px ' + section.margin.bottom + 'px ' + section.margin.left + 'px';
-		};
-
-		this.padding = (section) =>
-		{
-			return section.padding.top + 'px ' + section.padding.right + 'px ' + section.padding.bottom + 'px ' + section.padding.left + 'px';
+			return value.top + 'px ' + value.right + 'px ' + value.bottom + 'px ' + value.left + 'px';
 		};
 
 		this.background = (section) =>
@@ -110,33 +140,21 @@ elements.ItemAdd({
 			<div class="builder">
 				<div class="insert" ot-click.stop="add"><i>add</i></div>
 				<div ot-for="section, index in items">
-					<div :class="'section' + (section.active ? ' active' : '')">
-						<div class="toolbar">
-							<span class="label">Section {{ index + 1 }}</span>
-							<div class="actions">
-								<i :class="section.active ? 'active' : ''" ot-click.stop="() => select(section)">settings</i>
-								<i ot-if="index > 0" ot-click="(e) => reorder(e, section, -1)">arrow_upward</i>
-								<i ot-if="index < items.length - 1" ot-click="(e) => reorder(e, section, 1)">arrow_downward</i>
-								<i ot-click="(e) => remove(e, section)">delete</i>
-							</div>
-						</div>
-						<div class="margin" :style="'padding:' + margin(section)">
+					<div :class="'section' + (section.active ? ' active' : '')" ot-mouse-enter="(e) => toolbar(e, section, index)" ot-mouse-leave="toolbarClose">
+						<div class="margin" :style="'padding:' + spacing(section.margin)">
 							<span ot-if="section.margin.top" class="dimension top">{{ section.margin.top }}</span>
 							<span ot-if="section.margin.bottom" class="dimension bottom">{{ section.margin.bottom }}</span>
 							<span ot-if="section.margin.left" class="dimension left">{{ section.margin.left }}</span>
 							<span ot-if="section.margin.right" class="dimension right">{{ section.margin.right }}</span>
-							<div class="padding" :style="'padding:' + padding(section)">
+							<div class="padding" :style="'padding:' + spacing(section.padding)">
 								<span ot-if="section.padding.top" class="dimension top">{{ section.padding.top }}</span>
 								<span ot-if="section.padding.bottom" class="dimension bottom">{{ section.padding.bottom }}</span>
 								<span ot-if="section.padding.left" class="dimension left">{{ section.padding.left }}</span>
 								<span ot-if="section.padding.right" class="dimension right">{{ section.padding.right }}</span>
 								<div class="content" :style="background(section)">
 									<div :class="container(section)" :style="grid(section)">
-										<div ot-for="col in section.columns" class="column">
-											<div class="placeholder">
-												<i>add</i>
-												<span>Drop here</span>
-											</div>
+										<div ot-for="col in section.columns" class="column" ot-click.stop="() => pick(section)">
+											<i>add</i>
 										</div>
 									</div>
 								</div>

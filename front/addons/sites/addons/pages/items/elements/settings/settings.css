@@ -1,11 +1,11 @@
-.e-10721c16
+.e-69e7f2fd
 {
 	display: grid;
 	width: 100%;
 	height: 100%;
 }
 
-.e-10721c16 > .holder
+.e-69e7f2fd > .holder
 {
 	display: grid;
 	grid-template-rows: auto auto 1fr auto;
@@ -14,38 +14,38 @@
 	overflow-y: auto;
 }
 
-.e-10721c16 > .holder > .fields
+.e-69e7f2fd > .holder > .fields
 {
 	display: grid;
 	gap: 12px;
 	align-content: start;
 }
 
-.e-10721c16 > .holder > .fields > .field
+.e-69e7f2fd > .holder > .fields > .field
 {
 	display: grid;
 	gap: 6px;
 }
 
-.e-10721c16 > .holder > .fields > .field > .label + .description
+.e-69e7f2fd > .holder > .fields > .field > .label + .description
 {
 	margin-top: -4px;
 }
 
-.e-10721c16 > .holder > .fields > .field > .label
+.e-69e7f2fd > .holder > .fields > .field > .label
 {
 	font-size: 11px;
 	font-weight: 700;
 	color: var(--ot-text-2);
 }
 
-.e-10721c16 > .holder > .fields > .field > .description
+.e-69e7f2fd > .holder > .fields > .field > .description
 {
 	font-size: 11px;
 	color: var(--ot-text-2);
 }
 
-.e-10721c16 > .holder > .section
+.e-69e7f2fd > .holder > .section
 {
 	display: grid;
 	gap: 12px;
@@ -53,7 +53,7 @@
 	border-top: 1px solid var(--ot-bg-2-border);
 }
 
-.e-10721c16 > .holder > .section > .title
+.e-69e7f2fd > .holder > .section > .title
 {
 	font-size: 11px;
 	font-weight: 700;
@@ -62,37 +62,37 @@
 	letter-spacing: 0.5px;
 }
 
-.e-10721c16 > .holder > .section > .fields
+.e-69e7f2fd > .holder > .section > .fields
 {
 	display: grid;
 	gap: 12px;
 }
 
-.e-10721c16 > .holder > .section > .fields > .field
+.e-69e7f2fd > .holder > .section > .fields > .field
 {
 	display: grid;
 	gap: 6px;
 }
 
-.e-10721c16 > .holder > .section > .fields > .field > .label
+.e-69e7f2fd > .holder > .section > .fields > .field > .label
 {
 	font-size: 11px;
 	font-weight: 700;
 	color: var(--ot-text-2);
 }
 
-.e-10721c16 > .holder > .section > .fields > .field > .label + .description
+.e-69e7f2fd > .holder > .section > .fields > .field > .label + .description
 {
 	margin-top: -4px;
 }
 
-.e-10721c16 > .holder > .section > .fields > .field > .description
+.e-69e7f2fd > .holder > .section > .fields > .field > .description
 {
 	font-size: 11px;
 	color: var(--ot-text-2);
 }
 
-.e-10721c16 > .holder > .actions
+.e-69e7f2fd > .holder > .actions
 {
 	display: grid;
 	gap: 8px;

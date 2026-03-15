@@ -13,5 +13,6 @@ import '#sites/items/commands/delete.js';
 /* Addons */
 import '#pages/load.js';
 import '#sections/load.js';
+import '#elements/load.js';
 
 export default sites;

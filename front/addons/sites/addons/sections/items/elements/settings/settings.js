@@ -1,5 +1,5 @@
 elements.ItemAdd({
-	id: 'editor-sections-settings',
+	id: 'sites-sections-settings',
 	icon: 'view_agenda',
 	name: 'Section Settings',
 	description: 'Settings panel for the active section.',

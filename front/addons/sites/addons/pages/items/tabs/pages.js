@@ -24,8 +24,8 @@ onetype.AddonReady('editor.tabs', () =>
             };
 
             return `
-                <e-editor-pages-list ot-if="view === 'list'" :_settings="settings"></e-editor-pages-list>
-                <e-editor-pages-settings ot-if="view === 'settings'" :page="page" :_back="back"></e-editor-pages-settings>
+                <e-sites-pages-list ot-if="view === 'list'" :_settings="settings"></e-sites-pages-list>
+                <e-sites-pages-settings ot-if="view === 'settings'" :page="page" :_back="back"></e-sites-pages-settings>
             `;
         }
     });

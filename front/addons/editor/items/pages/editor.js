@@ -4,25 +4,31 @@ pages.Item({
     title: 'Editor - OneType',
     data: async function(parameters)
     {
-        const item = await sites.Find().filter('id', parameters.site).one();
+        const [item, page_items, section_items, element_items] = await Promise.all([
+            sites.Find().filter('id', parameters.site).one(),
+            sites.pages.Find().filter('site_id', parameters.site).many(),
+            sites.sections.Find().filter('site_id', parameters.site).many(),
+            sites.elements.Find().filter('site_id', parameters.site).many()
+        ]);
 
         if(!item)
         {
             return $ot.page('/404');
         }
 
-        const pages = await sites.pages.Find().filter('site_id', parameters.site).many();
-
-        for(const page of pages)
+        for(const page of page_items)
         {
             sites.pages.Item(page.data);
         }
 
-        const sections = await sites.sections.Find().filter('site_id', parameters.site).many();
-
-        for(const section of sections)
+        for(const section of section_items)
         {
             sites.sections.Item(section.data);
+        }
+
+        for(const element of element_items)
+        {
+            sites.elements.Item(element.data);
         }
 
         $ot.set('site', item.data);
@@ -49,7 +55,7 @@ pages.Item({
             setTimeout(() => 
             {
                 this.loaded = true;
-            }, 2500);
+            }, 0);
 
             return `
                 <e-editor-loader ot-if="!loaded"></e-editor-loader>
@@ -67,5 +73,6 @@ pages.Item({
 
         sites.pages.ItemsClear();
         sites.sections.ItemsClear();
+        sites.elements.ItemsClear();
     },
 });

@@ -62,8 +62,8 @@ pages.Item({
             };
 
             return `
-                <div class="ot-container ot-flex ot-flex-col ot-gap-l ot-py-l">
-                    <e-global-heading :title="site.name" description="Site settings and configuration." size="m" variant="clean">
+                <div class="ot-container-m ot-flex ot-flex-col ot-gap-l ot-py-l">
+                    <e-global-heading :variant="['left', 'size-m', 'clean']" :title="site.name" description="Site settings and configuration.">
                         <div slot="right">
                             <e-form-button text="Open Editor" icon="edit" :variant="['brand', 'size-m']" :href="'/editor/' + site.id"></e-form-button>
                         </div>

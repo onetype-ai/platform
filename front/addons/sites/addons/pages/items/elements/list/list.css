@@ -1,4 +1,4 @@
-.e-7321fdef > .list
+.e-d2c8e82 > .list
 {
 	display: flex;
 	flex-direction: column;
@@ -7,7 +7,7 @@
 
 /* Row */
 
-.e-7321fdef .row
+.e-d2c8e82 .row
 {
 	display: flex;
 	align-items: center;
@@ -16,30 +16,30 @@
 	cursor: pointer;
 }
 
-.e-7321fdef .row:hover
+.e-d2c8e82 .row:hover
 {
 	background: var(--ot-bg-3);
 }
 
-.e-7321fdef .row.active
+.e-d2c8e82 .row.active
 {
 	background: rgba(59, 130, 246, 0.1);
 }
 
-.e-7321fdef .row > .icon
+.e-d2c8e82 .row > .icon
 {
 	font-size: 16px;
 	color: var(--ot-text-2);
 }
 
-.e-7321fdef .row.active > .icon
+.e-d2c8e82 .row.active > .icon
 {
 	color: rgba(59, 130, 246, 0.8);
 }
 
 /* Info */
 
-.e-7321fdef .row > .info
+.e-d2c8e82 .row > .info
 {
 	display: flex;
 	flex-direction: column;
@@ -47,7 +47,7 @@
 	overflow: hidden;
 }
 
-.e-7321fdef .row > .info > .name
+.e-d2c8e82 .row > .info > .name
 {
 	font-size: 12px;
 	color: var(--ot-text-1);
@@ -56,13 +56,13 @@
 	white-space: nowrap;
 }
 
-.e-7321fdef .row.active > .info > .name
+.e-d2c8e82 .row.active > .info > .name
 {
 	color: rgba(59, 130, 246, 0.9);
 	font-weight: 500;
 }
 
-.e-7321fdef .row > .info > .route
+.e-d2c8e82 .row > .info > .route
 {
 	font-size: 10px;
 	color: var(--ot-text-2);
@@ -74,7 +74,7 @@
 
 /* Action */
 
-.e-7321fdef .row > .action
+.e-d2c8e82 .row > .action
 {
 	font-size: 16px;
 	color: var(--ot-text-2);
@@ -85,19 +85,19 @@
 	transition: opacity 0.15s ease, color 0.15s ease;
 }
 
-.e-7321fdef .row:hover > .action
+.e-d2c8e82 .row:hover > .action
 {
 	opacity: 1;
 }
 
-.e-7321fdef .row > .action:hover
+.e-d2c8e82 .row > .action:hover
 {
 	color: var(--ot-text-1);
 }
 
 /* Create */
 
-.e-7321fdef > .list > .create
+.e-d2c8e82 > .list > .create
 {
 	display: flex;
 	align-items: center;
@@ -108,18 +108,18 @@
 	border-bottom: 1px solid var(--ot-bg-2-border);
 }
 
-.e-7321fdef > .list > .create:hover
+.e-d2c8e82 > .list > .create:hover
 {
 	background: var(--ot-bg-3);
 }
 
-.e-7321fdef > .list > .create > i
+.e-d2c8e82 > .list > .create > i
 {
 	font-size: 16px;
 	color: var(--ot-text-2);
 }
 
-.e-7321fdef > .list > .create > span
+.e-d2c8e82 > .list > .create > span
 {
 	font-size: 12px;
 	font-weight: 500;

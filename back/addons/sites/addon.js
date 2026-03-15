@@ -43,6 +43,20 @@ const sites = onetype.Addon('sites', (sites) =>
         addon.Field('created_at', ['string']);
     });
 
+    sites.elements = onetype.Addon('sites.elements', (addon) =>
+    {
+        addon.Table('sites_elements');
+
+        addon.Field('id', ['string']);
+        addon.Field('team_id', ['string', null, true]);
+        addon.Field('site_id', ['string', null, true]);
+        addon.Field('name', ['string', null, true]);
+        addon.Field('slug', ['string', null, true]);
+        addon.Field('data', ['object', {}, true]);
+        addon.Field('updated_at', ['string']);
+        addon.Field('created_at', ['string']);
+    });
+
     sites.sections = onetype.Addon('sites.sections', (addon) =>
     {
         addon.Table('sites_sections');

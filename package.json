@@ -10,13 +10,15 @@
         "url": "https://github.com/onetype-ai/sites-editor.git"
     },
     "imports": {
-        "#auth/*": "./back/addons/auth/*",
+        "#auth-service/*": "./back/services/auth/*",
+        "#elements-service/*": "./back/services/elements/*",
         "#sites/*": "./back/addons/sites/*",
         "#fonts/*": "./back/addons/fonts/*",
         "#categories/*": "./back/addons/categories/*",
         "#extensions/*": "./back/addons/extensions/*",
         "#pages/*": "./back/addons/sites/addons/pages/*",
-        "#sections/*": "./back/addons/sites/addons/sections/*"
+        "#sections/*": "./back/addons/sites/addons/sections/*",
+        "#elements/*": "./back/addons/sites/addons/elements/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"

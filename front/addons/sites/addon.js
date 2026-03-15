@@ -34,6 +34,15 @@ const sites = onetype.Addon('sites', (sites) =>
         addon.Field('active', ['boolean', false, true]);
     });
 
+    sites.elements = onetype.Addon('sites.elements', (addon) =>
+    {
+        addon.Field('id', ['string']);
+        addon.Field('name', ['string', null, true]);
+        addon.Field('slug', ['string', null, true]);
+        addon.Field('data', ['object', {}, true]);
+        addon.Field('active', ['boolean', false, true]);
+    });
+
     sites.sections = onetype.Addon('sites.sections', (addon) =>
     {
         addon.Field('id', ['string']);

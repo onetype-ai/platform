@@ -3,8 +3,11 @@ import './env.js';
 import commands from '@onetype/framework/commands';
 import database from '@onetype/framework/database';
 
+/* Services */
+import '#auth-service/load.js';
+import '#elements-service/load.js';
+
 /* Addons */
-import '#auth/load.js';
 import '#sites/load.js';
 import '#fonts/load.js';
 import '#categories/load.js';

@@ -1,5 +1,5 @@
 elements.ItemAdd({
-	id: 'editor-sections-list',
+	id: 'sites-sections-list',
 	icon: 'layers',
 	name: 'Editor Sections List',
 	description: 'Section tree for the layers tab.',

@@ -1,5 +1,5 @@
 elements.ItemAdd({
-	id: 'editor-pages-settings',
+	id: 'sites-pages-settings',
 	icon: 'settings',
 	name: 'Editor Pages Settings',
 	description: 'Settings panel for the active page.',

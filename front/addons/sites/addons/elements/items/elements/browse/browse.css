@@ -1,0 +1,258 @@
+.e-78de70b6
+{
+	display: flex;
+	width: 940px;
+	height: 640px;
+}
+
+/* Holder */
+
+.e-78de70b6 > .holder
+{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	background: var(--ot-bg-2);
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-l);
+	box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+	overflow: hidden;
+}
+
+/* Header */
+
+.e-78de70b6 > .holder > .header
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: var(--ot-spacing-s) var(--ot-spacing-m);
+	border-bottom: 1px solid var(--ot-bg-2-border);
+	flex-shrink: 0;
+}
+
+.e-78de70b6 > .holder > .header > .powered
+{
+	font-size: 11px;
+	color: var(--ot-text-3);
+	text-decoration: none;
+	transition: color 0.15s;
+}
+
+.e-78de70b6 > .holder > .header > .powered:hover
+{
+	color: var(--ot-brand);
+}
+
+.e-78de70b6 > .holder > .header > .title
+{
+	font-size: var(--ot-size-m);
+	font-weight: 600;
+	color: var(--ot-text-1);
+}
+
+/* Body */
+
+.e-78de70b6 > .holder > .body
+{
+	display: flex;
+	flex: 1;
+	overflow: hidden;
+}
+
+/* Sidebar */
+
+.e-78de70b6 > .holder > .body > .sidebar
+{
+	display: flex;
+	flex-direction: column;
+	width: 180px;
+	min-width: 180px;
+	padding: var(--ot-spacing-s);
+	border-right: 1px solid var(--ot-bg-2-border);
+	overflow-y: auto;
+	gap: 2px;
+}
+
+.e-78de70b6 > .holder > .body > .sidebar > .tab
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	padding: 6px var(--ot-spacing-s);
+	border: none;
+	background: transparent;
+	color: var(--ot-text-2);
+	border-radius: var(--ot-radius-s);
+	cursor: pointer;
+	text-align: left;
+	transition: background 0.1s ease, color 0.1s ease;
+}
+
+.e-78de70b6 > .holder > .body > .sidebar > .tab:hover
+{
+	background: var(--ot-bg-3);
+}
+
+.e-78de70b6 > .holder > .body > .sidebar > .tab.active
+{
+	background: var(--ot-brand-opacity);
+	color: var(--ot-brand);
+}
+
+.e-78de70b6 > .holder > .body > .sidebar > .tab > i
+{
+	font-size: 18px;
+}
+
+.e-78de70b6 > .holder > .body > .sidebar > .tab > span
+{
+	font-size: 12px;
+	font-weight: 500;
+}
+
+.e-78de70b6 > .holder > .body > .sidebar > .tab > .count
+{
+	margin-left: auto;
+	font-size: 10px;
+	color: var(--ot-text-3);
+}
+
+.e-78de70b6 > .holder > .body > .sidebar > .tab.active > .count
+{
+	color: var(--ot-brand);
+	opacity: 0.6;
+}
+
+/* Grid */
+
+.e-78de70b6 > .holder > .body > .grid
+{
+	padding: var(--ot-spacing-m);
+	overflow-y: auto;
+	flex: 1;
+}
+
+/* Card */
+
+.e-78de70b6 .card
+{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	cursor: pointer;
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-l);
+	transition: border-color 0.2s ease;
+}
+
+.e-78de70b6 .card > .preview
+{
+	border-radius: var(--ot-radius-l) var(--ot-radius-l) 0 0;
+}
+
+.e-78de70b6 .card:hover
+{
+	border-color: var(--ot-brand);
+}
+
+/* Preview */
+
+.e-78de70b6 .card > .preview
+{
+	height: 180px;
+	background: var(--ot-bg-1);
+	border-bottom: 1px solid var(--ot-bg-2-border);
+	position: relative;
+	overflow: hidden;
+}
+
+.e-78de70b6 .card > .preview > .frame
+{
+	width: 300%;
+	height: 300%;
+	border: none;
+	pointer-events: none;
+	transform: scale(0.333333);
+	transform-origin: top left;
+}
+
+/* Info */
+
+.e-78de70b6 .card > .info
+{
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: 14px 16px 16px;
+}
+
+.e-78de70b6 .card > .info > .top
+{
+	display: flex;
+	align-items: center;
+	gap: 6px;
+}
+
+.e-78de70b6 .card > .info > .top > .icon
+{
+	font-size: 16px;
+	color: var(--ot-text-2);
+}
+
+.e-78de70b6 .card > .info > .top > .name
+{
+	font-size: 14px;
+	font-weight: 600;
+	color: var(--ot-text-1);
+}
+
+.e-78de70b6 .card > .info > .description
+{
+	font-size: 12px;
+	color: var(--ot-text-2);
+	line-height: 1.5;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Meta */
+
+.e-78de70b6 .card > .info > .meta
+{
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-top: 4px;
+}
+
+.e-78de70b6 .card > .info > .meta > .params
+{
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	font-size: 10px;
+	font-weight: 500;
+	color: var(--ot-text-2);
+	padding: 2px 8px;
+	background: var(--ot-bg-3);
+	border-radius: 100px;
+}
+
+.e-78de70b6 .card > .info > .meta > .params > i
+{
+	font-size: 11px;
+}
+
+/* Empty */
+
+.e-78de70b6 > .holder > .body > .grid > .empty
+{
+	grid-column: 1 / -1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

@@ -10,7 +10,7 @@ onetype.AddonReady('editor.tabs', () =>
 		render: function()
 		{
 			return `
-				<e-editor-sections-settings></e-editor-sections-settings>
+				<e-sites-sections-settings></e-sites-sections-settings>
 			`;
 		}
 	});

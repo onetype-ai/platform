@@ -8,7 +8,7 @@ onetype.AddonReady('editor.tabs', () =>
         render: function() 
         {
             return `
-                <e-editor-sections-list></e-editor-sections-list>
+                <e-sites-sections-list></e-sites-sections-list>
             `;
         }
     });

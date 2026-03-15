@@ -33,8 +33,8 @@ pages.Item({
 
             return `
                 <e-sites-survey ot-if="!logged" :_submit="submit"></e-sites-survey>
-                <div ot-if="logged" class="ot-container ot-flex ot-flex-col ot-gap-l ot-py-l">
-                    <e-global-heading title="Sites" description="Browse and manage your sites, themes, and custom domains." size="m" variant="clean">
+                <div ot-if="logged" class="ot-container-m ot-flex ot-flex-col ot-gap-l ot-py-l">
+                    <e-global-heading :variant="['left', 'size-m', 'clean']" title="Sites" description="Browse and manage your sites, themes, and custom domains.">
                         <div slot="right">
                             <e-form-button text="New Site" icon="add" :variant="['brand', 'size-m']" href="/create"></e-form-button>
                         </div>

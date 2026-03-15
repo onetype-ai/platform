@@ -9,7 +9,7 @@ sites.pages.ItemOn('added', (item) =>
 		render: function() 
 		{
 			return `
-				<e-editor-sections-builder :page="'${item.Get('id')}'"></e-editor-sections-builder>
+				<e-sites-sections-builder :page="'${item.Get('id')}'"></e-sites-sections-builder>
 			`; 	
 		}
 	});

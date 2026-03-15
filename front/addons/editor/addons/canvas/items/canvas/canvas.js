@@ -69,12 +69,20 @@ elements.ItemAdd({
 					<e-editor-ruler direction="horizontal" :visible="true" :zoom="zoom" :scroll="0"></e-editor-ruler>
 					<e-editor-ruler direction="vertical" :visible="true" :zoom="zoom" :scroll="0"></e-editor-ruler>
 					<div class="area ot-scrollbar" :style="gridStyle()" ot-wheel.prevent="wheel">
-						<div class="viewports">
+						<div ot-if="items.length" class="viewports">
 							<div ot-for="item in items">
 								<e-editor-viewport :width="item.width || 1440" :zoom="zoom" :label="item.label || ''">
 									<div slot="content" ot-node="content(item)"></div>
 								</e-editor-viewport>
 							</div>
+						</div>
+						<div ot-if="!items.length" class="viewports">
+							<e-editor-viewport :width="1440" :zoom="zoom" label="No page selected">
+								<div slot="content" class="empty">
+									<i>description</i>
+									<span>Select a page</span>
+								</div>
+							</e-editor-viewport>
 						</div>
 					</div>
 				</div>

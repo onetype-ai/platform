@@ -1,5 +1,5 @@
 elements.ItemAdd({
-	id: 'editor-pages-list',
+	id: 'sites-pages-list',
 	icon: 'description',
 	name: 'Editor Pages List',
 	description: 'Page list for the pages tab.',
