@@ -54,6 +54,6 @@ commands.Item({
 
         const items = await query.many();
 
-        resolve({ sections: items.map(item => item.Get(['id', 'team_id', 'site_id', 'page_id', 'order', 'updated_at', 'created_at'])) });
+        resolve({ sections: items.map(item => item.Get(['id', 'team_id', 'site_id', 'page_id', 'order', 'columns', 'padding', 'margin', 'gap', 'background', 'border', 'container', 'updated_at', 'created_at'])) });
     }
 });

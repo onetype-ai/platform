@@ -28,7 +28,7 @@ commands.Item({
             site_id: properties.site_id,
             page_id: properties.page_id,
             order: properties.order,
-            columns: ['1fr'],
+            columns: [{ width: '1fr', element: null, data: {} }],
             gap: 16,
             container: 'm'
         });

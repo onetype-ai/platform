@@ -6,7 +6,8 @@ commands.Item({
 	method: 'POST',
 	endpoint: '/api/se/catalog/bundle/css',
 	in: {
-		ids: ['array', null, true]
+		ids: ['array'],
+		slugs: ['array']
 	},
 	out: {
 		css: ['object']

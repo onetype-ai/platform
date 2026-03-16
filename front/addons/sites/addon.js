@@ -50,9 +50,9 @@ const sites = onetype.Addon('sites', (sites) =>
         addon.Field('order', ['number', 0, true]);
         addon.Field('columns', {
             type: 'array',
-            value: ['1fr'],
+            value: [{ width: '1fr', element: null, data: {} }],
             required: true,
-            each: { type: 'string' }
+            each: { type: 'object' }
         });
         addon.Field('padding', {
             type: 'object',

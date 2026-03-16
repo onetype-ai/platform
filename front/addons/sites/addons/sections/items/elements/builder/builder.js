@@ -108,10 +108,26 @@ elements.ItemAdd({
 			sites.sections.Fn('create', this.page);
 		};
 
-		this.pick = (section) =>
+		this.pick = (section, index) =>
 		{
+			const pick = async (item) =>
+			{
+				const element = await sites.elements.Fn('create', item.name, item.slug);
+
+				if(element)
+				{
+					const columns = [...section.columns];
+
+					columns[index] = { ...columns[index], element: item.slug, data: {} };
+
+					sites.sections.Fn('update', section.id, { columns });
+				}
+			};
+
 			$ot.modal(function()
 			{
+				this.pick = pick;
+
 				return `<e-elements-browse :_pick="pick"></e-elements-browse>`;
 			});
 		};
@@ -123,7 +139,7 @@ elements.ItemAdd({
 
 		this.grid = (section) =>
 		{
-			return 'grid-template-columns:' + section.columns.join(' ') + ';gap:' + section.gap + 'px;';
+			return 'grid-template-columns:' + section.columns.map(col => col.width).join(' ') + ';gap:' + section.gap + 'px;';
 		};
 
 		this.spacing = (value) =>
@@ -153,8 +169,9 @@ elements.ItemAdd({
 								<span ot-if="section.padding.right" class="dimension right">{{ section.padding.right }}</span>
 								<div class="content" :style="background(section)">
 									<div :class="container(section)" :style="grid(section)">
-										<div ot-for="col in section.columns" class="column" ot-click.stop="() => pick(section)">
-											<i>add</i>
+										<div ot-for="col, ci in section.columns" class="column" ot-click.stop="() => pick(section, ci)">
+											<span ot-if="col.element" class="element-label">{{ col.element }}</span>
+											<i ot-if="!col.element">add</i>
 										</div>
 									</div>
 								</div>
