@@ -7,11 +7,11 @@ sites.sections.Fn('delete', async function(id)
 		return null;
 	}
 
-	await $ot.command('sections:delete', { id }, true);
-
 	sites.sections.ItemRemove(id);
 
 	onetype.Emit('sites.sections.delete', { id });
+
+	await $ot.command('sections:delete', { id }, true);
 
 	return true;
 });

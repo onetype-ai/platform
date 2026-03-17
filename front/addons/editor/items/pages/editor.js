@@ -4,11 +4,12 @@ pages.Item({
     title: 'Editor - OneType',
     data: async function(parameters)
     {
-        const [item, page_items, section_items, element_items] = await Promise.all([
+        const [item, page_items, section_items, element_items, variable_items] = await Promise.all([
             sites.Find().filter('id', parameters.site).one(),
             sites.pages.Find().filter('site_id', parameters.site).many(),
             sites.sections.Find().filter('site_id', parameters.site).many(),
-            sites.elements.Find().filter('site_id', parameters.site).many()
+            sites.elements.Find().filter('site_id', parameters.site).many(),
+            sites.variables.Find().filter('site_id', parameters.site).many()
         ]);
 
         if(!item)
@@ -29,6 +30,11 @@ pages.Item({
         for(const element of element_items)
         {
             sites.elements.Item(element.data);
+        }
+
+        for(const variable of variable_items)
+        {
+            sites.variables.Item(variable.data);
         }
 
         $ot.set('site', item.data);
@@ -74,5 +80,6 @@ pages.Item({
         sites.pages.ItemsClear();
         sites.sections.ItemsClear();
         sites.elements.ItemsClear();
+        sites.variables.ItemsClear();
     },
 });

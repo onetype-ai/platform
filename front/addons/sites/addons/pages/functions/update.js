@@ -7,8 +7,10 @@ sites.pages.Fn('update', async function(id, fields = {})
 		return null;
 	}
 
-	const result = await $ot.command('pages:update', { id, ...fields }, true);
-	const page = result.data.page;
+	for(const [key, value] of Object.entries(fields))
+	{
+		item.Set(key, value);
+	}
 
 	for(const flag of ['is_home', 'is_404'])
 	{
@@ -23,6 +25,9 @@ sites.pages.Fn('update', async function(id, fields = {})
 			}
 		}
 	}
+
+	const result = await $ot.command('pages:update', { id, ...fields }, true);
+	const page = result.data.page;
 
 	for(const [key, value] of Object.entries(page))
 	{

@@ -14,5 +14,6 @@ import '#sites/items/commands/delete.js';
 import '#pages/load.js';
 import '#sections/load.js';
 import '#elements/load.js';
+import '#variables/load.js';
 
 export default sites;

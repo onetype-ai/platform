@@ -11,15 +11,17 @@ elements.ItemAdd({
 	render: function()
 	{
 		this.items = [];
+		this.active = null;
 
 		const load = () =>
 		{
 			this.items = !this.page ? [] : Object.values(sites.sections.Items()).filter(item => item.Get('page_id') === this.page).sort((a, b) => a.Get('order') - b.Get('order')).map(item => item.data);
+			this.active = this.items.find(s => s.active)?.id || null;
 		};
 
 		const callback = (item) =>
 		{
-			if(item.addon.GetName() === 'sites.sections')
+			if(item.addon.GetName() === 'sites.sections' || item.addon.GetName() === 'sites.elements')
 			{
 				load();
 			}
@@ -31,81 +33,112 @@ elements.ItemAdd({
 		this.On('@addon.item.modified', callback);
 		this.On('@addon.item.removed', callback);
 
-		const select = (section) =>
+		const toolbar = (target, section, index) =>
 		{
-			for(const item of Object.values(sites.sections.Items()))
-			{
-				if(item.Get('active') && item.Get('id') !== section.id)
-				{
-					item.Set('active', false);
-				}
-			}
-
-			const target = sites.sections.ItemGet(section.id);
-
-			if(target)
-			{
-				target.Set('active', !target.Get('active'));
-			}
-		};
-
-		const reorder = (section, direction) =>
-		{
-			const index = this.items.findIndex(s => s.id === section.id);
-			const swap = this.items[index + direction];
-
-			if(!swap)
-			{
-				return;
-			}
-
-			sites.sections.Fn('update', section.id, { order: swap.order });
-			sites.sections.Fn('update', swap.id, { order: section.order });
-		};
-
-		this.toolbar = ({ event }, section, index) =>
-		{
+			const page = this.page;
 			const count = this.items.length;
+			const canUp = index > 0;
+			const canDown = index < count - 1;
+			const id = section.id;
+			const order = section.order;
 
-			$ot.popup(event.target.closest('.section'), function()
-			{
-				this.toggle = () => select(section);
-				this.up = () => reorder(section, -1);
-				this.down = () => reorder(section, 1);
-
-				this.del = () =>
+			const actions = {
+				above: () => sites.sections.Fn('create', page, Math.max(0, order - 1)),
+				below: () => sites.sections.Fn('create', page, order + 1),
+				up: () =>
 				{
-					sites.sections.Fn('delete', section.id);
+					const swap = this.items[index - 1];
+
+					if(swap)
+					{
+						sites.sections.Fn('update', id, { order: swap.order });
+						sites.sections.Fn('update', swap.id, { order: order });
+					}
+				},
+				down: () =>
+				{
+					const swap = this.items[index + 1];
+
+					if(swap)
+					{
+						sites.sections.Fn('update', id, { order: swap.order });
+						sites.sections.Fn('update', swap.id, { order: order });
+					}
+				},
+				del: () =>
+				{
+					sites.sections.Fn('delete', id);
 					$ot.popup.close('section-toolbar');
-				};
+				}
+			};
+
+			$ot.popup(target, function()
+			{
+				this.above = actions.above;
+				this.below = actions.below;
+				this.up = actions.up;
+				this.down = actions.down;
+				this.del = actions.del;
+				this.canUp = canUp;
+				this.canDown = canDown;
 
 				return `
 					<div class="section-toolbar">
-						<span class="label">Section {{ ${index} + 1 }}</span>
-						<div class="actions">
-							<i :class="${section.active} ? 'active' : ''" ot-click="toggle">settings</i>
-							<i ot-if="${index} > 0" ot-click="up">arrow_upward</i>
-							<i ot-if="${index} < ${count - 1}" ot-click="down">arrow_downward</i>
-							<i ot-click="del">delete</i>
-						</div>
+						<button ot-tooltip="Add above" ot-click.stop="above"><i>vertical_align_top</i></button>
+						<button ot-tooltip="Add below" ot-click.stop="below"><i>vertical_align_bottom</i></button>
+						<span class="divider"></span>
+						<button ot-if="canUp" ot-tooltip="Move up" ot-click.stop="up"><i>arrow_upward</i></button>
+						<button ot-if="canDown" ot-tooltip="Move down" ot-click.stop="down"><i>arrow_downward</i></button>
+						<span ot-if="canUp || canDown" class="divider"></span>
+						<button class="danger" ot-tooltip="Delete" ot-click.stop="del"><i>delete</i></button>
 					</div>
 				`;
-			}, { id: 'section-toolbar', position: { x: 'center', y: 'center' } });
+			}, { id: 'section-toolbar', position: { x: 'center', y: 'top' }, offset: { x: 0, y: -4 }, track: true });
 		};
 
-		this.toolbarClose = ({ event }) =>
+		this.select = ({ event }, section, index) =>
 		{
-			if(event.relatedTarget && event.relatedTarget.closest('.ot-overlay'))
+			if(this.active === section.id)
 			{
+				sites.sections.Fn('deactivate');
+				$ot.popup.close('section-toolbar');
 				return;
 			}
 
-			$ot.popup.close('section-toolbar');
+			sites.sections.Fn('activate', section.id);
+			toolbar(event.target.closest('.section'), section, index);
+		};
+
+		this.deselect = ({ event }) =>
+		{
+			if(!event.target.closest('.section'))
+			{
+				sites.sections.Fn('deactivate');
+				$ot.popup.close('section-toolbar');
+			}
 		};
 
 		this.add = () =>
 		{
 			sites.sections.Fn('create', this.page);
+		};
+
+		this.selectElement = (col) =>
+		{
+			const item = Object.values(sites.elements.Items()).find(i => i.Get('slug') === col.element);
+
+			if(item)
+			{
+				sites.elements.Fn('activate', item.Get('id'));
+			}
+		};
+
+		this.render = (col) =>
+		{
+			const item = Object.values(sites.elements.Items()).find(i => i.Get('slug') === col.element);
+			const data = item ? item.Get('data') : {};
+
+			return elements.Render(col.element, data).Element;
 		};
 
 		this.pick = (section, index) =>
@@ -142,43 +175,29 @@ elements.ItemAdd({
 			return 'grid-template-columns:' + section.columns.map(col => col.width).join(' ') + ';gap:' + section.gap + 'px;';
 		};
 
-		this.spacing = (value) =>
-		{
-			return value.top + 'px ' + value.right + 'px ' + value.bottom + 'px ' + value.left + 'px';
-		};
-
 		this.background = (section) =>
 		{
 			return section.background ? 'background:' + section.background : '';
 		};
 
 		return `
-			<div class="builder">
-				<div class="insert" ot-click.stop="add"><i>add</i></div>
+			<div class="builder" ot-click="deselect">
 				<div ot-for="section, index in items">
-					<div :class="'section' + (section.active ? ' active' : '')" ot-mouse-enter="(e) => toolbar(e, section, index)" ot-mouse-leave="toolbarClose">
-						<div class="margin" :style="'padding:' + spacing(section.margin)">
-							<span ot-if="section.margin.top" class="dimension top">{{ section.margin.top }}</span>
-							<span ot-if="section.margin.bottom" class="dimension bottom">{{ section.margin.bottom }}</span>
-							<span ot-if="section.margin.left" class="dimension left">{{ section.margin.left }}</span>
-							<span ot-if="section.margin.right" class="dimension right">{{ section.margin.right }}</span>
-							<div class="padding" :style="'padding:' + spacing(section.padding)">
-								<span ot-if="section.padding.top" class="dimension top">{{ section.padding.top }}</span>
-								<span ot-if="section.padding.bottom" class="dimension bottom">{{ section.padding.bottom }}</span>
-								<span ot-if="section.padding.left" class="dimension left">{{ section.padding.left }}</span>
-								<span ot-if="section.padding.right" class="dimension right">{{ section.padding.right }}</span>
-								<div class="content" :style="background(section)">
-									<div :class="container(section)" :style="grid(section)">
-										<div ot-for="col, ci in section.columns" class="column" ot-click.stop="() => pick(section, ci)">
-											<span ot-if="col.element" class="element-label">{{ col.element }}</span>
-											<i ot-if="!col.element">add</i>
-										</div>
+					<div :class="'section' + (active === section.id ? ' selected' : '')" ot-click.stop="(e) => select(e, section, index)">
+						<div class="content" :style="background(section)">
+							<div :class="container(section)" :style="grid(section)">
+								<div ot-for="col, ci in section.columns" class="column">
+									<div ot-if="col.element" class="element" ot-click.stop="() => selectElement(col)">
+										<div ot-node="render(col)"></div>
+									</div>
+									<div ot-if="!col.element" class="placeholder" ot-click.stop="() => pick(section, ci)">
+										<i>add</i>
+										<span>Add element</span>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="insert" ot-click.stop="add"><i>add</i></div>
 				</div>
 				<div ot-if="!items.length" class="empty" ot-click="add">
 					<i>add</i>

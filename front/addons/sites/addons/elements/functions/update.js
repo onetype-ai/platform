@@ -7,6 +7,11 @@ sites.elements.Fn('update', async function(id, fields = {})
 		return null;
 	}
 
+	for(const [key, value] of Object.entries(fields))
+	{
+		item.Set(key, value);
+	}
+
 	const result = await $ot.command('elements:update', { id, ...fields }, true);
 	const element = result.data.element;
 

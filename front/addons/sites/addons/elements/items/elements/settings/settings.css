@@ -1,0 +1,33 @@
+/* Root */
+
+.e-47a8541e
+{
+	width: 100%;
+}
+
+/* Holder */
+
+.e-47a8541e > .holder
+{
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding: 12px;
+	overflow-y: auto;
+}
+
+.e-47a8541e > .holder > .title
+{
+	font-size: var(--ot-size-m);
+	font-weight: 600;
+	color: var(--ot-text-1);
+}
+
+/* Empty */
+
+.e-47a8541e > .empty
+{
+	display: flex;
+	width: 100%;
+	padding: var(--ot-spacing-l);
+}

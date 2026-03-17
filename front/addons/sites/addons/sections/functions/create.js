@@ -1,4 +1,4 @@
-sites.sections.Fn('create', async function(page_id)
+sites.sections.Fn('create', async function(page_id, order)
 {
 	const site = $ot.get('site');
 
@@ -7,10 +7,13 @@ sites.sections.Fn('create', async function(page_id)
 		return null;
 	}
 
-	const count = Object.values(sites.sections.Items())
-		.filter(item => item.Get('page_id') === page_id).length;
+	if(order === undefined)
+	{
+		order = Object.values(sites.sections.Items())
+			.filter(item => item.Get('page_id') === page_id).length;
+	}
 
-	const result = await $ot.command('sections:create', { site_id: site.id, page_id, order: count }, true);
+	const result = await $ot.command('sections:create', { site_id: site.id, page_id, order }, true);
 	const section = result.data.section;
 	const item = this.Item(section);
 

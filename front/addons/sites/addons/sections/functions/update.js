@@ -7,6 +7,11 @@ sites.sections.Fn('update', async function(id, fields = {})
 		return null;
 	}
 
+	for(const [key, value] of Object.entries(fields))
+	{
+		item.Set(key, value);
+	}
+
 	const result = await $ot.command('sections:update', { id, ...fields }, true);
 	const section = result.data.section;
 

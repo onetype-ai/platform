@@ -6,7 +6,6 @@ const root = resolve(import.meta.dirname, '..', '..', '..');
 assets.Fn('import', ['framework', 'styles']);
 assets.Fn('import', ['commands']);
 assets.Fn('import', ['database']);
-assets.Fn('import', ['ai']);
 assets.Fn('import', [
     'elements',
     'elements/items',

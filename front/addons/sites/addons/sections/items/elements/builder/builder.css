@@ -19,8 +19,21 @@
 {
 	display: flex;
 	flex-direction: column;
-	cursor: pointer;
 	position: relative;
+	cursor: pointer;
+	outline: 2px solid transparent;
+	outline-offset: -2px;
+	transition: outline-color 0.15s;
+}
+
+.e-1876fdcd .section:hover
+{
+	outline-color: var(--ot-bg-3-border);
+}
+
+.e-1876fdcd .section.selected
+{
+	outline-color: var(--ot-brand);
 }
 
 /* Toolbar (popup) */
@@ -29,97 +42,53 @@
 {
 	display: flex;
 	align-items: center;
-	gap: 8px;
-	padding: 3px 3px 3px 8px;
+	gap: 2px;
+	padding: 4px;
 	background: var(--ot-bg-2);
-	border-radius: var(--ot-radius-s);
+	border: 1px solid var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-m);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 	white-space: nowrap;
 }
 
-.section-toolbar > .label
+.section-toolbar > button
 {
-	font-size: 10px;
-	font-weight: 600;
-	color: var(--ot-text-2);
-}
-
-.section-toolbar > .actions
-{
-	display: flex;
-	gap: 1px;
-}
-
-.section-toolbar > .actions > i
-{
-	font-size: 14px;
-	color: var(--ot-text-3);
-	width: 22px;
-	height: 22px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 28px;
+	height: 28px;
+	border: none;
+	background: transparent;
+	color: var(--ot-text-2);
 	border-radius: var(--ot-radius-s);
 	cursor: pointer;
 	transition: color 0.15s, background 0.15s;
 }
 
-.section-toolbar > .actions > i:hover
+.section-toolbar > button:hover
 {
 	color: var(--ot-text-1);
 	background: var(--ot-bg-3);
 }
 
-.section-toolbar > .actions > i.active
-{
-	color: var(--ot-brand);
-	background: var(--ot-brand-opacity);
-}
-
-.section-toolbar > .actions > i:last-child:hover
+.section-toolbar > button.danger:hover
 {
 	color: var(--ot-red);
 	background: var(--ot-red-opacity);
 }
 
-/* Margin */
-
-.e-1876fdcd .margin
+.section-toolbar > button > i
 {
-	position: relative;
-	background: transparent;
-	outline: 1px solid transparent;
-	transition: background 0.2s, outline-color 0.2s;
+	font-size: 16px;
 }
 
-.e-1876fdcd .section:hover > .margin
+.section-toolbar > .divider
 {
-	background: rgba(246, 178, 107, 0.08);
-	outline-color: rgba(0, 0, 0, 0.06);
-}
-
-.e-1876fdcd .section.active > .margin
-{
-	background: rgba(246, 178, 107, 0.12);
-	outline-color: rgba(246, 178, 107, 0.3);
-}
-
-/* Padding */
-
-.e-1876fdcd .padding
-{
-	position: relative;
-	background: transparent;
-	transition: background 0.2s;
-}
-
-.e-1876fdcd .section:hover > .margin > .padding
-{
-	background: rgba(130, 202, 156, 0.08);
-}
-
-.e-1876fdcd .section.active > .margin > .padding
-{
-	background: rgba(130, 202, 156, 0.12);
+	width: 1px;
+	height: 16px;
+	background: var(--ot-bg-2-border);
+	margin: 0 2px;
 }
 
 /* Content */
@@ -127,49 +96,6 @@
 .e-1876fdcd .content
 {
 	position: relative;
-	transition: box-shadow 0.2s;
-}
-
-.e-1876fdcd .section.active .content
-{
-	box-shadow: 0 0 0 1px var(--ot-brand);
-}
-
-/* Dimension pills */
-
-.e-1876fdcd .dimension
-{
-	display: none;
-	position: absolute;
-	font-size: 9px;
-	font-weight: 600;
-	padding: 1px 5px;
-	border-radius: 3px;
-	z-index: 5;
-	pointer-events: none;
-}
-
-.e-1876fdcd .section:hover .dimension,
-.e-1876fdcd .section.active .dimension
-{
-	display: flex;
-}
-
-.e-1876fdcd .dimension.top    { top: 2px; left: 50%; transform: translateX(-50%); }
-.e-1876fdcd .dimension.bottom { bottom: 2px; left: 50%; transform: translateX(-50%); }
-.e-1876fdcd .dimension.left   { left: 3px; top: 50%; transform: translateY(-50%); }
-.e-1876fdcd .dimension.right  { right: 3px; top: 50%; transform: translateY(-50%); }
-
-.e-1876fdcd .margin > .dimension
-{
-	color: rgba(200, 130, 60, 1);
-	background: rgba(246, 178, 107, 0.2);
-}
-
-.e-1876fdcd .padding > .dimension
-{
-	color: rgba(60, 140, 90, 1);
-	background: rgba(130, 202, 156, 0.25);
 }
 
 /* Grid */
@@ -192,102 +118,65 @@
 .e-1876fdcd .column
 {
 	display: flex;
+	flex-direction: column;
+	min-height: 48px;
+}
+
+/* Element */
+
+.e-1876fdcd .element
+{
+	width: 100%;
+	cursor: pointer;
+}
+
+.e-1876fdcd .element > *
+{
+	pointer-events: none;
+}
+
+/* Placeholder */
+
+.e-1876fdcd .placeholder
+{
+	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	min-height: 48px;
-	background: rgba(0, 0, 0, 0.025);
-	border: 1px dashed rgba(0, 0, 0, 0.1);
+	gap: 4px;
+	min-height: 80px;
+	background: rgba(0, 0, 0, 0.02);
+	border: 1px dashed rgba(0, 0, 0, 0.08);
 	border-radius: 4px;
+	cursor: pointer;
 	transition: background 0.15s, border-color 0.15s;
 }
 
-.e-1876fdcd .section:hover .column
-{
-	background: rgba(0, 0, 0, 0.04);
-	border-color: rgba(0, 0, 0, 0.15);
-}
-
-.e-1876fdcd .section.active .column
+.e-1876fdcd .placeholder:hover
 {
 	background: rgba(226, 112, 85, 0.05);
-	border-color: transparent;
+	border-color: var(--ot-brand);
 }
 
-.e-1876fdcd .section.active .column:hover
+.e-1876fdcd .placeholder > i
 {
-	background: rgba(226, 112, 85, 0.06);
-}
-
-.e-1876fdcd .column > i
-{
-	font-size: 18px;
+	font-size: 20px;
 	color: rgba(0, 0, 0, 0.12);
-	opacity: 0;
-	transition: opacity 0.15s;
+	transition: color 0.15s;
 }
 
-.e-1876fdcd .column:hover > i
+.e-1876fdcd .placeholder > span
 {
-	opacity: 1;
+	font-size: 11px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.15);
+	transition: color 0.15s;
 }
 
-.e-1876fdcd .section.active .column > i
+.e-1876fdcd .placeholder:hover > i,
+.e-1876fdcd .placeholder:hover > span
 {
-	color: rgba(226, 112, 85, 0.3);
-}
-
-/* Insert */
-
-.e-1876fdcd .insert
-{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	height: 0;
-	position: relative;
-	z-index: 10;
-}
-
-.e-1876fdcd .insert > i
-{
-	font-size: 16px;
-	color: white;
-	width: 20px;
-	height: 20px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: var(--ot-brand);
-	border-radius: 50%;
-	cursor: pointer;
-	opacity: 0;
-	transform: scale(0.8);
-	transition: opacity 0.15s, transform 0.15s;
-}
-
-.e-1876fdcd .insert:hover > i
-{
-	opacity: 1;
-	transform: scale(1);
-}
-
-.e-1876fdcd .insert::before
-{
-	content: '';
-	position: absolute;
-	left: 24px;
-	right: 24px;
-	top: 50%;
-	height: 1px;
-	background: var(--ot-brand);
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 0.15s;
-}
-
-.e-1876fdcd .insert:hover::before
-{
-	opacity: 0.3;
+	color: var(--ot-brand);
 }
 
 /* Empty */

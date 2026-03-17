@@ -12,11 +12,11 @@ sites.pages.Fn('delete', async function(id)
 		sites.pages.Fn('deactivate');
 	}
 
-	await $ot.command('pages:delete', { id }, true);
-
 	sites.pages.ItemRemove(id);
 
 	onetype.Emit('sites.pages.delete', { id });
+
+	await $ot.command('pages:delete', { id }, true);
 
 	return true;
 });

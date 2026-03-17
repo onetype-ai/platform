@@ -40,6 +40,21 @@ const sites = onetype.Addon('sites', (sites) =>
         addon.Field('name', ['string', null, true]);
         addon.Field('slug', ['string', null, true]);
         addon.Field('data', ['object', {}, true]);
+        addon.Field('code', ['string', '', true]);
+        addon.Field('style', ['string', '', true]);
+        addon.Field('config', ['object', {}, true]);
+        addon.Field('active', ['boolean', false, true]);
+    });
+
+    sites.variables = onetype.Addon('sites.variables', (addon) =>
+    {
+        addon.Field('id', ['string']);
+        addon.Field('name', ['string', null, true]);
+        addon.Field('group', ['string', '', true]);
+        addon.Field('type', ['string', 'text', true]);
+        addon.Field('value', ['string', '', true]);
+        addon.Field('values', ['array', [], true]);
+        addon.Field('config', ['object', {}, true]);
         addon.Field('active', ['boolean', false, true]);
     });
 
