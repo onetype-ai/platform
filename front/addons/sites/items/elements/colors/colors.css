@@ -1,0 +1,23 @@
+.e-41831a99
+{
+	display: grid;
+	width: 100%;
+	height: 100%;
+}
+
+.e-41831a99 > .holder
+{
+	display: grid;
+	grid-template-rows: 1fr auto;
+	gap: 12px;
+	padding: 12px;
+	overflow-y: auto;
+}
+
+.e-41831a99 > .holder > .actions
+{
+	display: grid;
+	gap: 8px;
+	padding-top: 12px;
+	border-top: 1px solid var(--ot-bg-2-border);
+}

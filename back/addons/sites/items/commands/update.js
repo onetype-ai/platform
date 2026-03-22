@@ -12,6 +12,7 @@ commands.Item({
         category_id: ['string'],
         description: ['string'],
         color: ['string'],
+        colors: ['object'],
         font_ids: ['array'],
         extension_ids: ['array'],
         method: ['string'],
@@ -53,7 +54,7 @@ commands.Item({
         await site.Update();
 
         resolve({
-            site: site.Get(['id', 'team_id', 'name', 'category_id', 'description', 'color', 'font_ids', 'extension_ids', 'method', 'is_theme', 'domains', 'updated_at', 'created_at'])
+            site: site.Get(['id', 'team_id', 'name', 'category_id', 'description', 'color', 'colors', 'font_ids', 'extension_ids', 'method', 'is_theme', 'domains', 'updated_at', 'created_at'])
         });
     }
 });

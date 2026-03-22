@@ -7,6 +7,20 @@ const sites = onetype.Addon('sites', (sites) =>
     sites.Field('category', ['object']);
     sites.Field('description', ['string']);
     sites.Field('color', ['string']);
+    sites.Field('colors', ['object', {
+        'brand': 'rgba(226, 112, 85, 1)',
+        'bg-1': 'rgba(29, 29, 31, 1)',
+        'bg-2': 'rgba(34, 34, 36, 1)',
+        'bg-3': 'rgba(39, 39, 41, 1)',
+        'bg-4': 'rgba(44, 44, 46, 1)',
+        'text-1': 'rgba(225, 228, 232, 1)',
+        'text-2': 'rgba(156, 156, 156, 1)',
+        'text-3': 'rgba(100, 100, 100, 1)',
+        'blue': 'rgba(56, 189, 248, 1)',
+        'red': 'rgba(244, 63, 94, 1)',
+        'orange': 'rgba(251, 146, 60, 1)',
+        'green': 'rgba(52, 211, 153, 1)'
+    }, true]);
     sites.Field('font_ids', ['array']);
     sites.Field('fonts', ['array']);
     sites.Field('extension_ids', ['array']);

@@ -77,11 +77,8 @@ elements.ItemAdd({
 							</div>
 						</div>
 						<div ot-if="!items.length" class="viewports">
-							<e-editor-viewport :width="1440" :zoom="zoom" label="No page selected">
-								<div slot="content" class="empty">
-									<i>description</i>
-									<span>Select a page</span>
-								</div>
+							<e-editor-viewport :width="1440" :zoom="zoom">
+								<e-status-empty slot="content" icon="description" title="No page selected" description="Select a page to start editing."></e-status-empty>
 							</e-editor-viewport>
 						</div>
 					</div>

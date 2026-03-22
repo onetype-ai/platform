@@ -64,8 +64,8 @@ onetype.AddonReady('elements', () =>
 					<div ot-if="items.length" class="header">
 						<div ot-for="item in items">
 							<div :class="classes(item)" :data-id="item.id" ot-click="select(item)">
-								<i>{{ item.icon }}</i>
-								<span>{{ item.title }}</span>
+								<i :ot-tooltip="!item.active ? item.title : null">{{ item.icon }}</i>
+								<span ot-if="item.active">{{ item.title }}</span>
 							</div>
 						</div>
 					</div>

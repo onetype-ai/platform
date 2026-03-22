@@ -31,6 +31,6 @@ commands.Item({
             return resolve(null, 'Not found.', 404);
         }
 
-        resolve({ site: item.Get(['id', 'team_id', 'name', 'category_id', 'description', 'color', 'font_ids', 'extension_ids', 'method', 'is_theme', 'domains', 'updated_at', 'created_at']) });
+        resolve({ site: item.Get(['id', 'team_id', 'name', 'category_id', 'description', 'color', 'colors', 'font_ids', 'extension_ids', 'method', 'is_theme', 'domains', 'updated_at', 'created_at']) });
     }
 });
