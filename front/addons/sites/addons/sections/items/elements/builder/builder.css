@@ -21,19 +21,24 @@
 	flex-direction: column;
 	position: relative;
 	cursor: pointer;
+}
+
+.e-1876fdcd .section > .content
+{
 	outline: 2px solid transparent;
 	outline-offset: -2px;
 	transition: outline-color 0.15s;
 }
 
-.e-1876fdcd .section:hover
+.e-1876fdcd .section:hover > .content
 {
 	outline-color: var(--ot-bg-3-border);
 }
 
-.e-1876fdcd .section.selected
+.e-1876fdcd .section.selected > .content
 {
 	outline-color: var(--ot-brand);
+	overflow: visible;
 }
 
 /* Toolbar (popup) */
@@ -98,6 +103,101 @@
 	position: relative;
 }
 
+/* Guides */
+
+.e-1876fdcd .guides
+{
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+	z-index: 20;
+}
+
+.e-1876fdcd .guide
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.e-1876fdcd .guide > span
+{
+	font-size: 9px;
+	font-weight: 600;
+	padding: 1px 4px;
+	border-radius: 2px;
+	line-height: 1;
+	white-space: nowrap;
+}
+
+/* Padding guides */
+
+.e-1876fdcd .guide.padding
+{
+	position: absolute;
+	background: rgba(52, 211, 153, 0.12);
+}
+
+.e-1876fdcd .guide.padding > span
+{
+	color: rgba(52, 211, 153, 1);
+	background: rgba(52, 211, 153, 0.15);
+}
+
+.e-1876fdcd .guide.padding.top
+{
+	top: 0;
+	left: 0;
+	right: 0;
+}
+
+.e-1876fdcd .guide.padding.right
+{
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+.e-1876fdcd .guide.padding.bottom
+{
+	bottom: 0;
+	left: 0;
+	right: 0;
+}
+
+.e-1876fdcd .guide.padding.left
+{
+	top: 0;
+	left: 0;
+	bottom: 0;
+}
+
+/* Margin guides */
+
+.e-1876fdcd .guide.margin
+{
+	position: absolute;
+	left: 0;
+	right: 0;
+	background: rgba(251, 146, 60, 0.12);
+}
+
+.e-1876fdcd .guide.margin.top
+{
+	bottom: 100%;
+}
+
+.e-1876fdcd .guide.margin.bottom
+{
+	top: 100%;
+}
+
+.e-1876fdcd .guide.margin > span
+{
+	color: rgba(251, 146, 60, 1);
+	background: rgba(251, 146, 60, 0.15);
+}
+
 /* Grid */
 
 .e-1876fdcd .body
@@ -108,10 +208,10 @@
 	margin: 0 auto;
 }
 
-.e-1876fdcd .body.container-s    { max-width: 720px; }
-.e-1876fdcd .body.container-m    { max-width: 960px; }
-.e-1876fdcd .body.container-l    { max-width: 1200px; }
-.e-1876fdcd .body.container-full { max-width: 100%; }
+.e-1876fdcd .body.container-s    { max-width: 720px; padding: 0 var(--ot-spacing-m); }
+.e-1876fdcd .body.container-m    { max-width: 960px; padding: 0 var(--ot-spacing-m); }
+.e-1876fdcd .body.container-l    { max-width: 1200px; padding: 0 var(--ot-spacing-m); }
+.e-1876fdcd .body.container-full { max-width: 100%; padding: 0 var(--ot-spacing-m); }
 
 /* Column */
 
@@ -145,8 +245,8 @@
 	justify-content: center;
 	gap: 4px;
 	min-height: 80px;
-	background: rgba(0, 0, 0, 0.02);
-	border: 1px dashed rgba(0, 0, 0, 0.08);
+	background: var(--ot-bg-2);
+	border: 1px dashed var(--ot-bg-3-border);
 	border-radius: 4px;
 	cursor: pointer;
 	transition: background 0.15s, border-color 0.15s;
@@ -154,14 +254,14 @@
 
 .e-1876fdcd .placeholder:hover
 {
-	background: rgba(226, 112, 85, 0.05);
+	background: var(--ot-brand-opacity);
 	border-color: var(--ot-brand);
 }
 
 .e-1876fdcd .placeholder > i
 {
 	font-size: 20px;
-	color: rgba(0, 0, 0, 0.12);
+	color: var(--ot-text-3);
 	transition: color 0.15s;
 }
 
@@ -169,58 +269,12 @@
 {
 	font-size: 11px;
 	font-weight: 500;
-	color: rgba(0, 0, 0, 0.15);
+	color: var(--ot-text-3);
 	transition: color 0.15s;
 }
 
 .e-1876fdcd .placeholder:hover > i,
 .e-1876fdcd .placeholder:hover > span
-{
-	color: var(--ot-brand);
-}
-
-/* Empty */
-
-.e-1876fdcd .empty
-{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 8px;
-	padding: 48px 24px;
-	cursor: pointer;
-}
-
-.e-1876fdcd .empty > i
-{
-	font-size: 32px;
-	color: rgba(0, 0, 0, 0.1);
-	width: 56px;
-	height: 56px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border: 2px dashed rgba(0, 0, 0, 0.08);
-	border-radius: 50%;
-	transition: border-color 0.2s, color 0.2s;
-}
-
-.e-1876fdcd .empty > span
-{
-	font-size: 12px;
-	font-weight: 500;
-	color: rgba(0, 0, 0, 0.2);
-	transition: color 0.2s;
-}
-
-.e-1876fdcd .empty:hover > i
-{
-	border-color: var(--ot-brand);
-	color: var(--ot-brand);
-}
-
-.e-1876fdcd .empty:hover > span
 {
 	color: var(--ot-brand);
 }

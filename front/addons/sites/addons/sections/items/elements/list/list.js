@@ -105,7 +105,7 @@ elements.ItemAdd({
 
 		this.layout = (section) =>
 		{
-			return section.columns.join(' ');
+			return section.columns.map(col => col.width).join(' ');
 		};
 
 		return `
@@ -128,9 +128,7 @@ elements.ItemAdd({
 					<i>add</i>
 					<span>Add Section</span>
 				</div>
-				<div ot-if="!page" class="empty">
-					<span>Select a page</span>
-				</div>
+				<e-status-empty ot-if="!page" icon="description" title="No page selected" description="Select a page to see layers."></e-status-empty>
 			</div>
 		`;
 	}

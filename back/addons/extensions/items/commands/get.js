@@ -23,6 +23,6 @@ commands.Item({
             return resolve(null, 'Not found.', 404);
         }
 
-        resolve({ extension: item.Get(['id', 'name', 'slug', 'icon', 'description', 'categories', 'order', 'updated_at', 'created_at']) });
+        resolve({ extension: item.Get(['id', 'name', 'slug', 'icon', 'description', 'config', 'categories', 'order', 'updated_at', 'created_at']) });
     }
 });

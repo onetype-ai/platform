@@ -44,6 +44,6 @@ commands.Item({
 
         const items = await query.many();
 
-        resolve({ extensions: items.map(item => item.Get(['id', 'name', 'slug', 'icon', 'description', 'categories', 'order', 'updated_at', 'created_at'])) });
+        resolve({ extensions: items.map(item => item.Get(['id', 'name', 'slug', 'icon', 'description', 'config', 'categories', 'order', 'updated_at', 'created_at'])) });
     }
 });

@@ -21,7 +21,7 @@ elements.ItemAdd({
 
 		const callback = (item) =>
 		{
-			if(item.addon.GetName() === 'sites.sections' || item.addon.GetName() === 'sites.elements')
+			if(item.addon.GetName() === 'sites.sections')
 			{
 				load();
 			}
@@ -123,8 +123,11 @@ elements.ItemAdd({
 			sites.sections.Fn('create', this.page);
 		};
 
-		this.selectElement = (col) =>
+		this.selectElement = ({ event }, section, index, col) =>
 		{
+			sites.sections.Fn('activate', section.id);
+			toolbar(event.target.closest('.section'), section, index);
+
 			const item = Object.values(sites.elements.Items()).find(i => i.Get('slug') === col.element);
 
 			if(item)
@@ -172,22 +175,81 @@ elements.ItemAdd({
 
 		this.grid = (section) =>
 		{
-			return 'grid-template-columns:' + section.columns.map(col => col.width).join(' ') + ';gap:' + section.gap + 'px;';
+			const columns = section.columns.map(col => col.width === '1fr' ? 'minmax(0, 1fr)' : col.width).join(' ');
+			return 'grid-template-columns:' + columns + ';gap:' + section.gap + 'px;';
 		};
 
-		this.background = (section) =>
+		this.contentStyle = (section) =>
 		{
-			return section.background ? 'background:' + section.background : '';
+			let style = '';
+
+			if(section.background)
+			{
+				style += 'background:' + section.background + ';';
+			}
+
+			const p = section.padding;
+
+			if(p.top || p.right || p.bottom || p.left)
+			{
+				style += 'padding:' + p.top + 'px ' + p.right + 'px ' + p.bottom + 'px ' + p.left + 'px;';
+			}
+
+			const b = section.border;
+
+			if(b.width)
+			{
+				style += 'border:' + b.width + 'px solid ' + (b.color || 'var(--ot-bg-2-border)') + ';';
+			}
+
+			if(b.radius)
+			{
+				style += 'border-radius:' + b.radius + 'px;';
+			}
+
+			return style;
+		};
+
+		this.marginStyle = (section) =>
+		{
+			const m = section.margin;
+
+			if(m.top || m.bottom)
+			{
+				return 'margin:' + m.top + 'px 0 ' + m.bottom + 'px 0;';
+			}
+
+			return '';
 		};
 
 		return `
 			<div class="builder" ot-click="deselect">
 				<div ot-for="section, index in items">
-					<div :class="'section' + (active === section.id ? ' selected' : '')" ot-click.stop="(e) => select(e, section, index)">
-						<div class="content" :style="background(section)">
+					<div :class="'section' + (active === section.id ? ' selected' : '')" :style="marginStyle(section)" ot-click.stop="(e) => select(e, section, index)">
+						<div class="content" :style="contentStyle(section)">
+							<div ot-if="active === section.id" class="guides">
+								<div ot-if="section.padding.top" class="guide padding top" :style="'height:' + section.padding.top + 'px'">
+									<span>{{ section.padding.top }}</span>
+								</div>
+								<div ot-if="section.padding.right" class="guide padding right" :style="'width:' + section.padding.right + 'px'">
+									<span>{{ section.padding.right }}</span>
+								</div>
+								<div ot-if="section.padding.bottom" class="guide padding bottom" :style="'height:' + section.padding.bottom + 'px'">
+									<span>{{ section.padding.bottom }}</span>
+								</div>
+								<div ot-if="section.padding.left" class="guide padding left" :style="'width:' + section.padding.left + 'px'">
+									<span>{{ section.padding.left }}</span>
+								</div>
+								<div ot-if="section.margin.top" class="guide margin top" :style="'height:' + section.margin.top + 'px'">
+									<span>{{ section.margin.top }}</span>
+								</div>
+								<div ot-if="section.margin.bottom" class="guide margin bottom" :style="'height:' + section.margin.bottom + 'px'">
+									<span>{{ section.margin.bottom }}</span>
+								</div>
+							</div>
 							<div :class="container(section)" :style="grid(section)">
 								<div ot-for="col, ci in section.columns" class="column">
-									<div ot-if="col.element" class="element" ot-click.stop="() => selectElement(col)">
+									<div ot-if="col.element" class="element" ot-click.stop="(e) => selectElement(e, section, index, col)">
 										<div ot-node="render(col)"></div>
 									</div>
 									<div ot-if="!col.element" class="placeholder" ot-click.stop="() => pick(section, ci)">
@@ -199,10 +261,7 @@ elements.ItemAdd({
 						</div>
 					</div>
 				</div>
-				<div ot-if="!items.length" class="empty" ot-click="add">
-					<i>add</i>
-					<span>Add your first section</span>
-				</div>
+				<e-status-empty ot-if="!items.length" icon="view_agenda" title="No sections" description="Add your first section." action="Add Section" :_click="add"></e-status-empty>
 			</div>
 		`;
 	}

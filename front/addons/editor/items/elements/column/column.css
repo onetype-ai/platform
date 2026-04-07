@@ -25,40 +25,40 @@
 	flex: 1;
 	cursor: pointer;
 	padding: var(--ot-spacing-l);
-	border: 1px dashed rgba(0, 0, 0, 0.08);
+	border: 1px dashed var(--ot-bg-3-border);
 	border-radius: var(--ot-radius-s);
 	transition: border-color 0.15s ease, background 0.15s ease;
 }
 
 .e-3bb4cd60 > .holder > .empty:hover
 {
-	border-color: rgba(59, 130, 246, 0.2);
-	background: rgba(59, 130, 246, 0.02);
+	border-color: var(--ot-brand-border);
+	background: var(--ot-brand-opacity);
 }
 
 .e-3bb4cd60 > .holder > .empty > i
 {
 	font-size: 24px;
-	color: rgba(0, 0, 0, 0.12);
+	color: var(--ot-text-3);
 	transition: color 0.15s ease;
 }
 
 .e-3bb4cd60 > .holder > .empty:hover > i
 {
-	color: rgba(59, 130, 246, 0.4);
+	color: var(--ot-brand);
 }
 
 .e-3bb4cd60 > .holder > .empty > span
 {
 	font-size: 12px;
 	font-weight: 500;
-	color: rgba(0, 0, 0, 0.2);
+	color: var(--ot-text-3);
 	transition: color 0.15s ease;
 }
 
 .e-3bb4cd60 > .holder > .empty:hover > span
 {
-	color: rgba(59, 130, 246, 0.5);
+	color: var(--ot-brand);
 }
 
 /* Content */
@@ -90,12 +90,12 @@
 
 .e-3bb4cd60 > .holder > .content > .element:hover > .outline
 {
-	border-color: rgba(59, 130, 246, 0.3);
+	border-color: var(--ot-brand-opacity);
 }
 
 .e-3bb4cd60 > .holder > .content > .element.selected > .outline
 {
-	border-color: rgba(59, 130, 246, 0.7);
+	border-color: var(--ot-brand);
 }
 
 /* Iframe */
@@ -107,7 +107,7 @@
 	min-height: 200px;
 	border: none;
 	pointer-events: none;
-	background: #ffffff;
+	background: var(--ot-bg-1);
 }
 
 /* Add button */
@@ -120,7 +120,7 @@
 	width: 100%;
 	padding: 4px;
 	margin-top: 4px;
-	border: 1px dashed rgba(0, 0, 0, 0.08);
+	border: 1px dashed var(--ot-bg-3-border);
 	background: transparent;
 	border-radius: var(--ot-radius-s);
 	cursor: pointer;
@@ -135,17 +135,17 @@
 
 .e-3bb4cd60 > .holder > .content > .add:hover
 {
-	border-color: rgba(59, 130, 246, 0.3);
-	background: rgba(59, 130, 246, 0.03);
+	border-color: var(--ot-brand-border);
+	background: var(--ot-brand-opacity);
 }
 
 .e-3bb4cd60 > .holder > .content > .add > i
 {
 	font-size: 16px;
-	color: rgba(0, 0, 0, 0.2);
+	color: var(--ot-text-3);
 }
 
 .e-3bb4cd60 > .holder > .content > .add:hover > i
 {
-	color: rgba(59, 130, 246, 0.5);
+	color: var(--ot-brand);
 }

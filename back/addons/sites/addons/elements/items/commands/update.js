@@ -9,7 +9,6 @@ commands.Item({
     in: {
         id: ['string', null, true],
         name: ['string'],
-        slug: ['string'],
         data: ['object']
     },
     out: {

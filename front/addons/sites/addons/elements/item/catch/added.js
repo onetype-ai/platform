@@ -1,13 +1,15 @@
-sites.elements.ItemOn('added', (item) =>
+sites.elements.ItemOn('added', async (item) =>
 {
 	const slug = item.Get('slug');
-	const code = item.Get('code');
-	const style = item.Get('style');
 
 	if(!slug || document.head.querySelector('[data-element="' + slug + '"]'))
 	{
 		return;
 	}
+
+	const result = await $ot.command('elements:catalog:source', { slug }, true);
+	const code = result.data.code;
+	const style = result.data.style;
 
 	if(code)
 	{

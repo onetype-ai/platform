@@ -163,14 +163,16 @@ elements.ItemAdd({
 			this.sections = sections;
 		};
 
-		const load = () =>
+		const load = async () =>
 		{
 			const active = Object.values(sites.elements.Items()).find(item => item.Get('active'));
 
 			if(active)
 			{
+				const result = await $ot.command('elements:catalog:source', { slug: active.Get('slug') }, true);
+
+				this.schema = result.data.config;
 				this.element = active.data;
-				this.schema = active.Get('config');
 			}
 			else
 			{

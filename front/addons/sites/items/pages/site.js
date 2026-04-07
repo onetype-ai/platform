@@ -12,7 +12,7 @@ pages.Item({
     },
     data: async function(parameters)
     {
-        const item = await sites.Find().filter('id', parameters.id).join('fonts', 'font_ids', 'fonts').one();
+        const item = await sites.Find().filter('id', parameters.id).join('fonts', 'font_ids', 'fonts').join('extensions', 'extension_ids', 'extensions').one();
 
         if(!item)
         {
@@ -42,7 +42,8 @@ pages.Item({
             this.tabs = [
                 { id: 'general', icon: 'settings', label: 'General', href: '/site/' + this.site.id },
                 { id: 'domains', icon: 'language', label: 'Domains', href: '/site/' + this.site.id + '/domains' },
-                { id: 'customization', icon: 'palette', label: 'Customization', href: '/site/' + this.site.id + '/customization' }
+                { id: 'customization', icon: 'palette', label: 'Customization', href: '/site/' + this.site.id + '/customization' },
+                { id: 'extensions', icon: 'extension', label: 'Extensions', href: '/site/' + this.site.id + '/extensions' }
             ];
 
             this.tab = () =>
@@ -55,6 +56,8 @@ pages.Item({
                         return '<e-site-tab-colors ' + this.props + '></e-site-tab-colors>'
                             + '<e-site-tab-fonts ' + this.props + '></e-site-tab-fonts>'
                             + '<e-site-tab-media ' + this.props + '></e-site-tab-media>';
+                    case 'extensions':
+                        return '<e-site-tab-extensions ' + this.props + '></e-site-tab-extensions>';
                     default:
                         return '<e-site-tab-basic ' + this.props + '></e-site-tab-basic>'
                             + '<e-site-tab-danger ' + this.props + '></e-site-tab-danger>';

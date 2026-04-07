@@ -19,7 +19,12 @@
         "#pages/*": "./back/addons/sites/addons/pages/*",
         "#sections/*": "./back/addons/sites/addons/sections/*",
         "#elements/*": "./back/addons/sites/addons/elements/*",
-        "#variables/*": "./back/addons/sites/addons/variables/*"
+        "#variables/*": "./back/addons/sites/addons/variables/*",
+        "#installs/*": "./back/addons/extensions/addons/installs/*",
+        "#tc-resources/*": "./back/extensions/travel-connect/addons/resources/*",
+        "#tc-locations/*": "./back/extensions/travel-connect/addons/locations/*",
+        "#tc-directories/*": "./back/extensions/travel-connect/addons/directories/*",
+        "#tc-offers/*": "./back/extensions/travel-connect/addons/offers/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"

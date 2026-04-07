@@ -4,7 +4,7 @@ sites.elements.Expose({
     filter: ['id', 'team_id', 'site_id'],
     sort: ['updated_at', 'created_at'],
     select: [
-        'id', 'team_id', 'site_id', 'name', 'slug', 'data', 'code', 'style', 'config', 'updated_at', 'created_at'
+        'id', 'team_id', 'site_id', 'name', 'slug', 'data', 'updated_at', 'created_at'
     ],
     callback: function(query)
     {

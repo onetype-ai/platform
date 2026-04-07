@@ -13,6 +13,9 @@ import '#fonts/load.js';
 import '#categories/load.js';
 import '#extensions/load.js';
 
+/* Services */
+import '@onetype/framework/services/cloudflare/images';
+
 /* Items */
 import './items/assets/assets.js';
 import './items/database/primary.js';

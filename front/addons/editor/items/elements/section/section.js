@@ -89,7 +89,7 @@ elements.ItemAdd({
 		{
 			const columns = this.section.columns || [{ width: 1 }];
 
-			return columns.map(column => column.width + 'fr').join(' ');
+			return columns.map(column => 'minmax(0, ' + column.width + 'fr)').join(' ');
 		};
 
 		this.style = () =>

@@ -71,7 +71,7 @@ elements.ItemAdd({
 					<div class="area ot-scrollbar" :style="gridStyle()" ot-wheel.prevent="wheel">
 						<div ot-if="items.length" class="viewports">
 							<div ot-for="item in items">
-								<e-editor-viewport :width="item.width || 1440" :zoom="zoom" :label="item.label || ''">
+								<e-editor-viewport :width="item.width || 1440" :zoom="zoom" :label="item.label || ''" :ot-key="item.id">
 									<div slot="content" ot-node="content(item)"></div>
 								</e-editor-viewport>
 							</div>

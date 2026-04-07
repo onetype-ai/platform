@@ -2,7 +2,7 @@ elements.ItemAdd({
 	id: 'elements-browse',
 	icon: 'widgets',
 	name: 'Elements Browse',
-	description: 'Browse and pick elements by category with previews.',
+	description: 'Browse and pick elements by category.',
 	category: 'Editor',
 	author: 'OneType',
 	config: {
@@ -17,7 +17,7 @@ elements.ItemAdd({
 		this.items = [];
 		this.loading = true;
 
-		$ot.command('se:categories:list', {}, true).then(result =>
+		$ot.command('elements:catalog', {}, true).then(result =>
 		{
 			this.categories = result.data.categories;
 
@@ -34,7 +34,7 @@ elements.ItemAdd({
 			this.category = id;
 			this.items = [];
 
-			$ot.command('se:catalog:list', { category_id: id }, true).then(result =>
+			$ot.command('elements:catalog', { category: id }, true).then(result =>
 			{
 				this.items = result.data.elements;
 			});
@@ -42,7 +42,7 @@ elements.ItemAdd({
 
 		this.preview = (slug) =>
 		{
-			return 'https://preview.elements.onetype.ai/' + slug + '?single:boolean=true';
+			return '/preview/' + slug;
 		};
 
 		this.params = (item) =>
@@ -69,7 +69,6 @@ elements.ItemAdd({
 			<div class="holder">
 				<div class="header">
 					<span class="title">Elements</span>
-					<a class="powered" href="https://elements.onetype.ai" target="_blank">Powered by elements.onetype.ai</a>
 				</div>
 				<div class="body">
 					<div class="sidebar ot-scrollbar">
@@ -97,7 +96,7 @@ elements.ItemAdd({
 							</div>
 						</div>
 						<div ot-if="!loading && !items.length" class="empty">
-							<e-status-empty icon="widgets" title="No elements" description="No elements in this category." :variant="['auto']"></e-status-empty>
+							<e-status-empty icon="widgets" title="No elements" description="No elements in this category."></e-status-empty>
 						</div>
 					</div>
 				</div>
