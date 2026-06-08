@@ -5,7 +5,6 @@ import database from '@onetype/framework/database';
 
 /* Services */
 import '#auth-service/load.js';
-import '#elements-service/load.js';
 
 /* Addons */
 import '#sites/load.js';

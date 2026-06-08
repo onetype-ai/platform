@@ -47,6 +47,10 @@ elements.ItemAdd({
 					{
 						row[field] = empty ? '' : value;
 					}
+					else if(typeof value === 'function')
+					{
+						row[field] = 'ƒ';
+					}
 					else
 					{
 						row[field] = empty ? '—' : (typeof value === 'object' ? JSON.stringify(value) : value);

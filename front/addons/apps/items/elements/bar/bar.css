@@ -11,7 +11,7 @@
 	justify-content: space-between;
 	width: 52px;
 	height: 100%;
-	background: var(--ot-bg-1);
+	background: transparent;
 	border-right: 1px solid var(--ot-bg-1-border);
 }
 
@@ -61,17 +61,17 @@
 .e-2130a1c3 .app > .indicator
 {
 	position: absolute;
-	left: -10px;
+	left: calc(var(--ot-spacing-s) * -1);
 	top: 50%;
 	width: 3px;
 	height: 0;
 	background: var(--ot-brand);
-	border-radius: 0 var(--ot-radius-s) var(--ot-radius-s) 0;
+	border-radius: 0 3px 3px 0;
 	transform: translateY(-50%);
 	transition: height var(--ot-transition);
 }
 
 .e-2130a1c3 .app.active > .indicator
 {
-	height: 20px;
+	height: 50%;
 }

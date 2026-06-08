@@ -17,12 +17,21 @@ onetype.AddonReady('layouts', (layouts) =>
 			this.Compute(() =>
 			{
 				this.data = documentation.Fn('inspect', this.addon);
-				this.active = this.data.overview ? 'overview' : 'fields';
+
+				const tabs = settings.Fn('get', 'documentation.tab', {});
+				const saved = tabs[this.addon];
+
+				this.active = saved || (this.data.overview ? 'overview' : 'fields');
 			});
 
 			this.change = (value) =>
 			{
 				this.active = value;
+
+				const tabs = settings.Fn('get', 'documentation.tab', {});
+
+				tabs[this.addon] = value;
+				settings.Fn('set', 'documentation.tab', tabs);
 			};
 
 			return /* html */ `

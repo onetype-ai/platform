@@ -1,0 +1,143 @@
+/* ===== NAVBAR ===== */
+
+.e-45daee5a
+{
+	display: contents;
+}
+
+.e-45daee5a > .box
+{
+	display: grid;
+	grid-template-columns: 1fr auto 1fr;
+	align-items: stretch;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+	border-bottom: 1px solid var(--ot-bg-2-border);
+}
+
+/* Zones */
+
+.e-45daee5a > .box > .zone
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-x);
+	min-width: 0;
+	padding: 0 var(--ot-spacing-s);
+}
+
+.e-45daee5a > .box > .zone.left
+{
+	justify-content: flex-start;
+}
+
+.e-45daee5a > .box > .zone.center
+{
+	justify-content: center;
+}
+
+.e-45daee5a > .box > .zone.right
+{
+	justify-content: flex-end;
+}
+
+/* Entry wrapper — flex child of the zone. Default sized to content. */
+
+.e-45daee5a > .box > .zone > .entry
+{
+	display: flex;
+	align-items: center;
+}
+
+/* Entry holding a custom render — stretches to full navbar height, render fills it */
+
+.e-45daee5a > .box > .zone > .entry:has(> :not(.item))
+{
+	align-self: stretch;
+	align-items: stretch;
+}
+
+.e-45daee5a > .box > .zone > .entry:has(> :not(.item)) > *
+{
+	display: flex;
+	align-items: stretch;
+}
+
+/* Item button (pill) */
+
+.e-45daee5a > .box > .zone .item
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	gap: var(--ot-spacing-x);
+	height: 27px;
+	min-width: 27px;
+	padding: 0 var(--ot-spacing-s);
+	background: transparent;
+	border: 1px solid transparent;
+	border-radius: var(--ot-radius-s);
+	color: var(--ot-text-2);
+	font-size: var(--ot-size-m);
+	font-weight: 500;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: background var(--ot-transition-fast), color var(--ot-transition-fast), border-color var(--ot-transition-fast);
+}
+
+.e-45daee5a > .box > .zone .item:hover
+{
+	background: var(--ot-bg-3);
+	color: var(--ot-text-1);
+}
+
+.e-45daee5a > .box > .zone .item > i
+{
+	font-size: 18px;
+}
+
+/* Selected — same as apps rail / sidebar: brand-opacity bg, brand color, brand indicator */
+
+.e-45daee5a > .box > .zone .item.selected
+{
+	position: relative;
+	background: var(--ot-brand-opacity);
+	border-color: transparent;
+	color: var(--ot-brand);
+}
+
+.e-45daee5a > .box > .zone .item.selected:hover
+{
+	background: var(--ot-brand-opacity);
+	border-color: transparent;
+	color: var(--ot-brand);
+}
+
+.e-45daee5a > .box > .zone .item.selected::before
+{
+	content: '';
+	position: absolute;
+	left: 50%;
+	top: calc(var(--ot-spacing-s) * -1);
+	width: 20px;
+	height: 3px;
+	border-radius: 0 0 var(--ot-radius-s) var(--ot-radius-s);
+	background: var(--ot-brand);
+	transform: translateX(-50%);
+}
+
+.e-45daee5a > .box > .zone .item.selected > i
+{
+	font-variation-settings: 'FILL' 1, 'wght' 400;
+}
+
+/* Custom inline render — clean, full height, no wrapper or vertical padding */
+
+.e-45daee5a > .box > .zone .custom
+{
+	display: flex;
+	align-self: stretch;
+	align-items: stretch;
+}
