@@ -21,7 +21,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 				value.value && $ot.ui.layouts.data({ developer_elements_selected: value.value });
 			};
 
-			return `<e-navigation-sidebar title="Elements" :search="true" :items="tree" :active="developer_elements_selected" :_click="pick"></e-navigation-sidebar>`;
+			return `<e-navigation-sidebar title="Elements" :search="true" :items="tree" :active="developer_elements_selected" :background="1" :_click="pick"></e-navigation-sidebar>`;
 		}
 	});
 });
