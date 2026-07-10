@@ -75,7 +75,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 						<e-navigation-tabs tone="contained" :items="tabs" :active="developer_styles_tab" :_change="pick"></e-navigation-tabs>
 					</div>
 					<div class="ot-flex-1 ot-scrollbar">
-						<e-data-table :columns="columns" :rows="rows()" :background="2"></e-data-table>
+						<e-data-table :columns="columns" :rows="rows()"></e-data-table>
 					</div>
 				</div>
 			`;

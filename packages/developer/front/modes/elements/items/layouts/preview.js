@@ -51,10 +51,10 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 						<e-developer-element :element="developer_elements_selected"></e-developer-element>
 					</div>
 					<div ot-if="developer_elements_selected && developer_elements_tab === 'parameters'" class="ot-flex-1 ot-scrollbar">
-						<e-global-parameters :items="parameters()" :background="2"></e-global-parameters>
+						<e-global-parameters :items="parameters()"></e-global-parameters>
 					</div>
 					<div ot-if="developer_elements_selected && developer_elements_tab === 'code'" class="ot-flex-1 ot-scrollbar">
-						<e-global-code :source="snippet()" language="html" filename="usage" :copy="true" :background="2"></e-global-code>
+						<e-global-code :source="snippet()" language="html" filename="usage" :copy="true"></e-global-code>
 					</div>
 				</div>
 			`;

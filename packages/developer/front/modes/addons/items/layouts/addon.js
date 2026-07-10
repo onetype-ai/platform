@@ -60,7 +60,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 						<e-global-markdown ot-if="entry().content" :content="entry().content"></e-global-markdown>
 					</div>
 					<div ot-if="developer_addons_selected && developer_addons_tab === 'fields'" class="ot-flex-1 ot-scrollbar">
-						<e-global-parameters ot-if="fields().length" :items="fields()" :background="2"></e-global-parameters>
+						<e-global-parameters ot-if="fields().length" :items="fields()"></e-global-parameters>
 						<e-status-empty
 							ot-if="!fields().length"
 							icon="data_object"
@@ -82,16 +82,15 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 								icon="terminal"
 								:collapsible="true"
 								:collapsed="true"
-								:background="2"
 							>
 								<div slot="content" class="ot-flex-vertical ot-gap-m">
 									<div ot-if="command.parameters.length" class="ot-flex-vertical ot-gap-s">
 										<e-global-heading title="Input" element="h3"></e-global-heading>
-										<e-global-parameters :items="command.parameters" :background="3"></e-global-parameters>
+										<e-global-parameters :items="command.parameters" :background="2"></e-global-parameters>
 									</div>
 									<div ot-if="command.output.length" class="ot-flex-vertical ot-gap-s">
 										<e-global-heading title="Output" element="h3"></e-global-heading>
-										<e-global-parameters :items="command.output" :background="3"></e-global-parameters>
+										<e-global-parameters :items="command.output" :background="2"></e-global-parameters>
 									</div>
 									<span ot-if="!command.parameters.length && !command.output.length">This command takes no parameters and returns no data.</span>
 								</div>
