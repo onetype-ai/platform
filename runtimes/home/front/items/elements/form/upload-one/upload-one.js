@@ -1,85 +1,93 @@
 onetype.AddonReady('elements', (elements) =>
 {
+	const KINDS = {
+		pdf: { icon: 'picture_as_pdf', color: 'red' },
+		zip: { icon: 'folder_zip', color: 'orange' },
+		rar: { icon: 'folder_zip', color: 'orange' },
+		doc: { icon: 'description', color: 'blue' },
+		docx: { icon: 'description', color: 'blue' },
+		txt: { icon: 'article', color: 'blue' },
+		md: { icon: 'article', color: 'blue' },
+		xls: { icon: 'table', color: 'green' },
+		xlsx: { icon: 'table', color: 'green' },
+		csv: { icon: 'table', color: 'green' },
+		mp4: { icon: 'movie', color: 'brand' },
+		webm: { icon: 'movie', color: 'brand' },
+		mov: { icon: 'movie', color: 'brand' },
+		mp3: { icon: 'music_note', color: 'brand' },
+		wav: { icon: 'music_note', color: 'brand' },
+		svg: { icon: 'shapes', color: 'orange' },
+		json: { icon: 'data_object', color: 'green' }
+	};
+
+	const IMAGES = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'avif', 'ico', 'bmp'];
+
+	const parse = (url) =>
+	{
+		if(!url)
+		{
+			return { name: '', extension: '', image: false, icon: 'draft', color: 'blue' };
+		}
+
+		const hash = url.split('#')[1];
+		const clean = url.split('#')[0].split('?')[0];
+		const segment = hash ? hash : clean.split('/').pop();
+		const dot = segment.lastIndexOf('.');
+		const extension = dot !== -1 ? segment.substring(dot + 1).toLowerCase() : '';
+		const kind = KINDS[extension] ? KINDS[extension] : { icon: 'draft', color: 'blue' };
+
+		return { name: segment, extension, image: IMAGES.includes(extension), ...kind };
+	};
+
 	elements.ItemAdd({
 		id: 'form-upload-one',
 		icon: 'upload',
-		name: 'Upload Input',
-		description: 'Single file upload input with image preview, file picker and clear.',
+		name: 'Upload One',
+		description: 'Compact single file upload row with a thumbnail or extension mark, drop support, URL paste and replace and clear actions.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string',
-				value: '',
+				value: 'https://picsum.photos/seed/upload/240/240#cover.png',
 				description: 'File URL.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
 				description: 'Input name attribute.'
 			},
-			placeholder:
-			{
+			placeholder: {
 				type: 'string',
-				value: 'Paste URL or drop file…',
-				description: 'Placeholder text.'
+				value: 'Drop a file, paste a URL or browse',
+				description: 'Placeholder text while empty.'
 			},
-			accept:
-			{
+			accept: {
 				type: 'string',
-				value: '',
-				description: 'Accepted file types for picker.'
+				description: 'Accepted file types for the picker.'
 			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4'],
-				description: 'Background depth.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the control surface from 1 to 4.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Input size.'
-			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Change handler. Receives { value }.'
+				description: 'Called with { value } when the file changes.'
 			},
-			_upload:
-			{
+			_upload: {
 				type: 'function',
-				description: 'Upload handler. Receives { file }. Must return URL string or null.'
+				description: 'Called with { file }. Must return a URL string or null.'
 			},
-			_error:
-			{
+			_error: {
 				type: 'function',
-				description: 'Error handler. Receives { error }.'
-			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to set the value via the variable builder modal.'
+				description: 'Called with { error } when an upload fails.'
 			}
 		},
 		render: function()
@@ -87,61 +95,11 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== STATE ===== */
 
 			this.uploading = false;
-
-			/* ===== HELPERS ===== */
-
-			this.suffix = (url) =>
-			{
-				if(!url)
-				{
-					return '';
-				}
-
-				const hash = url.split('#')[1];
-
-				if(hash)
-				{
-					const dot = hash.lastIndexOf('.');
-					return dot !== -1 ? hash.substring(dot + 1).toLowerCase() : hash.toLowerCase();
-				}
-
-				const clean = url.split('?')[0];
-				const segment = clean.split('/').pop();
-				const dot = segment.lastIndexOf('.');
-
-				if(dot === -1)
-				{
-					return '';
-				}
-
-				return segment.substring(dot + 1).toLowerCase();
-			};
-
-			this.isImage = (url) =>
-			{
-				const ext = this.suffix(url);
-				return ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg', 'avif', 'ico', 'bmp'].includes(ext);
-			};
-
-			this.fileIcon = (url) =>
-			{
-				const ext = this.suffix(url);
-
-				if(this.isImage(url)) return 'image';
-				if(['mp4', 'webm', 'mov', 'avi', 'mkv'].includes(ext)) return 'movie';
-				if(['mp3', 'wav', 'ogg', 'flac', 'aac'].includes(ext)) return 'audio_file';
-				if(ext === 'pdf') return 'picture_as_pdf';
-				if(['zip', 'rar', '7z', 'tar', 'gz'].includes(ext)) return 'folder_zip';
-				if(['doc', 'docx'].includes(ext)) return 'description';
-				if(['xls', 'xlsx', 'csv'].includes(ext)) return 'table_chart';
-				if(['ppt', 'pptx'].includes(ext)) return 'slideshow';
-
-				return 'insert_drive_file';
-			};
+			this.hovering = false;
 
 			this.Compute(() =>
 			{
-				this.hasPreview = this.value && this.isImage(this.value);
+				this.file = parse(this.value);
 				this.hasFile = !!this.value;
 			});
 
@@ -149,16 +107,11 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'size-' + this.size];
+				const list = ['box', 'bg-' + this.background];
 
-				if(this.variant.includes('border'))
+				if(this.hovering)
 				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
+					list.push('hovering');
 				}
 
 				if(this.disabled)
@@ -171,15 +124,13 @@ onetype.AddonReady('elements', (elements) =>
 
 			/* ===== HANDLERS ===== */
 
-			this.change = ({ value }) =>
+			this.set = (url) =>
 			{
-				this.value = value || '';
-				this.hasPreview = this.value && this.isImage(this.value);
-				this.hasFile = !!this.value;
+				this.value = url;
 
 				if(this._change)
 				{
-					this._change({ value: this.value });
+					this._change({ value: url });
 				}
 			};
 
@@ -198,18 +149,9 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
-			this.pick = async ({ event }) =>
+			this.upload = async (file) =>
 			{
-				const file = event.target.files?.[0];
-
-				if(!file)
-				{
-					return;
-				}
-
-				event.target.value = '';
-
-				if(!this._upload)
+				if(!file || !this._upload)
 				{
 					return;
 				}
@@ -222,25 +164,69 @@ onetype.AddonReady('elements', (elements) =>
 
 					if(url && typeof url === 'string')
 					{
-						this.value = url;
-						this.hasPreview = this.isImage(url);
-						this.hasFile = true;
-
-						if(this._change)
-						{
-							this._change({ value: url });
-						}
+						this.set(url);
 					}
 				}
 				catch(error)
 				{
 					if(this._error)
 					{
-						this._error({ error: error.message || 'Upload failed.' });
+						this._error({ error: error.message ? error.message : 'Upload failed.' });
 					}
 				}
 
 				this.uploading = false;
+			};
+
+			this.pick = ({ event }) =>
+			{
+				const file = event.target.files ? event.target.files[0] : null;
+
+				event.target.value = '';
+				this.upload(file);
+			};
+
+			this.enter = () => () =>
+			{
+				if(!this.disabled)
+				{
+					this.hovering = true;
+				}
+			};
+
+			this.leave = () => () =>
+			{
+				this.hovering = false;
+			};
+
+			this.drop = () => ({ event }) =>
+			{
+				this.hovering = false;
+
+				if(this.disabled)
+				{
+					return;
+				}
+
+				const file = event.dataTransfer && event.dataTransfer.files ? event.dataTransfer.files[0] : null;
+
+				if(file)
+				{
+					this.upload(file);
+					return;
+				}
+
+				const text = event.dataTransfer ? event.dataTransfer.getData('text/plain') : '';
+
+				if(text)
+				{
+					this.set(text.trim());
+				}
+			};
+
+			this.paste = ({ event, value }) =>
+			{
+				this.set(value ? value.trim() : '');
 			};
 
 			this.clear = () =>
@@ -250,151 +236,35 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				this.value = '';
-				this.hasPreview = false;
-				this.hasFile = false;
-
-				if(this._change)
-				{
-					this._change({ value: '' });
-				}
-			};
-
-			/* ===== VARIABLES ===== */
-
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return /^\{\{\s*[\s\S]+\s*\}\}$/.test(String(this.value || '').trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = this.value || '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
-					{
-						this._change({ value: wrapped });
-					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = '';
-				this.hasPreview = false;
-				this.hasFile = false;
-
-				if(this._change)
-				{
-					this._change({ value: '' });
-				}
-
-				this.Update();
+				this.set('');
 			};
 
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div :class="classes()">
-					<e-variable-chip
-						ot-if="isExpression()"
-						:value="value"
-						:size="size"
-						:disabled="disabled"
-						:_edit="openVariableBuilder"
-						:_clear="clearExpression"
-					></e-variable-chip>
-
-					<div ot-if="!isExpression()" class="field">
-						<div ot-if="hasPreview" class="preview">
-							<img :src="value" />
-						</div>
-						<div ot-if="hasFile && !hasPreview" class="preview placeholder">
-							<i>{{ fileIcon(value) }}</i>
-						</div>
-						<i ot-if="!hasFile" class="icon">link</i>
+				<div :class="classes()" ot-dragenter="enter()" ot-dragover="enter()" ot-dragleave="leave()" ot-drop="drop()">
+					<div class="field">
+						<img ot-if="hasFile && file.image" class="thumb" :src="value" :alt="file.name" />
+						<span ot-if="hasFile && !file.image" :class="'mark ' + file.color">{{ file.extension ? file.extension : 'file' }}</span>
+						<i ot-if="!hasFile && !uploading" class="icon">cloud_upload</i>
+						<i ot-if="uploading" class="icon spin">progress_activity</i>
+						<span ot-if="hasFile" class="name">{{ file.name }}</span>
 						<input
+							ot-if="!hasFile"
 							class="input"
 							type="text"
-							:name="name"
-							:value="value"
 							:placeholder="placeholder"
-							:disabled="disabled || null"
+							:disabled="disabled"
 							autocomplete="off"
-							ot-change="change"
+							spellcheck="false"
+							ot-change="paste"
 						/>
-						<i ot-if="uploading" class="icon spin">progress_activity</i>
-						<button
-							ot-if="hasVariables() && !disabled"
-							type="button"
-							class="action"
-							ot-click.stop="openVariableBuilder"
-							:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-						>
-							<i>data_object</i>
-						</button>
-						<button
-							ot-if="hasFile && !disabled"
-							type="button"
-							class="action"
-							ot-click.stop="clear"
-						>
-							<i>close</i>
-						</button>
-						<button
-							ot-if="!disabled && !uploading"
-							type="button"
-							class="action"
-							ot-click.stop="browse"
-						>
-							<i>upload</i>
-						</button>
+						<div class="tools">
+							<button ot-if="!disabled" type="button" class="tool" ot-click.stop="browse" :ot-tooltip="{ text: hasFile ? 'Replace' : 'Browse', position: { x: 'center', y: 'top' } }"><i ot-if="hasFile">sync</i><i ot-if="!hasFile">folder_open</i></button>
+							<button ot-if="hasFile && !disabled" type="button" class="tool danger" ot-click.stop="clear" :ot-tooltip="{ text: 'Remove', position: { x: 'center', y: 'top' } }"><i>close</i></button>
+						</div>
 					</div>
-					<input
-						ot-if="!isExpression()"
-						class="picker"
-						type="file"
-						:accept="accept || null"
-						:disabled="disabled || null"
-						ot-change="pick"
-					/>
+					<input class="picker" type="file" :name="name" :accept="accept ? accept : null" :disabled="disabled" ot-change="pick" />
 				</div>
 			`;
 		}
