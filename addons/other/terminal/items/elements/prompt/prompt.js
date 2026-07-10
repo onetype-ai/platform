@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Terminal Prompt',
 	description: 'Input that runs commands, with inline command suggestions.',
 	category: 'Terminal',
-	author: 'OneType',
 	metadata: { addon: 'terminal' },
 	render: function()
 	{
