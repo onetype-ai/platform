@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Assistant Chat',
 	description: 'Chat with an AI assistant. Type what you want, the assistant chats back and will launch workflows for real work.',
 	category: 'Assistant',
-	author: 'OneType',
 	metadata: { addon: 'assistants' },
 	config: {
 		assistant: {
