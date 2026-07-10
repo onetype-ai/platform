@@ -1,5 +1,5 @@
 {
-    "name": "onetype-sites-app",
+    "name": "onetype",
     "version": "0.1.0",
     "description": "Visual website editor for OneType Sites.",
     "type": "module",
@@ -7,20 +7,14 @@
     "author": "Dejan Tomic <hi@iamdejan.com>",
     "repository": {
         "type": "git",
-        "url": "https://github.com/onetype-ai/sites-editor.git"
+        "url": "https://github.com/onetype-ai/onetype.git"
     },
     "imports": {
-        "#auth-service/*": "./core/back/services/auth/*",
-        "#applications/*": "./platform/back/addons/system/applications/*",
-        "#projects/*": "./platform/back/addons/system/projects/*",
-        "#collections/*": "./platform/back/addons/system/collections/*",
-        "#permissions/*": "./platform/back/addons/system/permissions/*",
-        "#shared/*": "./platform/shared/addons/*",
-        "#elements-service/*": "./core/back/services/elements/*",
-        "#fonts/*": "./platform/back/addons/fonts/*",
-        "#application_marketplace/*": "./applications/marketplace/*",
-        "#application_documentation/*": "./applications/documentation/*",
-        "#application_mesh/*": "./applications/mesh/*"
+        "#auth-service/*": "./kernel/services/auth/*",
+        "#elements-service/*": "./kernel/services/elements/*",
+        "#packages/*": "./addons/system/packages/back/*",
+        "#runtimes/*": "./addons/system/runtimes/back/*",
+        "#config/*": "./addons/system/config/back/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"
