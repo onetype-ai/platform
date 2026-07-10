@@ -6,70 +6,82 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Empty',
 		description: 'Empty state with icon, title, description, optional action button and optional surface background.',
 		category: 'Status',
-		config:
-		{
-			icon:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			icon: {
 				type: 'string',
 				value: 'inbox',
 				description: 'Center icon.'
 			},
-			title:
-			{
+			title: {
 				type: 'string',
 				value: 'Nothing here yet',
 				description: 'Heading text.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
-				value: '',
+				value: 'Once there is something to show, it will appear here.',
 				description: 'Supporting message.'
 			},
-			action:
-			{
+			action: {
 				type: 'string',
 				value: '',
-				description: 'Action button label.'
+				description: 'Action button label. Empty hides button.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
 				value: 'brand',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Icon circle accent color.'
 			},
-			background:
-			{
+			background: {
 				type: 'number',
+				options: [1, 2, 3, 4],
 				description: 'Background depth from 1 to 4, renders the empty state on its own bordered surface. Empty keeps it transparent.'
 			},
-			size:
-			{
+			glow: {
 				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Component size.'
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
+				description: 'Colored glow on top of the surface. Empty renders no glow.'
 			},
-			_click:
-			{
+			blur: {
+				type: 'boolean',
+				value: false,
+				description: 'Translucent blurred surface instead of a solid one. Applies while background is set.'
+			},
+			_click: {
 				type: 'function',
 				description: 'Action button click handler.'
 			}
 		},
 		render: function()
 		{
+			/* ===== CLASSES ===== */
+
 			this.classes = () =>
 			{
-				const list = ['box', this.color, 'size-' + this.size];
+				const list = ['box', this.color];
 
 				if(this.background)
 				{
 					list.push('bg-' + this.background);
+
+					if(this.blur)
+					{
+						list.push('blur');
+					}
+
+					if(this.glow)
+					{
+						list.push('glow-' + this.glow);
+					}
 				}
 
 				return list.join(' ');
 			};
+
+			/* ===== RENDER ===== */
 
 			return /* html */ `
 				<div :class="classes()">
