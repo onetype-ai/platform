@@ -12,17 +12,17 @@
 	--ot-bg-1: rgba(255, 255, 255, 1);
 	--ot-bg-1-border: rgba(245, 245, 245, 1);
 	--ot-bg-1-opacity: rgba(255, 255, 255, 0.85);
-	--ot-bg-1-hover: rgba(250, 250, 250, 1);
+	--ot-bg-1-hover: rgba(240, 240, 240, 1);
 
 	--ot-bg-2: rgba(250, 250, 250, 1);
 	--ot-bg-2-border: rgba(240, 240, 240, 1);
 	--ot-bg-2-opacity: rgba(250, 250, 250, 0.85);
-	--ot-bg-2-hover: rgba(245, 245, 245, 1);
+	--ot-bg-2-hover: rgba(235, 235, 235, 1);
 
 	--ot-bg-3: rgba(245, 245, 245, 1);
 	--ot-bg-3-border: rgba(235, 235, 235, 1);
 	--ot-bg-3-opacity: rgba(245, 245, 245, 0.85);
-	--ot-bg-3-hover: rgba(240, 240, 240, 1);
+	--ot-bg-3-hover: rgba(230, 230, 230, 1);
 
 	--ot-text-1: rgb(30, 30, 30);
 	--ot-text-2: rgb(60, 60, 60);
@@ -102,4 +102,10 @@
 .e-49430f40 > .box > .middle > .slot > div
 {
 	display: contents;
+}
+
+.e-49430f40 > .box > .slot,
+.e-49430f40 > .box > div > .slot
+{
+	z-index: 5;
 }
