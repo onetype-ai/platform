@@ -8,6 +8,7 @@
 {
 	position: relative;
 	height: 100%;
+	background: var(--ot-bg-1);
 }
 
 /* Bar */
