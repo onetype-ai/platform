@@ -1,7 +1,7 @@
-developer.Fn('list', function(query = '')
+developer.Fn('elements.list', function(query = '')
 {
 	const groups = {};
-	const items = onetype.AddonGet('elements').Items();
+	const items = elements.Items();
 
 	for(const item of Object.values(items))
 	{
