@@ -6,10 +6,20 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Dock',
 		description: 'Slim icon rail with top and bottom items, separators, tooltips and a floating side panel with optional header.',
 		category: 'Navigation',
+		collection: 'Home',
+		author: 'OneType',
 		config: {
 			items: {
 				type: 'array',
-				value: [],
+				value: [
+					{ icon: 'home', label: 'Home', isActive: true },
+					{ icon: 'search', label: 'Search', hint: 'Cmd K' },
+					{ icon: 'database', label: 'Data', badge: 3 },
+					{ icon: 'notifications', label: 'Notifications', badge: true },
+					{ type: 'separator' },
+					{ icon: 'extension', label: 'Packages' },
+					{ icon: 'settings', label: 'Settings', placement: 'bottom' }
+				],
 				description: 'Rail items.',
 				each: {
 					type: 'object',
@@ -157,9 +167,10 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.Compute(() =>
 			{
-				this.top = this.items.filter((item) => (item.placement || 'top') === 'top');
+				this.top = this.items.filter((item) => (item.placement ? item.placement : 'top') === 'top');
 				this.bottom = this.items.filter((item) => item.placement === 'bottom');
-				this.opened = this.items.find((item) => item.isOpen && item.render) || null;
+				const opened = this.items.find((item) => item.isOpen && item.render);
+				this.opened = opened ? opened : null;
 			});
 
 			this.tooltip = (item) =>
