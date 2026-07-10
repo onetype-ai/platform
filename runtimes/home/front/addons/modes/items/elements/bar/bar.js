@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Modes Bar',
 	description: 'Floating bar to switch modes.',
 	category: 'Modes',
-	author: 'OneType',
 	metadata: { addon: 'ui.modes' },
 	render: function()
 	{
