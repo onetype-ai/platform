@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Navbar',
 	description: 'Top toolbar rendering the navbar items. Addons inject items.',
 	category: 'Navbar',
-	author: 'OneType',
 	metadata: { addon: 'ui.navbar' },
 	render: function()
 	{
