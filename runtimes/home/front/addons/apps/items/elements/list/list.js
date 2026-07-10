@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Apps List',
 	description: 'Launcher with application cards and their quick links.',
 	category: 'Apps',
-	author: 'OneType',
 	metadata: { addon: 'ui.apps' },
 	render: function()
 	{
@@ -68,7 +67,7 @@ elements.ItemAdd({
 						</div>
 					</div>
 				</div>
-				<e-status-empty ot-if="!apps.length" icon="apps" title="Nothing here" description="Every application is already on the rail." size="s"></e-status-empty>
+				<e-status-empty ot-if="!apps.length" icon="apps" title="Nothing here" description="Every application is already on the rail."></e-status-empty>
 			</div>
 		`;
 	}
