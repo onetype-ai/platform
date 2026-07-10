@@ -2,7 +2,7 @@
 
 .e-206433b8
 {
-	display: contents;
+	display: inline-block;
 }
 
 /* Box */
@@ -17,12 +17,7 @@
 	font-family: var(--ot-font-primary);
 }
 
-.e-206433b8 > .box.reverse
-{
-	flex-direction: row-reverse;
-}
-
-/* Input */
+/* Input — hidden but accessible */
 
 .e-206433b8 > .box > input
 {
@@ -71,10 +66,18 @@
 	position: relative;
 	display: block;
 	flex-shrink: 0;
+	width: 20px;
+	height: 20px;
 	border-radius: 50%;
-	border: 1px solid transparent;
-	background: transparent;
+	border: 1px solid var(--ot-bg-3-border);
+	background: var(--ot-bg-2);
 	transition: background var(--ot-transition), border-color var(--ot-transition), transform var(--ot-transition-fast), box-shadow var(--ot-transition);
+}
+
+.e-206433b8 > .box:hover:not(.disabled) > input:not(:checked) ~ .mark
+{
+	background: var(--ot-bg-2-hover);
+	border-color: var(--ot-text-3);
 }
 
 /* Dot */
@@ -85,6 +88,8 @@
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	width: 8px;
+	height: 8px;
 	border-radius: 50%;
 	background: white;
 	transform: translate(-50%, -50%) scale(0);
@@ -102,7 +107,7 @@
 
 .e-206433b8 > .box > input:focus-visible ~ .mark
 {
-	box-shadow: 0 0 0 1px var(--ot-brand-opacity);
+	box-shadow: 0 0 0 3px var(--ot-brand-opacity);
 }
 
 /* Active */
@@ -131,152 +136,9 @@
 	opacity: 0.6;
 }
 
-/* ===== SIZE ===== */
+/* ===== COLOR (checked state) ===== */
 
-.e-206433b8 > .box.size-s > .mark
-{
-	width: 16px;
-	height: 16px;
-}
-
-.e-206433b8 > .box.size-s > .mark::after
-{
-	width: 6px;
-	height: 6px;
-}
-
-.e-206433b8 > .box.size-s > .info > .label
-{
-	font-size: var(--ot-size-s);
-}
-
-.e-206433b8 > .box.size-s > .info > .description
-{
-	font-size: 10.5px;
-}
-
-.e-206433b8 > .box.size-m > .mark
-{
-	width: 20px;
-	height: 20px;
-}
-
-.e-206433b8 > .box.size-m > .mark::after
-{
-	width: 8px;
-	height: 8px;
-}
-
-.e-206433b8 > .box.size-m > .info > .label
-{
-	font-size: var(--ot-size-m);
-}
-
-.e-206433b8 > .box.size-l > .mark
-{
-	width: 24px;
-	height: 24px;
-}
-
-.e-206433b8 > .box.size-l > .mark::after
-{
-	width: 10px;
-	height: 10px;
-}
-
-.e-206433b8 > .box.size-l > .info > .label
-{
-	font-size: var(--ot-size-m);
-}
-
-/* ===== BACKGROUND ===== */
-
-.e-206433b8 > .box.bg-1 > .mark
-{
-	background: var(--ot-bg-1);
-	border-color: var(--ot-bg-1-border);
-}
-
-.e-206433b8 > .box.bg-1:hover:not(.disabled) > input:not(:checked) ~ .mark
-{
-	background: var(--ot-bg-1-hover);
-}
-
-.e-206433b8 > .box.bg-2 > .mark
-{
-	background: var(--ot-bg-2);
-	border-color: var(--ot-bg-2-border);
-}
-
-.e-206433b8 > .box.bg-2:hover:not(.disabled) > input:not(:checked) ~ .mark
-{
-	background: var(--ot-bg-2-hover);
-}
-
-.e-206433b8 > .box.bg-3 > .mark
-{
-	background: var(--ot-bg-3);
-	border-color: var(--ot-bg-3-border);
-}
-
-.e-206433b8 > .box.bg-3:hover:not(.disabled) > input:not(:checked) ~ .mark
-{
-	background: var(--ot-bg-3-hover);
-}
-
-.e-206433b8 > .box.bg-4 > .mark
-{
-	background: var(--ot-bg-4);
-	border-color: var(--ot-bg-4-border);
-}
-
-.e-206433b8 > .box.bg-4:hover:not(.disabled) > input:not(:checked) ~ .mark
-{
-	background: var(--ot-bg-4-hover);
-}
-
-/* Transparent */
-
-.e-206433b8 > .box.transparent > .mark
-{
-	background: transparent;
-	border-color: transparent;
-}
-
-.e-206433b8 > .box.transparent > input:not(:checked) ~ .mark::after
-{
-	background: var(--ot-text-1);
-}
-
-/* Border */
-
-.e-206433b8 > .box.border > .mark
-{
-	background: transparent;
-	border-color: var(--ot-bg-2-border);
-}
-
-.e-206433b8 > .box.border:hover:not(.disabled) > input:not(:checked) ~ .mark
-{
-	border-color: var(--ot-text-3);
-}
-
-/* ===== CHECKED ===== */
-
-.e-206433b8 > .box.bg-1 > input:checked ~ .mark,
-.e-206433b8 > .box.bg-2 > input:checked ~ .mark,
-.e-206433b8 > .box.bg-3 > input:checked ~ .mark,
-.e-206433b8 > .box.bg-4 > input:checked ~ .mark,
-.e-206433b8 > .box.transparent > input:checked ~ .mark,
-.e-206433b8 > .box.border > input:checked ~ .mark
-{
-	background: var(--ot-brand);
-	border-color: var(--ot-brand);
-}
-
-/* ===== COLOR ===== */
-
-.e-206433b8 > .box.color-brand > input:checked ~ .mark
+.e-206433b8 > .box > input:checked ~ .mark
 {
 	background: var(--ot-brand);
 	border-color: var(--ot-brand);
@@ -306,29 +168,14 @@
 	border-color: var(--ot-green);
 }
 
-/* Color focus rings */
+/* Focus per color */
 
-.e-206433b8 > .box.color-blue > input:focus-visible ~ .mark
-{
-	box-shadow: 0 0 0 1px var(--ot-blue-opacity);
-}
+.e-206433b8 > .box.color-blue > input:focus-visible ~ .mark { box-shadow: 0 0 0 3px var(--ot-blue-opacity); }
+.e-206433b8 > .box.color-red > input:focus-visible ~ .mark { box-shadow: 0 0 0 3px var(--ot-red-opacity); }
+.e-206433b8 > .box.color-orange > input:focus-visible ~ .mark { box-shadow: 0 0 0 3px var(--ot-orange-opacity); }
+.e-206433b8 > .box.color-green > input:focus-visible ~ .mark { box-shadow: 0 0 0 3px var(--ot-green-opacity); }
 
-.e-206433b8 > .box.color-red > input:focus-visible ~ .mark
-{
-	box-shadow: 0 0 0 1px var(--ot-red-opacity);
-}
-
-.e-206433b8 > .box.color-orange > input:focus-visible ~ .mark
-{
-	box-shadow: 0 0 0 1px var(--ot-orange-opacity);
-}
-
-.e-206433b8 > .box.color-green > input:focus-visible ~ .mark
-{
-	box-shadow: 0 0 0 1px var(--ot-green-opacity);
-}
-
-/* ===== ICON ===== */
+/* Icon */
 
 .e-206433b8 > .box > .icon
 {
@@ -338,16 +185,13 @@
 	align-self: center;
 }
 
-.e-206433b8 > .box.size-s > .icon { font-size: 16px; }
-.e-206433b8 > .box.size-l > .icon { font-size: 20px; }
-
-/* ===== COUNT ===== */
+/* Count */
 
 .e-206433b8 > .box > .count
 {
 	margin-left: auto;
 	padding-left: var(--ot-spacing-s);
-	font-size: var(--ot-size-s);
+	font-size: 11px;
 	font-weight: 700;
 	color: var(--ot-text-3);
 	font-variant-numeric: tabular-nums;

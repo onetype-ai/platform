@@ -4,111 +4,70 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-checkbox',
 		icon: 'check_box',
 		name: 'Checkbox',
-		description: 'Checkbox with label, description, icon, count, indeterminate and color variants.',
+		description: 'Checkbox with label, description, icon, count badge, indeterminate state and accent colors.',
 		category: 'Form',
-		config:
-		{
-			label:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			label: {
 				type: 'string',
-				value: '',
+				value: 'Email notifications',
 				description: 'Checkbox label.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
-				value: '',
-				description: 'Helper text below label.'
+				value: 'Send a digest every morning.',
+				description: 'Helper text below the label.'
 			},
-			icon:
-			{
+			icon: {
 				type: 'string',
-				value: '',
-				description: 'Icon between mark and label.'
+				description: 'Icon between the mark and the label.'
 			},
-			count:
-			{
+			count: {
 				type: 'string|number',
 				description: 'Count badge at the end.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
 				description: 'Input name attribute.'
 			},
-			value:
-			{
+			value: {
 				type: 'boolean',
-				value: false,
+				value: true,
 				description: 'Checked state.'
 			},
-			indeterminate:
-			{
+			indeterminate: {
 				type: 'boolean',
 				value: false,
 				description: 'Partial selection state.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
 				value: 'brand',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
-				description: 'Checked mark color.'
+				description: 'Accent color of the checked mark.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-1',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Mark background depth.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Checkbox size.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['border', 'reverse'],
-				description: 'Visual modifiers.'
-			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Change handler. Receives { event, value }.'
+				description: 'Called with { event, value } when the checked state changes.'
 			},
-			_click:
-			{
+			_click: {
 				type: 'function',
-				description: 'Click handler. Receives { event, value }.'
-			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to set the value via the variable builder modal.'
+				description: 'Called with { event, value } on click.'
 			}
 		},
 		render: function()
 		{
-			/* ===== STATE ===== */
+			/* ===== DATA ===== */
 
 			this.Compute(() =>
 			{
 				this.hasInfo = !!this.label || !!this.description;
-				this.hasIcon = !!this.icon;
 				this.hasCount = this.count !== undefined && this.count !== null && this.count !== '';
 			});
 
@@ -116,17 +75,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'color-' + this.color, 'size-' + this.size];
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('reverse'))
-				{
-					list.push('reverse');
-				}
+				const list = ['box', 'color-' + this.color];
 
 				if(this.indeterminate)
 				{
@@ -166,7 +115,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.OnReady(() =>
 			{
-				const input = this.Element?.querySelector('input');
+				const input = this.Element ? this.Element.querySelector('input') : null;
 
 				if(input)
 				{
@@ -174,87 +123,10 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			});
 
-			/* ===== VARIABLES ===== */
-
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return typeof this.value === 'string' && /^\{\{\s*[\s\S]+\s*\}\}$/.test(this.value.trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = typeof this.value === 'string' ? this.value : '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
-					{
-						this._change({ event: null, value: wrapped });
-					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = false;
-
-				if(this._change)
-				{
-					this._change({ event: null, value: false });
-				}
-
-				this.Update();
-			};
-
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div ot-if="isExpression()" class="expression">
-					<e-variable-chip
-						:value="value"
-						:size="size"
-						:disabled="disabled"
-						:_edit="openVariableBuilder"
-						:_clear="clearExpression"
-					></e-variable-chip>
-				</div>
-
-				<label ot-if="!isExpression()" :class="classes()">
+				<label :class="classes()">
 					<input
 						type="checkbox"
 						:name="name"
@@ -264,21 +136,12 @@ onetype.AddonReady('elements', (elements) =>
 						ot-click="click"
 					/>
 					<span class="mark"></span>
-					<i ot-if="hasIcon" class="icon">{{ icon }}</i>
+					<i ot-if="icon" class="icon">{{ icon }}</i>
 					<span ot-if="hasInfo" class="info">
 						<span ot-if="label" class="label">{{ label }}</span>
 						<span ot-if="description" class="description">{{ description }}</span>
 					</span>
 					<span ot-if="hasCount" class="count">{{ count }}</span>
-					<button
-						ot-if="hasVariables() && !disabled"
-						type="button"
-						class="variable-btn"
-						ot-click.stop="openVariableBuilder"
-						:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-					>
-						<i>data_object</i>
-					</button>
 				</label>
 			`;
 		}
