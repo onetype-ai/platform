@@ -1,0 +1,136 @@
+/* ===== CARDS ACTION ===== */
+
+.e-1b5668f6
+{
+	display: block;
+	width: 100%;
+}
+
+/* Box */
+
+.e-1b5668f6 > .box
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	width: 100%;
+	padding: 10px var(--ot-spacing-s);
+	background: color-mix(in srgb, var(--ot-bg-3) 55%, transparent);
+	border: 1px solid var(--ot-bg-3-border);
+	border-radius: var(--ot-radius-m);
+	text-align: left;
+	cursor: pointer;
+	overflow: hidden;
+	transition: border-color var(--ot-transition-fast), background var(--ot-transition-fast), transform var(--ot-transition-fast);
+}
+
+.e-1b5668f6 > .box.brand { --accent: var(--ot-brand); --accent-soft: var(--ot-brand-opacity); --accent-line: var(--ot-brand-border); }
+.e-1b5668f6 > .box.blue { --accent: var(--ot-blue); --accent-soft: var(--ot-blue-opacity); --accent-line: var(--ot-blue-border); }
+.e-1b5668f6 > .box.red { --accent: var(--ot-red); --accent-soft: var(--ot-red-opacity); --accent-line: var(--ot-red-border); }
+.e-1b5668f6 > .box.orange { --accent: var(--ot-orange); --accent-soft: var(--ot-orange-opacity); --accent-line: var(--ot-orange-border); }
+.e-1b5668f6 > .box.green { --accent: var(--ot-green); --accent-soft: var(--ot-green-opacity); --accent-line: var(--ot-green-border); }
+
+.e-1b5668f6 > .box:hover
+{
+	background: var(--accent-soft);
+	border-color: var(--accent-line);
+}
+
+.e-1b5668f6 > .box:active
+{
+	transform: translateY(1px);
+}
+
+.e-1b5668f6 > .box.disabled
+{
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+/* Wrap */
+
+.e-1b5668f6 > .box > .wrap
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 32px;
+	height: 32px;
+	border-radius: var(--ot-radius-m);
+	background: var(--accent-soft);
+	color: var(--accent);
+	flex-shrink: 0;
+	transition: transform var(--ot-transition-fast);
+}
+
+.e-1b5668f6 > .box:hover > .wrap
+{
+	transform: scale(1.06);
+}
+
+.e-1b5668f6 > .box > .wrap > i
+{
+	font-size: 18px;
+}
+
+/* Text */
+
+.e-1b5668f6 > .box > .text
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	min-width: 0;
+	flex: 1;
+}
+
+.e-1b5668f6 > .box > .text > .label
+{
+	color: var(--ot-text-1);
+	font-size: var(--ot-size-m);
+	font-weight: 550;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.e-1b5668f6 > .box > .text > .description
+{
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Hint */
+
+.e-1b5668f6 > .box > .hint
+{
+	padding: 2px 8px;
+	background: var(--accent-soft);
+	border-radius: 99px;
+	color: var(--accent);
+	font-size: var(--ot-size-s);
+	font-weight: 600;
+	flex-shrink: 0;
+}
+
+/* Go */
+
+.e-1b5668f6 > .box > .go
+{
+	color: var(--ot-text-3);
+	font-size: 16px;
+	opacity: 0;
+	transform: translateX(-4px);
+	transition: opacity var(--ot-transition-fast), transform var(--ot-transition-fast), color var(--ot-transition-fast);
+	flex-shrink: 0;
+}
+
+.e-1b5668f6 > .box:hover > .go
+{
+	opacity: 1;
+	transform: translateX(0);
+	color: var(--accent);
+}
