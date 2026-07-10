@@ -20,6 +20,6 @@ OneType is in active development and moving fast. The foundation is being built 
 
 ## Team
 
-**Dejan Tomić** is the founder and the architect. Every architecture decision on this platform is his, and he writes the core with the standard he demands from everything else: no workarounds, no shortcuts, built to last.
+**[Dejan Tomić](https://www.linkedin.com/in/tomic-d/)** is the founder and the architect. Every architecture decision on this platform is his, and he writes the core with the standard he demands from everything else: no workarounds, no shortcuts, built to last. Reach him at [hi@iamdejan.com](mailto:hi@iamdejan.com) or [iamdejan.com](https://iamdejan.com).
 
-**Stefan Pakić** is second in command. Core developer, the other half of every hard problem, and the reason the pace never drops.
+**[Stefan Pakić](https://www.linkedin.com/in/pakic/)** is second in command. Core developer, the other half of every hard problem, and the reason the pace never drops.
