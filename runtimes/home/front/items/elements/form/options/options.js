@@ -4,106 +4,93 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-options',
 		icon: 'view_week',
 		name: 'Options',
-		description: 'Segmented control picking one option, with icon, label or both per option.',
+		description: 'Segmented control picking one or more options, with icon, label or both per option.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string|number|array',
-				value: '',
-				each: { type: 'string|number' },
-				description: 'Selected option value, an array of values when multiple is on.'
+				value: 'board',
+				each: {
+					type: 'string|number',
+					description: 'A single selected value.'
+				},
+				description: 'Selected option value, an array of values while multiple is on.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
 				description: 'Hidden input name for forms.'
 			},
-			multiple:
-			{
+			multiple: {
 				type: 'boolean',
 				value: false,
 				description: 'Allows selecting more than one option, clicking a selected option unselects it.'
 			},
-			options:
-			{
+			options: {
 				type: 'array',
-				value: [],
-				description: 'Selectable options.',
-				each:
-				{
+				value: [
+					{ value: 'list', label: 'List', icon: 'list' },
+					{ value: 'board', label: 'Board', icon: 'view_kanban' },
+					{ value: 'timeline', label: 'Timeline', icon: 'timeline' }
+				],
+				each: {
 					type: 'object',
-					config:
-					{
-						value:
-						{
+					config: {
+						value: {
 							type: 'string|number',
 							description: 'Value the option selects.'
 						},
-						label:
-						{
+						label: {
 							type: 'string',
 							description: 'Option text.'
 						},
-						icon:
-						{
+						icon: {
 							type: 'string',
 							description: 'Material icon name.'
 						},
-						tooltip:
-						{
+						tooltip: {
 							type: 'string',
 							description: 'Hover tooltip, useful for icon only options.'
 						},
-						disabled:
-						{
+						disabled: {
 							type: 'boolean',
 							description: 'Disabled state of the option.'
 						}
 					}
-				}
+				},
+				description: 'Selectable options.'
 			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Control height.'
+			stretch: {
+				type: 'boolean',
+				value: false,
+				description: 'Stretch to the container width with evenly sized options.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Track background depth.'
+			blur: {
+				type: 'boolean',
+				value: false,
+				description: 'Translucent blurred track instead of a solid one.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
 				value: 'brand',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
-				description: 'Selected accent color.'
+				description: 'Accent color of the selected option.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['border', 'full', 'glass'],
-				description: 'Visual modifiers. border draws the track edge, full stretches to the container, glass floats on a blurred backdrop.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the track surface from 1 to 4.'
 			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state of the whole control.'
 			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Change handler. Receives { event, value }.'
+				description: 'Called with { event, value } when the selection changes.'
 			}
 		},
 		render: function()
@@ -112,9 +99,17 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'size-' + this.size, 'color-' + this.color];
+				const list = ['box', 'bg-' + this.background, 'color-' + this.color];
 
-				this.variant.forEach((variant) => list.push(variant));
+				if(this.stretch)
+				{
+					list.push('stretch');
+				}
+
+				if(this.blur)
+				{
+					list.push('blur');
+				}
 
 				if(this.disabled)
 				{
