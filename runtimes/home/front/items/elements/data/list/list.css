@@ -1,0 +1,195 @@
+/* ===== DATA LIST ===== */
+
+.e-594ac875
+{
+	display: block;
+	width: 100%;
+}
+
+/* Box */
+
+.e-594ac875 > .box
+{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+
+.e-594ac875 > .box.bg-1,
+.e-594ac875 > .box.bg-2,
+.e-594ac875 > .box.bg-3,
+.e-594ac875 > .box.bg-4
+{
+	padding: var(--ot-spacing-s);
+	border: 1px solid var(--line);
+	border-radius: var(--ot-radius-l);
+	background: var(--fill);
+}
+
+.e-594ac875 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); }
+.e-594ac875 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
+.e-594ac875 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-4); --edge: var(--ot-bg-4-border); }
+.e-594ac875 > .box.bg-4 { --fill: var(--ot-bg-4); --line: var(--ot-bg-4-border); --above: var(--ot-bg-4-hover); --edge: var(--ot-bg-4-border); }
+
+.e-594ac875 > .box.bg-1.blur { --fill: var(--ot-bg-1-opacity); }
+.e-594ac875 > .box.bg-2.blur { --fill: var(--ot-bg-2-opacity); }
+.e-594ac875 > .box.bg-3.blur { --fill: var(--ot-bg-3-opacity); }
+.e-594ac875 > .box.bg-4.blur { --fill: var(--ot-bg-4-opacity); }
+
+.e-594ac875 > .box.blur
+{
+	backdrop-filter: var(--ot-blur);
+	-webkit-backdrop-filter: var(--ot-blur);
+}
+
+/* Surface wash — colored glow on top of the surface, set through the glow prop */
+
+.e-594ac875 > .box.glow-brand { --wash: var(--ot-brand-opacity); }
+.e-594ac875 > .box.glow-blue { --wash: var(--ot-blue-opacity); }
+.e-594ac875 > .box.glow-red { --wash: var(--ot-red-opacity); }
+.e-594ac875 > .box.glow-orange { --wash: var(--ot-orange-opacity); }
+.e-594ac875 > .box.glow-green { --wash: var(--ot-green-opacity); }
+
+.e-594ac875 > .box::before
+{
+	content: '';
+	position: absolute;
+	top: -30%;
+	left: 50%;
+	width: 65%;
+	height: 55%;
+	transform: translateX(-50%);
+	background: radial-gradient(ellipse, var(--wash, transparent) 0%, transparent 70%);
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+/* Empty */
+
+.e-594ac875 > .box > .empty
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	min-height: 120px;
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+}
+
+/* Row */
+
+.e-594ac875 > .box > .row
+{
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	padding: var(--ot-spacing-s);
+	border-radius: var(--ot-radius-m);
+	overflow: hidden;
+	transition: background var(--ot-transition-fast);
+}
+
+.e-594ac875 > .box > .row.brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
+.e-594ac875 > .box > .row.blue { --accent: var(--ot-blue); --tint: var(--ot-blue-opacity); }
+.e-594ac875 > .box > .row.red { --accent: var(--ot-red); --tint: var(--ot-red-opacity); }
+.e-594ac875 > .box > .row.orange { --accent: var(--ot-orange); --tint: var(--ot-orange-opacity); }
+.e-594ac875 > .box > .row.green { --accent: var(--ot-green); --tint: var(--ot-green-opacity); }
+
+.e-594ac875 > .box > .row.clickable
+{
+	cursor: pointer;
+}
+
+.e-594ac875 > .box > .row.clickable:hover
+{
+	background: var(--ot-bg-2-hover);
+}
+
+/* Fill */
+
+.e-594ac875 > .box > .row > .fill
+{
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	border-radius: var(--ot-radius-m);
+	background: var(--tint);
+	transition: width var(--ot-transition-slow);
+}
+
+/* Dot */
+
+.e-594ac875 > .box > .row > .dot
+{
+	position: relative;
+	width: 8px;
+	height: 8px;
+	border-radius: 99px;
+	flex-shrink: 0;
+}
+
+.e-594ac875 > .box > .row > .dot.up { background: var(--ot-green); box-shadow: 0 0 0 3px var(--ot-green-opacity); }
+.e-594ac875 > .box > .row > .dot.warn { background: var(--ot-orange); box-shadow: 0 0 0 3px var(--ot-orange-opacity); }
+.e-594ac875 > .box > .row > .dot.down { background: var(--ot-red); box-shadow: 0 0 0 3px var(--ot-red-opacity); }
+.e-594ac875 > .box > .row > .dot.idle { background: var(--ot-text-3); }
+
+/* Lead */
+
+.e-594ac875 > .box > .row > .lead
+{
+	position: relative;
+	color: var(--ot-text-2);
+	font-size: 17px;
+	flex-shrink: 0;
+}
+
+/* Text */
+
+.e-594ac875 > .box > .row > .text
+{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	flex: 1;
+	min-width: 0;
+}
+
+.e-594ac875 > .box > .row > .text > .label
+{
+	color: var(--ot-text-1);
+	font-size: var(--ot-size-m);
+	font-weight: 550;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.e-594ac875 > .box > .row > .text > .sub
+{
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+/* Value */
+
+.e-594ac875 > .box > .row > .value
+{
+	position: relative;
+	flex-shrink: 0;
+	color: var(--accent);
+	font-size: var(--ot-size-m);
+	font-weight: 600;
+	font-variant-numeric: tabular-nums;
+	font-feature-settings: 'tnum';
+}
