@@ -39,6 +39,12 @@ onetype.AddonReady('elements', (elements) =>
 				value: false,
 				description: 'Dims the action and blocks the click.'
 			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Background depth of the card surface from 1 to 3.'
+			},
 			_click: {
 				type: 'function',
 				description: 'Called with { event } on click.'
@@ -50,7 +56,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.color];
+				const list = ['box', this.color, 'bg-' + this.background];
 
 				if(this.isDisabled)
 				{

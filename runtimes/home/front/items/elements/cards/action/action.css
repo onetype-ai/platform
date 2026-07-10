@@ -15,14 +15,17 @@
 	gap: var(--ot-spacing-s);
 	width: 100%;
 	padding: 10px var(--ot-spacing-s);
-	background: color-mix(in srgb, var(--ot-bg-3) 55%, transparent);
-	border: 1px solid var(--ot-bg-3-border);
+	border: 1px solid transparent;
 	border-radius: var(--ot-radius-m);
 	text-align: left;
 	cursor: pointer;
 	overflow: hidden;
 	transition: border-color var(--ot-transition-fast), background var(--ot-transition-fast), transform var(--ot-transition-fast);
 }
+
+.e-1b5668f6 > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
+.e-1b5668f6 > .box.bg-2 { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
+.e-1b5668f6 > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
 
 .e-1b5668f6 > .box.brand { --accent: var(--ot-brand); --accent-soft: var(--ot-brand-opacity); --accent-line: var(--ot-brand-border); }
 .e-1b5668f6 > .box.blue { --accent: var(--ot-blue); --accent-soft: var(--ot-blue-opacity); --accent-line: var(--ot-blue-border); }
