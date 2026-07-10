@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Shortcuts Panel',
 	description: 'Every registered shortcut, grouped, with an enable toggle and key rebinding per row.',
 	category: 'Shortcuts',
-	author: 'OneType',
 	metadata: { addon: 'modules.shortcuts' },
 	render: function()
 	{
