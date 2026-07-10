@@ -177,7 +177,7 @@ onetype.AddonReady('elements', (elements) =>
 				this.top = prepare(this.items.filter(item => (item.placement || 'top') === 'top'));
 				this.bottom = prepare(this.items.filter(item => item.placement === 'bottom'));
 
-				this.shell = ['box', 'bg-' + this.background, ...this.variant].join(' ');
+				this.shell = ['box', 'bg-' + this.background, 'ot-bg-' + this.background + '-blur', ...this.variant].join(' ');
 				this.finder = 'bg-' + Math.min(this.background + 1, 4);
 				this.hasHead = !!this.title || !!this.subtitle || !!this.version || !!this.Slots.top;
 				this.hasFoot = !!this.Slots.bottom;
