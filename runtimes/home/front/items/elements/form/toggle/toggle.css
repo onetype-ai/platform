@@ -56,7 +56,6 @@
 	height: 14px;
 	border-radius: 50%;
 	background: #fff;
-	box-shadow: var(--ot-shadow-s);
 	transform: translateY(-50%);
 	transition: transform var(--ot-transition);
 }

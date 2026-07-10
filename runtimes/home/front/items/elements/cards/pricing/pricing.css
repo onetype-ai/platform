@@ -79,13 +79,11 @@
 {
 	border-color: var(--edge);
 	transform: translateY(-2px);
-	box-shadow: var(--ot-shadow-m);
 }
 
 .e-7e10f2fa > .box.clickable:active
 {
 	transform: translateY(0);
-	box-shadow: var(--ot-shadow-s);
 }
 
 .e-7e10f2fa > .box.active
@@ -122,7 +120,7 @@
 .e-7e10f2fa > .box.featured
 {
 	border-color: color-mix(in srgb, var(--accent) 40%, transparent);
-	box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent), var(--ot-shadow-m);
+	box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent);
 }
 
 /* Head */

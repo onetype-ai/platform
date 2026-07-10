@@ -79,13 +79,11 @@
 {
 	border-color: var(--edge);
 	transform: translateY(-2px);
-	box-shadow: var(--ot-shadow-m);
 }
 
 .e-7e93ff6e > .box.clickable:active
 {
 	transform: translateY(0);
-	box-shadow: var(--ot-shadow-s);
 }
 
 .e-7e93ff6e > .box.active

@@ -14,7 +14,6 @@ developer.Fn('styles.list', function()
 		['--ot-orange', 'Color', 'brand'],
 		['--ot-green', 'Color', 'brand'],
 		['--ot-transition', 'Motion', 'orange'],
-		['--ot-shadow', 'Shadow', 'orange'],
 		['--ot-blur', 'Effect', 'orange']
 	];
 
@@ -40,7 +39,7 @@ developer.Fn('styles.list', function()
 	};
 
 	const rows = [];
-	const seen = {};
+;
 
 	const push = (kind, token, value, group, groupColor) =>
 	{

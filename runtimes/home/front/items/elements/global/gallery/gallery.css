@@ -122,7 +122,6 @@
 	border-radius: 99px;
 	background: rgba(255, 255, 255, 0.92);
 	color: rgba(20, 20, 24, 1);
-	box-shadow: var(--ot-shadow-m);
 	transition: transform var(--ot-transition-fast);
 }
 
@@ -230,7 +229,6 @@
 	max-width: 100%;
 	max-height: 74vh;
 	border-radius: var(--ot-radius-l);
-	box-shadow: var(--ot-shadow-l);
 }
 
 /* Caption */
