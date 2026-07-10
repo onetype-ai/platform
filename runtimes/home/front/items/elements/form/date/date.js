@@ -4,93 +4,59 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-date',
 		icon: 'calendar_today',
 		name: 'Date',
-		description: 'Date picker with native input, min/max range, presets and clear action.',
+		description: 'Date picker with native input, min and max range, quick presets and a clear action.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string',
-				value: '',
 				description: 'Selected date in ISO format (YYYY-MM-DD).'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
-				value: '',
 				description: 'Input name attribute.'
 			},
-			placeholder:
-			{
+			min: {
 				type: 'string',
-				value: '',
-				description: 'Placeholder text.'
-			},
-			min:
-			{
-				type: 'string',
-				value: '',
 				description: 'Minimum selectable date (YYYY-MM-DD).'
 			},
-			max:
-			{
+			max: {
 				type: 'string',
-				value: '',
 				description: 'Maximum selectable date (YYYY-MM-DD).'
 			},
-			presets:
-			{
+			presets: {
 				type: 'array',
 				value: [],
-				each:
-				{
+				each: {
 					type: 'object',
-					config:
-					{
-						label: { type: 'string' },
-						value: { type: 'string' }
+					config: {
+						label: {
+							type: 'string',
+							description: 'Preset button text.'
+						},
+						value: {
+							type: 'string',
+							description: 'Date the preset selects (YYYY-MM-DD).'
+						}
 					}
 				},
-				description: 'Quick-pick preset buttons.'
+				description: 'Quick pick preset buttons below the field.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Background depth.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Field size.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			_change:
-			{
-				type: 'function',
-				description: 'Change handler. Receives { event, value }.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the control surface from 1 to 4.'
 			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to set the value via the variable builder modal.'
+			_change: {
+				type: 'function',
+				description: 'Called with { event, value } when the date changes.'
 			}
 		},
 		render: function()
@@ -109,24 +75,14 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.Compute(() =>
 			{
-				this.hasPresets = this.presets && this.presets.length > 0;
+				this.hasPresets = this.presets.length > 0;
 			});
 
 			/* ===== CLASSES ===== */
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'size-' + this.size];
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
-				}
+				const list = ['box', 'bg-' + this.background];
 
 				if(this.disabled)
 				{
@@ -178,7 +134,7 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				const target = event && event.target;
+				const target = event ? event.target : null;
 				const field = target && target.closest ? target.closest('.field') : null;
 				const input = field ? field.querySelector('.input') : null;
 
@@ -228,87 +184,11 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
-			/* ===== VARIABLES ===== */
-
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return /^\{\{\s*[\s\S]+\s*\}\}$/.test(String(this.value || '').trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = this.value || '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
-					{
-						this._change({ event: null, value: wrapped });
-					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = '';
-
-				if(this._change)
-				{
-					this._change({ event: null, value: '' });
-				}
-
-				this.Update();
-			};
-
 			/* ===== RENDER ===== */
 
 			return /* html */ `
 				<div :class="classes()">
-					<e-variable-chip
-						ot-if="isExpression()"
-						:value="value"
-						:size="size"
-						:disabled="disabled"
-						:_edit="openVariableBuilder"
-						:_clear="clearExpression"
-					></e-variable-chip>
-
-					<div ot-if="!isExpression()" class="field" ot-click="({ event }) => openPicker(event)">
+					<div class="field" ot-click="({ event }) => openPicker(event)">
 						<i class="icon">calendar_today</i>
 						<input
 							class="input"
@@ -317,19 +197,9 @@ onetype.AddonReady('elements', (elements) =>
 							:name="name"
 							:min="min"
 							:max="max"
-							:placeholder="placeholder"
 							:disabled="disabled"
 							ot-change="handle"
 						/>
-						<button
-							ot-if="hasVariables() && !disabled"
-							type="button"
-							class="action"
-							ot-click.stop="openVariableBuilder"
-							:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-						>
-							<i>data_object</i>
-						</button>
 						<button
 							ot-if="value && !disabled"
 							type="button"
@@ -340,13 +210,14 @@ onetype.AddonReady('elements', (elements) =>
 							<i>close</i>
 						</button>
 					</div>
-					<div ot-if="!isExpression() && hasPresets" class="presets">
+					<div ot-if="hasPresets" class="presets">
 						<button
 							ot-for="preset in presets"
+							:ot-key="preset.value"
 							type="button"
 							:class="'preset' + (value === preset.value ? ' active' : '') + (!inRange(preset.value) ? ' disabled' : '')"
 							:disabled="!inRange(preset.value) || disabled"
-							ot-click="(event) => pickPreset(event, preset.value)"
+							ot-click="({ event }) => pickPreset(event, preset.value)"
 						>
 							{{ preset.label }}
 						</button>
