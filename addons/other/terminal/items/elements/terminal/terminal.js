@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Terminal',
 	description: 'Command log with a prompt to run commands.',
 	category: 'Terminal',
-	author: 'OneType',
 	metadata: { addon: 'terminal' },
 	render: function()
 	{
