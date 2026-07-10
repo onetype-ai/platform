@@ -21,7 +21,7 @@ onetype.AddonReady('elements', (elements) =>
 	const LANG_HTML = {
 		comment: /(&lt;!--[\s\S]*?--&gt;)/g,
 		tag: /(&lt;\/?)([a-zA-Z][\w-]*)/g,
-		attr: /\s([a-zA-Z-:@_.]+)(?==)/g,
+		attr: /(\s)([a-zA-Z-:@_.]+)(?==)/g,
 		string: /(=)(&quot;[^&]*&quot;|'[^']*')/g
 	};
 
@@ -104,8 +104,8 @@ onetype.AddonReady('elements', (elements) =>
 
 		code = code.replace(LANG_HTML.comment, (m) => stash(ph, '<span class="t-comment">' + m + '</span>'));
 		code = code.replace(LANG_HTML.string, (m, eq, value) => eq + stash(ph, '<span class="t-string">' + value + '</span>'));
+		code = code.replace(LANG_HTML.attr, '$1<span class="t-fn">$2</span>');
 		code = code.replace(LANG_HTML.tag, '$1<span class="t-keyword">$2</span>');
-		code = code.replace(LANG_HTML.attr, ' <span class="t-fn">$1</span>');
 
 		return unstash(code, ph);
 	};
@@ -207,6 +207,12 @@ onetype.AddonReady('elements', (elements) =>
 				type: 'boolean',
 				value: true,
 				description: 'Show the copy button.'
+			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the code surface from 1 to 4.'
 			}
 		},
 		render: function()
@@ -259,7 +265,7 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div class="box">
+				<div :class="'box bg-' + background">
 					<div class="head">
 						<div class="dots"><span></span><span></span><span></span></div>
 						<div ot-if="filename" class="filename">{{ filename }}</div>

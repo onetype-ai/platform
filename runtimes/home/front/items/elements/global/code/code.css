@@ -13,13 +13,21 @@
 	display: flex;
 	flex-direction: column;
 	width: 100%;
-	border: 1px solid var(--ot-bg-2-border);
+	border: 1px solid var(--ot-bg-1-border);
 	border-radius: var(--ot-radius-l);
 	background: var(--ot-bg-1);
 	overflow: hidden;
 }
 
 /* Head */
+
+
+/* Surface */
+
+.e-4a15b201 > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
+.e-4a15b201 > .box.bg-2 { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
+.e-4a15b201 > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
+.e-4a15b201 > .box.bg-4 { background: var(--ot-bg-4); border-color: var(--ot-bg-4-border); }
 
 .e-4a15b201 > .box > .head
 {
