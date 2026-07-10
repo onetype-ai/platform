@@ -4,67 +4,52 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'global-heading',
 		icon: 'title',
 		name: 'Heading',
-		description: 'Section or page heading with eyebrow, icon, title, description and slots.',
+		description: 'Page or section heading with eyebrow, icon tile, accented title, description and side or bottom slots.',
 		category: 'Global',
-		config:
-		{
-			eyebrow:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			eyebrow: {
 				type: 'string',
-				value: '',
-				description: 'Uppercase label above title.'
+				value: 'Marketplace',
+				description: 'Uppercase label above the title.'
 			},
-			icon:
-			{
+			icon: {
 				type: 'string',
-				value: '',
-				description: 'Leading icon in brand box.'
+				description: 'Icon in the tile before the text. Empty hides the tile.'
 			},
-			title:
-			{
+			title: {
 				type: 'string',
-				value: '',
-				description: 'Main heading text. Supports <em> for brand accent.'
+				value: 'Everything your site <em>needs</em>',
+				description: 'Heading text. Wrap a word in <em> for the accent.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
-				value: '',
-				description: 'Subtext below title.'
+				value: 'Packages, templates and integrations, built on one platform.',
+				description: 'Subtext under the title.'
 			},
-			element:
-			{
+			element: {
 				type: 'string',
 				value: 'h2',
 				options: ['h1', 'h2', 'h3'],
-				description: 'Heading HTML element.'
+				description: 'Heading element. Drives the scale: h1 hero, h2 section, h3 block.'
 			},
-			align:
-			{
+			align: {
 				type: 'string',
 				value: 'left',
-				options: ['left', 'center', 'right'],
+				options: ['left', 'center'],
 				description: 'Content alignment.'
 			},
-			size:
-			{
+			color: {
 				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Heading scale.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['border'],
-				description: 'Visual modifiers.'
+				value: 'brand',
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
+				description: 'Accent color of the eyebrow, tile and the em accent.'
 			}
 		},
 		render: function()
 		{
-			/* ===== STATE ===== */
+			/* ===== DATA ===== */
 
 			this.Compute(() =>
 			{
@@ -76,14 +61,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.align, 'size-' + this.size];
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				return list.join(' ');
+				return ['box', this.align, this.element, this.color].join(' ');
 			};
 
 			/* ===== RENDER ===== */
@@ -91,9 +69,9 @@ onetype.AddonReady('elements', (elements) =>
 			return /* html */ `
 				<div :class="classes()">
 					<div class="top">
-						<div ot-if="icon" class="icon"><i>{{ icon }}</i></div>
+						<div ot-if="icon" class="tile"><i>{{ icon }}</i></div>
 						<div class="text">
-							<div ot-if="eyebrow" class="eyebrow">{{ eyebrow }}</div>
+							<div ot-if="eyebrow" class="eyebrow"><span class="dash"></span>{{ eyebrow }}</div>
 							<h1 ot-if="element === 'h1'" class="title"><span ot-html="title"></span></h1>
 							<h2 ot-if="element === 'h2'" class="title"><span ot-html="title"></span></h2>
 							<h3 ot-if="element === 'h3'" class="title"><span ot-html="title"></span></h3>
