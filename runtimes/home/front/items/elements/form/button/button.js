@@ -4,116 +4,83 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-button',
 		icon: 'smart_button',
 		name: 'Button',
-		description: 'Premium button with color, style, size, icon and loading state.',
+		description: 'Button with accent colors, tones, icons, link mode and a loading state.',
 		category: 'Form',
-		config:
-		{
-			text:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			text: {
 				type: 'string',
-				value: '',
-				description: 'Button label.'
+				value: 'Create workspace',
+				description: 'Button label. Empty with an icon renders an icon only button.'
 			},
-			icon:
-			{
+			icon: {
 				type: 'string',
-				value: '',
-				description: 'Left icon name.'
+				value: 'add',
+				description: 'Icon on the left side of the label.'
 			},
-			iconRight:
-			{
+			iconRight: {
 				type: 'string',
-				value: '',
-				description: 'Right icon name.'
+				description: 'Icon on the right side of the label.'
 			},
-			href:
-			{
+			href: {
 				type: 'string',
-				value: '',
-				description: 'When set, renders as anchor.'
+				description: 'Link target. When set the button renders as an anchor.'
 			},
-			target:
-			{
+			target: {
 				type: 'string',
-				value: '',
-				options: ['', '_blank', '_self', '_parent', '_top'],
-				description: 'Anchor target.'
+				options: ['_blank', '_self', '_parent', '_top'],
+				description: 'Anchor target while href is set.'
 			},
-			type:
-			{
+			type: {
 				type: 'string',
 				value: 'button',
 				options: ['button', 'submit', 'reset'],
 				description: 'Button type attribute.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
-				value: '',
-				options: ['', 'brand', 'blue', 'red', 'orange', 'green', 'dark'],
-				description: 'Accent color. Pairs with style.'
+				value: 'brand',
+				options: ['brand', 'blue', 'red', 'orange', 'green', 'dark'],
+				description: 'Accent color. Pairs with the tone.'
 			},
-			tone:
-			{
+			tone: {
 				type: 'string',
 				value: 'solid',
 				options: ['solid', 'soft', 'outline', 'ghost', 'link'],
-				description: 'Visual tone.'
+				description: 'Visual tone of the button.'
 			},
-			background:
-			{
+			stretch: {
+				type: 'boolean',
+				value: false,
+				description: 'Stretch to the container width.'
+			},
+			tooltip: {
 				type: 'string',
-				value: '',
-				options: ['', 'bg-1', 'bg-2', 'bg-3', 'bg-4', 'glass'],
-				description: 'Background depth when no color set.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Button size.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: [],
-				each: { type: 'string' },
-				options: ['full', 'rounded', 'icon-only'],
-				description: 'Visual modifiers.'
-			},
-			tooltip:
-			{
-				type: 'string',
-				value: '',
 				description: 'Tooltip text shown on hover.'
 			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			loading:
-			{
+			loading: {
 				type: 'boolean',
 				value: false,
-				description: 'Loading state with spinner.'
+				description: 'Loading state with a spinner.'
 			},
-			_click:
-			{
+			_click: {
 				type: 'function',
-				description: 'Click handler. Receives { event }.'
+				description: 'Called with { event } on click.'
 			}
 		},
 		render: function()
 		{
-			/* ===== STATE ===== */
+			/* ===== DATA ===== */
 
 			this.Compute(() =>
 			{
-				this.iconOnly = this.variant.includes('icon-only');
-				this.hasText = !!this.text && !this.iconOnly;
+				this.iconOnly = !this.text && (!!this.icon || !!this.iconRight);
 				this.isLink = !!this.href;
 			});
 
@@ -121,25 +88,11 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.tone, 'size-' + this.size];
+				const list = ['box', this.tone, this.color];
 
-				if(this.color)
+				if(this.stretch)
 				{
-					list.push(this.color);
-				}
-				else if(this.background)
-				{
-					list.push(this.background);
-				}
-
-				if(this.variant.includes('full'))
-				{
-					list.push('full');
-				}
-
-				if(this.variant.includes('rounded'))
-				{
-					list.push('rounded');
+					list.push('stretch');
 				}
 
 				if(this.iconOnly)
@@ -181,7 +134,7 @@ onetype.AddonReady('elements', (elements) =>
 				<span ot-if="loading" class="spin"><i>progress_activity</i></span>
 				<span ot-if="!loading" class="body">
 					<i ot-if="icon" class="left">{{ icon }}</i>
-					<span ot-if="hasText" class="text">{{ text }}</span>
+					<span ot-if="text" class="text">{{ text }}</span>
 					<i ot-if="iconRight" class="right">{{ iconRight }}</i>
 				</span>
 			`;
@@ -189,7 +142,7 @@ onetype.AddonReady('elements', (elements) =>
 			if(this.isLink)
 			{
 				return /* html */ `
-					<a :class="classes()" :href="href" :target="target || null" :ot-tooltip="tooltip ? { text: tooltip, position: { x: 'center', y: 'top' } } : null" ot-click="click">
+					<a :class="classes()" :href="href" :target="target ? target : null" :ot-tooltip="tooltip ? { text: tooltip, position: { x: 'center', y: 'top' } } : null" ot-click="click">
 						${body}
 					</a>
 				`;
