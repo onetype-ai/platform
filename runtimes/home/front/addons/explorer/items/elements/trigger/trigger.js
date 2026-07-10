@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Explorer Trigger',
 	description: 'Search pill in the navbar that opens the explorer.',
 	category: 'Explorer',
-	author: 'OneType',
 	metadata: { addon: 'ui.explorer' },
 	config: {
 		background: {

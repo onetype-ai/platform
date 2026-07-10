@@ -4,7 +4,6 @@ elements.ItemAdd({
 	name: 'Explorer',
 	description: 'Universal search over everything in the editor: applications, modes, pages, commands and settings.',
 	category: 'Explorer',
-	author: 'OneType',
 	metadata: { addon: 'ui.explorer' },
 	render: function()
 	{
