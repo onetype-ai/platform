@@ -9,7 +9,9 @@
 
 .e-479aeea0 > .holder
 {
+	--ot-height-m: 44px;
+
 	display: flex;
-	margin-top: -60px;
+	margin-top: -50px;
 	pointer-events: auto;
 }

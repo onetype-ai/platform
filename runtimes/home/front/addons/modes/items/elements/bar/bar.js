@@ -34,7 +34,7 @@ elements.ItemAdd({
 
 		return `
 			<div ot-if="options.length" class="holder">
-				<e-form-options :value="value" :options="options" :background="2" :blur="true" :_change="change"></e-form-options>
+				<e-form-options :value="value" :options="options" :_change="change"></e-form-options>
 			</div>
 		`;
 	}
