@@ -1,10 +1,10 @@
 const system = {};
-const ui = {};
 const modules = {};
+const ui = {};
 
 $ot.system = {};
-$ot.ui = {};
 $ot.modules = {};
+$ot.ui = {};
 
 $ot.boot = new Promise((resolve) =>
 {
