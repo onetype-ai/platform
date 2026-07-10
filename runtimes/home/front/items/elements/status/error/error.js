@@ -6,53 +6,51 @@ onetype.AddonReady('elements', (elements) =>
 		name: 'Error',
 		description: 'Error state with icon, message, retry action and optional surface background.',
 		category: 'Status',
-		config:
-		{
-			icon:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			icon: {
 				type: 'string',
 				value: 'error',
 				description: 'Center icon name.'
 			},
-			title:
-			{
+			title: {
 				type: 'string',
 				value: 'Something went wrong',
 				description: 'Error heading.'
 			},
-			description:
-			{
+			description: {
 				type: 'string',
 				value: 'An unexpected error occurred. Please try again.',
 				description: 'Error detail text.'
 			},
-			action:
-			{
+			action: {
 				type: 'string',
 				value: 'Try Again',
 				description: 'Retry button label. Empty hides button.'
 			},
-			color:
-			{
+			color: {
 				type: 'string',
 				value: 'red',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Icon circle accent color.'
 			},
-			background:
-			{
+			background: {
 				type: 'number',
+				options: [1, 2, 3, 4],
 				description: 'Background depth from 1 to 4, renders the error state on its own bordered surface. Empty keeps it transparent.'
 			},
-			size:
-			{
+			glow: {
 				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Component size.'
+				options: ['brand', 'blue', 'red', 'orange', 'green'],
+				description: 'Colored glow on top of the surface. Empty renders no glow.'
 			},
-			_click:
-			{
+			blur: {
+				type: 'boolean',
+				value: false,
+				description: 'Translucent blurred surface instead of a solid one. Applies while background is set.'
+			},
+			_click: {
 				type: 'function',
 				description: 'Retry handler. Receives { event }. Reloads page if not set.'
 			}
@@ -63,11 +61,21 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.color, 'size-' + this.size];
+				const list = ['box', this.color];
 
 				if(this.background)
 				{
 					list.push('bg-' + this.background);
+
+					if(this.blur)
+					{
+						list.push('blur');
+					}
+
+					if(this.glow)
+					{
+						list.push('glow-' + this.glow);
+					}
 				}
 
 				return list.join(' ');
@@ -99,7 +107,7 @@ onetype.AddonReady('elements', (elements) =>
 							:text="action"
 							icon="refresh"
 							color="brand"
-							size="m"
+
 							:_click="retry"
 						></e-form-button>
 					</div>
