@@ -1,0 +1,14 @@
+{
+	"type": "package",
+	"slug": "transforms",
+	"name": "Transforms",
+	"version": "0.1.0",
+	"description": "DOM transforms for the platform. Declarative element transformations with configs, runtime dependencies and live updates.",
+	"icon": "transform",
+	"color": "rgba(52, 211, 153, 1)",
+	"core": ">=0.1.0",
+	"status": "enabled",
+	"depends": [],
+	"permissions": [],
+	"config": {}
+}
