@@ -1,7 +1,19 @@
 ui.apps.Fn('theme', function()
 {
 	const root = document.documentElement;
-	const color = $ot.ui.apps.active()?.Get('color');
+	const active = $ot.ui.apps.active();
+	const color = active?.Get('color');
+	const scheme = active ? active.Get('scheme') : 'studio';
+
+	const schemes = {
+		midnight: [],
+		studio: ['ot-layout-light'],
+		daylight: ['ot-light'],
+		eclipse: ['ot-light', 'ot-layout-dark']
+	};
+
+	document.body.classList.remove('ot-light', 'ot-layout-light', 'ot-layout-dark');
+	document.body.classList.add(...(schemes[scheme] ? schemes[scheme] : []));
 
 	if(!color || color.includes('var('))
 	{

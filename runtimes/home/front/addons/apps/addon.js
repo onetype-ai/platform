@@ -28,6 +28,13 @@ ui.apps = onetype.Addon('ui.apps', (addon) =>
 		description: 'Accent color of the app, a hex or rgba value. CSS variables are not allowed, the color drives the brand theme while the app is active.'
 	});
 
+	addon.Field('scheme', {
+		type: 'string',
+		value: 'studio',
+		options: ['midnight', 'studio', 'daylight', 'eclipse'],
+		description: 'Color scheme while the app is active. Midnight is dark shell with a dark workspace, studio is dark shell with a light workspace, daylight is light shell with a light workspace, eclipse is light shell with a dark workspace.'
+	});
+
 	addon.Field('order', {
 		type: 'number',
 		value: 1,
