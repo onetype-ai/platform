@@ -2,6 +2,8 @@
 
 **One Workspace. Everything Connected. Everything Yours.**
 
+![OneType workspace](.github/dashboard.png)
+
 You work across twenty apps that don't know about each other. Your tasks can't see your calendar, your website builder has never met your cloud, and none of it truly belongs to you.
 
 OneType ends that. It is an open source workspace where every application lives on one platform, shares one universal database, and speaks one language of commands. Applications don't just sit next to each other. They see each other, react to each other, and automate each other.
