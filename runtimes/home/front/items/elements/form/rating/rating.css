@@ -74,6 +74,11 @@
 	transition: transform var(--ot-transition), color var(--ot-transition);
 }
 
+.e-13e502f0 .star > i
+{
+	font-size: 22px;
+}
+
 .e-13e502f0 .star:hover:not(:disabled)
 {
 	transform: scale(1.15);
@@ -211,26 +216,3 @@
 .e-13e502f0 > .box.red .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-red-opacity)); }
 .e-13e502f0 > .box.orange .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-orange-opacity)); }
 .e-13e502f0 > .box.green .star:focus-visible > .base { filter: drop-shadow(0 0 6px var(--ot-green-opacity)); }
-
-/* ===== SIZE ===== */
-
-.e-13e502f0 > .box.size-s > .row > .stars { gap: 2px; }
-
-.e-13e502f0 > .box.size-s .star > .base,
-.e-13e502f0 > .box.size-s .star > .fill { font-size: 16px; }
-
-.e-13e502f0 > .box.size-s > .row > .meta > .value { font-size: var(--ot-size-s); }
-.e-13e502f0 > .box.size-s > .row > .meta > .count { font-size: 10.5px; }
-
-.e-13e502f0 > .box.size-m > .row > .stars { gap: var(--ot-spacing-x); }
-
-.e-13e502f0 > .box.size-m .star > .base,
-.e-13e502f0 > .box.size-m .star > .fill { font-size: 22px; }
-
-.e-13e502f0 > .box.size-l > .row > .stars { gap: var(--ot-spacing-s); }
-
-.e-13e502f0 > .box.size-l .star > .base,
-.e-13e502f0 > .box.size-l .star > .fill { font-size: 30px; }
-
-.e-13e502f0 > .box.size-l > .row > .meta > .value { font-size: 15px; }
-.e-13e502f0 > .box.size-l > .row > .meta > .count { font-size: var(--ot-size-m); }
