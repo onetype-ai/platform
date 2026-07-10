@@ -4,150 +4,113 @@ onetype.AddonReady('elements', (elements) =>
 		id: 'form-input',
 		icon: 'input',
 		name: 'Input',
-		description: 'Text input with icons, prefix/suffix, password toggle, clearable and autocomplete.',
+		description: 'Text input with icons, prefix and suffix, password toggle, clear action and autocomplete suggestions.',
 		category: 'Form',
-		config:
-		{
-			value:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			value: {
 				type: 'string|number',
 				description: 'Input value.'
 			},
-			name:
-			{
+			name: {
 				type: 'string',
 				description: 'Input name attribute.'
 			},
-			type:
-			{
+			type: {
 				type: 'string',
 				value: 'text',
 				options: ['text', 'email', 'password', 'number', 'tel', 'url', 'search', 'time', 'date'],
 				description: 'Input type.'
 			},
-			placeholder:
-			{
+			placeholder: {
 				type: 'string',
-				description: 'Placeholder text.'
+				value: 'Search the workspace...',
+				description: 'Placeholder text while the value is empty.'
 			},
-			icon:
-			{
+			icon: {
 				type: 'string',
-				description: 'Left icon.'
+				value: 'search',
+				description: 'Icon on the left side of the input.'
 			},
-			iconRight:
-			{
+			iconRight: {
 				type: 'string',
-				description: 'Right icon.'
+				description: 'Icon on the right side of the input.'
 			},
-			prefix:
-			{
+			prefix: {
 				type: 'string',
-				description: 'Static text before value.'
+				description: 'Static text before the value.'
 			},
-			suffix:
-			{
+			suffix: {
 				type: 'string',
-				description: 'Static text after value.'
+				description: 'Static text after the value.'
 			},
-			options:
-			{
-				type: 'array',
+			options: {
+				type: 'array|function',
 				value: [],
-				each: { type: 'string' },
-				description: 'Autocomplete suggestions.'
+				each: {
+					type: 'string',
+					description: 'A single suggestion.'
+				},
+				description: 'Autocomplete suggestions shown while typing, or an async callback(query, "search") that returns suggestions.'
 			},
-			restrict:
-			{
+			restrict: {
 				type: 'boolean',
 				value: false,
 				description: 'Only allow values from options.'
 			},
-			clearable:
-			{
+			clearable: {
 				type: 'boolean',
-				value: false,
-				description: 'Show clear button when value present.'
+				value: true,
+				description: 'Show a clear action while a value is present.'
 			},
-			maxlength:
-			{
+			maxlength: {
 				type: 'number',
 				description: 'Maximum character count.'
 			},
-			min:
-			{
+			min: {
 				type: 'number',
-				description: 'Minimum value for number input.'
+				description: 'Minimum value for a number input.'
 			},
-			max:
-			{
+			max: {
 				type: 'number',
-				description: 'Maximum value for number input.'
+				description: 'Maximum value for a number input.'
 			},
-			step:
-			{
+			step: {
 				type: 'number',
-				description: 'Step increment for number input.'
+				description: 'Step increment for a number input.'
 			},
-			disabled:
-			{
+			disabled: {
 				type: 'boolean',
 				value: false,
 				description: 'Disabled state.'
 			},
-			readonly:
-			{
+			readonly: {
 				type: 'boolean',
 				value: false,
 				description: 'Readonly state.'
 			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-2',
-				options: ['bg-1', 'bg-2', 'bg-3', 'bg-4', 'transparent'],
-				description: 'Background depth.'
+			background: {
+				type: 'number',
+				value: 2,
+				options: [1, 2, 3, 4],
+				description: 'Background depth of the control surface from 1 to 4.'
 			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-bottom'],
-				description: 'Visual modifiers.'
-			},
-			size:
-			{
-				type: 'string',
-				value: 'm',
-				options: ['s', 'm', 'l'],
-				description: 'Input size.'
-			},
-			_input:
-			{
+			_input: {
 				type: 'function',
-				description: 'Input handler. Receives { event, value }.'
+				description: 'Called with { event, value } on every keystroke.'
 			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Change handler. Receives { event, value }.'
+				description: 'Called with { event, value } when the value is committed.'
 			},
-			_focus:
-			{
+			_focus: {
 				type: 'function',
-				description: 'Focus handler. Receives { event, value }.'
+				description: 'Called with { event, value } on focus.'
 			},
-			_blur:
-			{
+			_blur: {
 				type: 'function',
-				description: 'Blur handler. Receives { event, value }.'
-			},
-			variables:
-			{
-				type: 'object',
-				value: {},
-				description: 'Available variables to insert into the value via the variable builder modal.'
+				description: 'Called with { event, value } on blur.'
 			}
 		},
 		render: function()
@@ -155,12 +118,14 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== STATE ===== */
 
 			this.open = false;
-			this.activeIndex = 0;
+			this.active = null;
 			this.revealed = false;
+
+			elements.Fn('source', this, () => this.options);
 
 			this.Compute(() =>
 			{
-				this.hasOptions = this.options && this.options.length > 0;
+				this.hasOptions = this.sourced ? true : this.options.length > 0;
 				this.isPassword = this.type === 'password';
 			});
 
@@ -168,17 +133,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				const list = ['box', this.background, 'size-' + this.size];
-
-				if(this.variant.includes('border'))
-				{
-					list.push('border');
-				}
-
-				if(this.variant.includes('border-bottom'))
-				{
-					list.push('border-bottom');
-				}
+				const list = ['box', 'bg-' + this.background];
 
 				if(this.disabled)
 				{
@@ -190,14 +145,14 @@ onetype.AddonReady('elements', (elements) =>
 
 			/* ===== HELPERS ===== */
 
+			this.text = () =>
+			{
+				return this.value === undefined || this.value === null ? '' : String(this.value);
+			};
+
 			this.inputType = () =>
 			{
-				if(this.isPassword && this.revealed)
-				{
-					return 'text';
-				}
-
-				return this.type || 'text';
+				return this.isPassword && this.revealed ? 'text' : this.type;
 			};
 
 			this.filtered = () =>
@@ -207,17 +162,20 @@ onetype.AddonReady('elements', (elements) =>
 					return [];
 				}
 
-				const query = (this.value || '').toLowerCase();
+				if(this.sourced)
+				{
+					return this.results.map((option) => option.label);
+				}
+
+				const query = this.text().toLowerCase();
 
 				if(!query)
 				{
 					return this.options;
 				}
 
-				return this.options.filter(option => String(option).toLowerCase().includes(query));
+				return this.options.filter((option) => String(option).toLowerCase().includes(query));
 			};
-
-			/* ===== HANDLERS ===== */
 
 			this.cast = (value) =>
 			{
@@ -231,17 +189,23 @@ onetype.AddonReady('elements', (elements) =>
 				return Number.isFinite(number) ? number : null;
 			};
 
+			/* ===== HANDLERS ===== */
+
 			this.input = ({ event, value }) =>
 			{
 				value = this.cast(value);
 
 				this.value = value;
-				this.activeIndex = 0;
+				this.active = null;
 
-				if(this.hasOptions)
+				if(this.sourced)
 				{
-					const filtered = this.filtered();
-					this.open = filtered.length > 0;
+					this.search(value);
+					this.open = true;
+				}
+				else if(this.hasOptions)
+				{
+					this.open = this.filtered().length > 0;
 				}
 
 				if(this._input)
@@ -254,7 +218,7 @@ onetype.AddonReady('elements', (elements) =>
 			{
 				value = this.cast(value);
 
-				if(this.restrict && this.hasOptions && !this.options.includes(value))
+				if(this.restrict && this.hasOptions && !this.filtered().includes(value))
 				{
 					this.value = '';
 
@@ -276,14 +240,9 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.focus = ({ event, value }) =>
 			{
-				if(this.hasOptions)
+				if(this.hasOptions && this.filtered().length > 0)
 				{
-					const filtered = this.filtered();
-
-					if(filtered.length > 0)
-					{
-						this.open = true;
-					}
+					this.open = true;
 				}
 
 				if(this._focus)
@@ -300,6 +259,21 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
+			this.move = (step) =>
+			{
+				const filtered = this.filtered();
+
+				if(!filtered.length)
+				{
+					return;
+				}
+
+				const index = filtered.indexOf(this.active);
+
+				this.active = filtered[Math.min(Math.max(index + step, 0), filtered.length - 1)];
+				this.open = true;
+			};
+
 			this.keydown = ({ event }) =>
 			{
 				if(!this.hasOptions)
@@ -307,14 +281,14 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				const filtered = this.filtered();
-
 				if(event.key === 'Enter')
 				{
-					if(this.open && filtered.length > 0)
+					const filtered = this.filtered();
+
+					if(this.open && filtered.length)
 					{
 						event.preventDefault();
-						this.select(filtered[this.activeIndex] || filtered[0]);
+						this.select(this.active !== null && filtered.includes(this.active) ? this.active : filtered[0]);
 					}
 
 					return;
@@ -323,27 +297,20 @@ onetype.AddonReady('elements', (elements) =>
 				if(event.key === 'ArrowDown')
 				{
 					event.preventDefault();
-
-					if(filtered.length > 0)
-					{
-						this.open = true;
-						this.activeIndex = Math.min(this.activeIndex + 1, filtered.length - 1);
-					}
-
+					this.move(1);
 					return;
 				}
 
 				if(event.key === 'ArrowUp')
 				{
 					event.preventDefault();
-					this.activeIndex = Math.max(this.activeIndex - 1, 0);
+					this.move(-1);
 					return;
 				}
 
 				if(event.key === 'Escape')
 				{
 					this.open = false;
-					return;
 				}
 			};
 
@@ -351,7 +318,7 @@ onetype.AddonReady('elements', (elements) =>
 			{
 				this.value = option;
 				this.open = false;
-				this.activeIndex = 0;
+				this.active = null;
 
 				if(this._change)
 				{
@@ -380,85 +347,11 @@ onetype.AddonReady('elements', (elements) =>
 				this.revealed = !this.revealed;
 			};
 
-			this.hasVariables = () =>
-			{
-				return this.variables && typeof this.variables === 'object' && Object.keys(this.variables).length > 0;
-			};
-
-			this.isExpression = () =>
-			{
-				return /^\{\{\s*[\s\S]+\s*\}\}$/.test(String(this.value || '').trim());
-			};
-
-			this.openVariableBuilder = () =>
-			{
-				const modalId = 'modal-var-builder-' + Date.now();
-				const currentValue = this.value || '';
-
-				const initial = (() =>
-				{
-					const m = /^\{\{\s*([\s\S]*?)\s*\}\}$/.exec(String(currentValue).trim());
-					return m ? m[1] : '';
-				})();
-
-				const onSave = ({ expression }) =>
-				{
-					const wrapped = '{{ ' + expression + ' }}';
-					this.value = wrapped;
-
-					if(this._change)
-					{
-						this._change({ event: null, value: wrapped });
-					}
-
-					$ot.float.close(modalId);
-					this.Update();
-				};
-
-				const onCancel = () =>
-				{
-					$ot.float.close(modalId);
-				};
-
-				const variables = this.variables;
-
-				$ot.float.modal(function()
-				{
-					this.variables = variables;
-					this.initial = initial;
-					this.onSave = onSave;
-					this.onCancel = onCancel;
-
-					return /* html */ `<e-variable-builder :variables="variables" :value="initial" :_save="onSave" :_cancel="onCancel"></e-variable-builder>`;
-				}, { id: modalId });
-			};
-
-			this.clearExpression = () =>
-			{
-				this.value = '';
-
-				if(this._change)
-				{
-					this._change({ event: null, value: '' });
-				}
-
-				this.Update();
-			};
-
 			/* ===== RENDER ===== */
 
 			return /* html */ `
 				<div :class="classes()" ot-click-outside="close">
-					<e-variable-chip
-						ot-if="isExpression()"
-						:value="value"
-						:size="size"
-						:disabled="disabled"
-						:_edit="openVariableBuilder"
-						:_clear="clearExpression"
-					></e-variable-chip>
-
-					<div ot-if="!isExpression()" class="field">
+					<div class="field">
 						<i ot-if="icon" class="icon">{{ icon }}</i>
 						<span ot-if="prefix" class="affix">{{ prefix }}</span>
 						<input
@@ -482,16 +375,7 @@ onetype.AddonReady('elements', (elements) =>
 						/>
 						<span ot-if="suffix" class="affix">{{ suffix }}</span>
 						<button
-							ot-if="hasVariables() && !disabled && !readonly"
-							type="button"
-							class="action"
-							ot-click.stop="openVariableBuilder"
-							:ot-tooltip="{ text: 'Insert variable', position: { x: 'center', y: 'top' } }"
-						>
-							<i>data_object</i>
-						</button>
-						<button
-							ot-if="clearable && value && !disabled && !readonly"
+							ot-if="clearable && text() && !disabled && !readonly"
 							type="button"
 							class="action"
 							ot-click.stop="clear"
@@ -511,14 +395,14 @@ onetype.AddonReady('elements', (elements) =>
 						</button>
 						<i ot-if="iconRight" class="icon">{{ iconRight }}</i>
 					</div>
-
-					<div ot-if="!isExpression() && open && hasOptions" class="dropdown">
-						<button
-							ot-for="option, index in filtered()"
-							type="button"
-							:class="'option' + (activeIndex === index ? ' active' : '')"
-							ot-click="() => select(option)"
-						>{{ option }}</button>
+					<div ot-if="open && hasOptions" class="dropdown">
+						<div ot-for="option in filtered()" :ot-key="option">
+							<button
+								type="button"
+								:class="'option' + (option === active ? ' active' : '')"
+								ot-click="() => select(option)"
+							>{{ option }}</button>
+						</div>
 					</div>
 				</div>
 			`;
