@@ -83,7 +83,9 @@
 	line-height: 1.7;
 }
 
-.e-4696d703 > .box > .body > .prose .segment > div > span > *:first-child
+.e-4696d703 > .box > .body > .prose > .segment:first-child > div > *:first-child,
+.e-4696d703 > .box > .body > .prose > .segment:first-child > div > .line:first-child > *:first-child,
+.e-4696d703 > .box > .body > .prose > .segment:first-child > div > span > .line:first-child > *:first-child
 {
 	margin-top: 0;
 }
