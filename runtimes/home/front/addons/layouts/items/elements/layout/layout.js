@@ -37,7 +37,7 @@ elements.ItemAdd({
 
 		this.key = (item) =>
 		{
-			return item.id + ':' + JSON.stringify(item.data);
+			return item.id;
 		};
 
 		return `
