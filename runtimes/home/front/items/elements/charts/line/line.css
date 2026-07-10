@@ -1,0 +1,142 @@
+/* ===== CHARTS LINE ===== */
+
+.e-7f41cd6a
+{
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+/* Box */
+
+.e-7f41cd6a > .box
+{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	height: 100%;
+	min-height: 160px;
+	overflow: hidden;
+}
+
+.e-7f41cd6a > .box.bg-1 { background: var(--ot-bg-1); border: 1px solid var(--ot-bg-1-border); border-radius: var(--ot-radius-l); padding: var(--ot-spacing-m); }
+.e-7f41cd6a > .box.bg-2 { background: var(--ot-bg-2); border: 1px solid var(--ot-bg-2-border); border-radius: var(--ot-radius-l); padding: var(--ot-spacing-m); }
+.e-7f41cd6a > .box.bg-3 { background: var(--ot-bg-3); border: 1px solid var(--ot-bg-3-border); border-radius: var(--ot-radius-l); padding: var(--ot-spacing-m); }
+.e-7f41cd6a > .box.bg-4 { background: var(--ot-bg-4); border: 1px solid var(--ot-bg-4-border); border-radius: var(--ot-radius-l); padding: var(--ot-spacing-m); }
+
+.e-7f41cd6a > .box.bg-1.blur { background: var(--ot-bg-1-opacity); }
+.e-7f41cd6a > .box.bg-2.blur { background: var(--ot-bg-2-opacity); }
+.e-7f41cd6a > .box.bg-3.blur { background: var(--ot-bg-3-opacity); }
+.e-7f41cd6a > .box.bg-4.blur { background: var(--ot-bg-4-opacity); }
+
+.e-7f41cd6a > .box.blur
+{
+	backdrop-filter: var(--ot-blur);
+	-webkit-backdrop-filter: var(--ot-blur);
+}
+
+/* Surface wash — colored glow on top of the surface, set through the glow prop */
+
+.e-7f41cd6a > .box.glow-brand { --wash: var(--ot-brand-opacity); }
+.e-7f41cd6a > .box.glow-blue { --wash: var(--ot-blue-opacity); }
+.e-7f41cd6a > .box.glow-red { --wash: var(--ot-red-opacity); }
+.e-7f41cd6a > .box.glow-orange { --wash: var(--ot-orange-opacity); }
+.e-7f41cd6a > .box.glow-green { --wash: var(--ot-green-opacity); }
+
+.e-7f41cd6a > .box.bg-1::before,
+.e-7f41cd6a > .box.bg-2::before,
+.e-7f41cd6a > .box.bg-3::before,
+.e-7f41cd6a > .box.bg-4::before
+{
+	content: '';
+	position: absolute;
+	top: -30%;
+	left: 50%;
+	width: 65%;
+	height: 55%;
+	transform: translateX(-50%);
+	background: radial-gradient(ellipse, var(--wash, transparent) 0%, transparent 70%);
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+/* Empty */
+
+.e-7f41cd6a > .box > .empty
+{
+	margin: auto;
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+}
+
+/* Chart */
+
+.e-7f41cd6a > .box > .chart
+{
+	position: relative;
+	flex: 1;
+	min-height: 0;
+}
+
+.e-7f41cd6a > .box > .chart > svg
+{
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+.e-7f41cd6a > .box > .chart > svg > g > .line
+{
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.5;
+	stroke-linejoin: round;
+	stroke-linecap: round;
+	vector-effect: non-scaling-stroke;
+}
+
+.e-7f41cd6a > .box > .chart > svg > g > .area
+{
+	stroke: none;
+	fill: url(#charts-line-fade);
+}
+
+/* Foot */
+
+.e-7f41cd6a > .box > .foot
+{
+	margin-top: var(--ot-spacing-s);
+}
+
+.e-7f41cd6a > .box > .foot > .legend
+{
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ot-spacing-s) var(--ot-spacing-m);
+}
+
+.e-7f41cd6a > .box > .foot > .legend > .key
+{
+	display: inline-flex;
+	align-items: center;
+	gap: 5px;
+	color: var(--ot-text-2);
+	font-size: var(--ot-size-s);
+}
+
+.e-7f41cd6a > .box > .foot > .legend > .key > .dot
+{
+	width: 7px;
+	height: 7px;
+	border-radius: 99px;
+}
+
+.e-7f41cd6a > .box > .foot > .range
+{
+	display: flex;
+	justify-content: space-between;
+	color: var(--ot-text-3);
+	font-size: var(--ot-size-s);
+}
