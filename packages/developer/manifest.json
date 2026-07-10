@@ -3,7 +3,7 @@
 	"slug": "developer",
 	"name": "Developer",
 	"version": "0.1.0",
-	"description": "Developer tools for the platform. Browse every element, its config and a live preview.",
+	"description": "Developer tools for the platform. Element previews with parameters and code, addon reference with fields and commands, and live style tokens.",
 	"icon": "code",
 	"color": "rgba(56, 189, 248, 1)",
 	"core": ">=0.1.0",

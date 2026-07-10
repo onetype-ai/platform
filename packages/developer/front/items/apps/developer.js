@@ -5,7 +5,7 @@ onetype.AddonReady('ui.apps', (apps) =>
 		name: 'Developer',
 		icon: 'code',
 		color: 'rgba(56, 189, 248, 1)',
-		description: 'Browse every element, its config and a live preview.',
+		description: 'Developer tools: browse elements with live previews, inspect addons and their commands, and read every style token.',
 		order: 9,
 		isVisible: false
 	});
