@@ -1,9 +1,9 @@
 onetype.AddonReady('elements', (elements) =>
 {
 	elements.ItemAdd({
-		id: 'views-grid',
-		icon: 'grid_view',
-		name: 'Grid View',
+		id: 'views-cards',
+		icon: 'cards',
+		name: 'Cards View',
 		description: 'Listing view with entry cards in a responsive grid: cover image or tinted icon, status pill, title, excerpt and author footer.',
 		category: 'Views',
 		collection: 'Home',
