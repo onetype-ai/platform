@@ -3,268 +3,142 @@ onetype.AddonReady('elements', (elements) =>
 	elements.ItemAdd({
 		id: 'data-filters',
 		icon: 'filter_alt',
-		name: 'Data Filters',
-		description: 'Filter panel with collapsible groups, multiple types and active counts.',
+		name: 'Filters',
+		description: 'Filter panel with collapsible groups: search, option lists with counts, toggles, selects and dates, reporting one value object.',
 		category: 'Data',
-		config:
-		{
-			title:
-			{
-				type: 'string',
-				value: 'Filters',
-				description: 'Panel header title.'
-			},
-			icon:
-			{
-				type: 'string',
-				value: 'filter_alt',
-				description: 'Header icon.'
-			},
-			groups:
-			{
+		collection: 'Home',
+		author: 'OneType',
+		config: {
+			groups: {
 				type: 'array',
-				value: [],
-				each: { type: 'object' },
-				description: 'Filter groups. Each: { id, label, type, options, config, collapsed, max }.'
+				value: [
+					{ id: 'query', type: 'search', placeholder: 'Search entries...' },
+					{ id: 'status', label: 'Status', type: 'options', options: [
+						{ value: 'published', label: 'Published', count: 3 },
+						{ value: 'draft', label: 'Draft', count: 2 },
+						{ value: 'review', label: 'In review', count: 1 }
+					] },
+					{ id: 'author', label: 'Author', type: 'options', options: [
+						{ value: 'dejan', label: 'Dejan Tomić', count: 2 },
+						{ value: 'stefan', label: 'Stefan Pakić', count: 2 },
+						{ value: 'mila', label: 'Mila Kovač', count: 1 },
+						{ value: 'ana', label: 'Ana Ilić', count: 1 }
+					] },
+					{ id: 'tags', label: 'Tags', type: 'options', options: [
+						{ value: 'design', label: 'Design', count: 1 },
+						{ value: 'engineering', label: 'Engineering', count: 2 },
+						{ value: 'platform', label: 'Platform', count: 2 },
+						{ value: 'ai', label: 'AI', count: 2 }
+					] },
+					{ id: 'cover', label: 'Only with cover', type: 'toggle' },
+					{ id: 'after', label: 'Updated after', type: 'date' }
+				],
+				each: {
+					type: 'object',
+					config: {
+						id: {
+							type: 'string',
+							description: 'Key of the group inside the value object.'
+						},
+						label: {
+							type: 'string',
+							description: 'Group label. Search groups render without one.'
+						},
+						type: {
+							type: 'string',
+							value: 'options',
+							options: ['search', 'options', 'single', 'select', 'toggle', 'date'],
+							description: 'Control the group renders. Options is a multi check list, single picks one value.'
+						},
+						options: {
+							type: 'array',
+							value: [],
+							each: {
+								type: 'object',
+								config: {
+									value: {
+										type: 'string|number',
+										description: 'Option value stored in the state.'
+									},
+									label: {
+										type: 'string',
+										description: 'Option label.'
+									},
+									count: {
+										type: 'number',
+										description: 'Matching entries shown after the label.'
+									}
+								}
+							},
+							description: 'Choices for options, single and select groups.'
+						},
+						placeholder: {
+							type: 'string',
+							description: 'Placeholder for search, select and date groups.'
+						},
+						collapsed: {
+							type: 'boolean',
+							value: false,
+							description: 'Start the group collapsed.'
+						}
+					}
+				},
+				description: 'Filter groups top to bottom.'
 			},
-			value:
-			{
+			value: {
 				type: 'object',
-				value: null,
-				description: 'Filter state keyed by group id.'
+				value: {},
+				description: 'Filter state keyed by group id: strings for search, select, single and date, arrays for options, booleans for toggles.'
 			},
-			collapsible:
-			{
-				type: 'boolean',
-				value: true,
-				description: 'Allow collapsing groups.'
+			background: {
+				type: 'number',
+				options: [1, 2, 3],
+				description: 'Background depth of the panel surface from 1 to 3. Empty renders it bare.'
 			},
-			showClear:
-			{
-				type: 'boolean',
-				value: true,
-				description: 'Show clear all button.'
-			},
-			showCount:
-			{
-				type: 'boolean',
-				value: true,
-				description: 'Show active filter counts.'
-			},
-			sticky:
-			{
-				type: 'boolean',
-				value: false,
-				description: 'Sticky positioning.'
-			},
-			orientation:
-			{
-				type: 'string',
-				value: 'vertical',
-				options: ['vertical', 'horizontal'],
-				description: 'Layout direction.'
-			},
-			clearLabel:
-			{
-				type: 'string',
-				value: 'Clear all',
-				description: 'Clear button label.'
-			},
-			applyLabel:
-			{
-				type: 'string',
-				value: '',
-				description: 'Apply button label. Empty hides footer.'
-			},
-			background:
-			{
-				type: 'string',
-				value: 'bg-1',
-				options: ['bg-1', 'bg-2', 'bg-3'],
-				description: 'Background depth.'
-			},
-			variant:
-			{
-				type: 'array',
-				value: ['border'],
-				each: { type: 'string' },
-				options: ['border', 'border-left', 'clean'],
-				description: 'Visual modifiers.'
-			},
-			_change:
-			{
+			_change: {
 				type: 'function',
-				description: 'Change handler. Receives { value }.'
-			},
-			_clear:
-			{
-				type: 'function',
-				description: 'Clear all handler.'
-			},
-			_apply:
-			{
-				type: 'function',
-				description: 'Apply handler. Receives { value }.'
+				description: 'Called with { value } holding the whole filter state whenever any group changes.'
 			}
 		},
 		render: function()
 		{
 			/* ===== STATE ===== */
 
-			this.state = this.value ? { ...this.value } : {};
-			this.collapsed = {};
-			this.expanded = {};
-			this.searches = {};
-			this.callbacks = {};
-			this.loading = {};
+			this.state = { ...this.value };
+			this.closed = {};
 
-			this.groups.forEach(group =>
+			/* ===== DATA ===== */
+
+			this.picked = (group) =>
 			{
-				if(group.collapsed)
-				{
-					this.collapsed[group.id] = true;
-				}
-			});
+				const current = this.state[group.id];
 
-			/* ===== ASYNC OPTIONS ===== */
-
-			this.fetchGroup = async (groupId, search) =>
-			{
-				const callback = this.callbacks[groupId];
-
-				if(!callback)
-				{
-					return;
-				}
-
-				const index = this.groups.findIndex(g => g.id === groupId);
-
-				if(index === -1)
-				{
-					return;
-				}
-
-				this.loading[groupId] = true;
-				this.Update();
-
-				const selectedValue = this.state[groupId];
-				const selected = Array.isArray(selectedValue)
-					? selectedValue
-					: (selectedValue !== null && selectedValue !== undefined && selectedValue !== '' ? [selectedValue] : []);
-
-				try
-				{
-					const result = await callback.call(this, { search: search || '', selected });
-					this.groups[index] = { ...this.groups[index], options: Array.isArray(result) ? result : [] };
-				}
-				catch(error)
-				{
-					this.groups[index] = { ...this.groups[index], options: [] };
-				}
-
-				this.loading[groupId] = false;
-				this.Update();
+				return Array.isArray(current) ? current : (current == null || current === '' ? [] : [current]);
 			};
 
-			this.fetchGroupDebounced = onetype.HelperDebounce((groupId, search) => this.fetchGroup(groupId, search), 300);
-
-			this.groups.forEach((group, index) =>
+			this.count = (group) =>
 			{
-				if(typeof group.options === 'function')
+				if(group.type === 'toggle')
 				{
-					this.callbacks[group.id] = group.options;
-					this.groups[index] = { ...group, options: [], searchable: true };
-
-					this.OnInit(() => this.fetchGroup(group.id, ''));
-				}
-			});
-
-			this.Compute(() =>
-			{
-				this.hasApply = !!this.applyLabel;
-			});
-
-			/* ===== CLASSES ===== */
-
-			this.classes = () =>
-			{
-				const list = ['box', this.background, this.orientation];
-
-				if(this.sticky)
-				{
-					list.push('sticky');
+					return this.state[group.id] ? 1 : 0;
 				}
 
-				this.variant.forEach(v => list.push(v));
-
-				return list.join(' ');
+				return this.picked(group).length;
 			};
 
-			/* ===== COUNTS ===== */
-
-			this.groupActiveCount = (group) =>
+			this.active = () =>
 			{
-				const value = this.state[group.id];
-
-				if(!value)
-				{
-					return 0;
-				}
-
-				if(Array.isArray(value))
-				{
-					return value.length;
-				}
-
-				if(typeof value === 'object')
-				{
-					return Object.values(value).filter(v => v !== null && v !== undefined && v !== '').length;
-				}
-
-				return 1;
+				return this.groups.reduce((total, group) => total + (group.type === 'search' ? 0 : this.count(group)), 0);
 			};
 
-			this.isGroupActive = (group) =>
+			this.shown = (group) =>
 			{
-				return this.groupActiveCount(group) > 0;
-			};
-
-			this.totalActiveCount = () =>
-			{
-				return this.groups.reduce((sum, group) => sum + this.groupActiveCount(group), 0);
-			};
-
-			this.totalActive = this.totalActiveCount();
-			this.hasActive = this.totalActive > 0;
-
-			/* ===== GETTERS ===== */
-
-			this.isChecked = (groupId, optionId) =>
-			{
-				const value = this.state[groupId];
-				return Array.isArray(value) && value.indexOf(optionId) !== -1;
-			};
-
-			this.isSelected = (groupId, optionId) =>
-			{
-				return this.state[groupId] === optionId;
-			};
-
-			this.getValue = (groupId, fallback) =>
-			{
-				const value = this.state[groupId];
-				return value !== undefined && value !== null ? value : fallback;
-			};
-
-			this.getRangeValue = (groupId, key) =>
-			{
-				const value = this.state[groupId];
-				return value && typeof value === 'object' && value[key] !== undefined ? value[key] : '';
+				return this.closed[group.id] === undefined ? !group.collapsed : !this.closed[group.id];
 			};
 
 			/* ===== HANDLERS ===== */
 
-			this.emit = () =>
+			const report = () =>
 			{
 				if(this._change)
 				{
@@ -272,350 +146,104 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
-			this.set = (groupId, value) =>
+			this.assign = (group, value) =>
 			{
-				this.state = { ...this.state, [groupId]: value };
-				this.emit();
-				this.Update();
+				this.state = { ...this.state, [group.id]: value };
+
+				report();
 			};
 
-			this.setRange = (groupId, key, value) =>
+			this.mark = (group, option) =>
 			{
-				const range = this.state[groupId] && typeof this.state[groupId] === 'object' ? this.state[groupId] : {};
-				this.state = { ...this.state, [groupId]: { ...range, [key]: value } };
-				this.emit();
-				this.Update();
+				const current = this.picked(group);
+				const value = current.includes(option.value) ? current.filter((entry) => entry !== option.value) : (group.type === 'single' ? [option.value] : [...current, option.value]);
+
+				this.assign(group, group.type === 'single' ? (value.length ? value[0] : '') : value);
 			};
 
-			this.toggleCollapse = (groupId) =>
+			this.fold = (group) =>
 			{
-				this.collapsed[groupId] = !this.collapsed[groupId];
-				this.Update();
+				this.closed = { ...this.closed, [group.id]: this.shown(group) };
 			};
 
-			this.toggleExpand = (groupId) =>
-			{
-				this.expanded[groupId] = !this.expanded[groupId];
-				this.Update();
-			};
-
-			this.setSearch = (groupId, value) =>
-			{
-				this.searches[groupId] = value;
-
-				if(this.callbacks[groupId])
-				{
-					this.fetchGroupDebounced(groupId, value);
-				}
-
-				this.Update();
-			};
-
-			this.filterOptions = (group) =>
-			{
-				if(this.callbacks[group.id])
-				{
-					return group.options;
-				}
-
-				const query = this.searches[group.id];
-
-				if(!query)
-				{
-					return group.options;
-				}
-
-				const lower = String(query).toLowerCase();
-
-				return group.options.filter(option =>
-				{
-					return String(option.label).toLowerCase().includes(lower);
-				});
-			};
-
-			this.toggleCheckbox = (group, optionId) =>
-			{
-				const current = Array.isArray(this.state[group.id]) ? [...this.state[group.id]] : [];
-				const index = current.indexOf(optionId);
-
-				if(index === -1)
-				{
-					current.push(optionId);
-				}
-				else
-				{
-					current.splice(index, 1);
-				}
-
-				this.set(group.id, current);
-			};
-
-			this.selectRadio = (group, optionId) =>
-			{
-				this.set(group.id, this.state[group.id] === optionId ? null : optionId);
-			};
-
-			this.clearGroup = (group, event) =>
-			{
-				if(event)
-				{
-					event.stopPropagation();
-				}
-
-				const next = { ...this.state };
-				delete next[group.id];
-				this.state = next;
-				this.emit();
-				this.Update();
-			};
-
-			this.clearAll = () =>
+			this.clear = () =>
 			{
 				this.state = {};
-				this.expanded = {};
-				this.emit();
 
-				if(this._clear)
-				{
-					this._clear();
-				}
-
-				this.Update();
+				report();
 			};
 
-			this.apply = () =>
+			/* ===== CLASSES ===== */
+
+			this.classes = () =>
 			{
-				if(this._apply)
+				const list = ['box'];
+
+				if(this.background)
 				{
-					this._apply({ value: { ...this.state } });
+					list.push('bg-' + this.background);
 				}
+
+				return list.join(' ');
 			};
 
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<aside :class="classes()">
-					<header class="head">
-						<div class="head-title">
-							<i ot-if="icon">{{ icon }}</i>
-							<span>{{ title }}</span>
-							<span ot-if="showCount && hasActive" class="head-count">{{ totalActive }}</span>
+				<div :class="classes()">
+					<div ot-if="active()" class="bar">
+						<span class="total">{{ active() }} active</span>
+						<span class="reset" ot-click="clear">Clear all</span>
+					</div>
+					<div ot-for="group in groups" :ot-key="group.id" class="group">
+						<e-form-input
+							ot-if="group.type === 'search'"
+							icon="search"
+							:placeholder="group.placeholder ? group.placeholder : 'Search...'"
+							:value="state[group.id] ? state[group.id] : ''"
+							:clearable="true"
+							:background="2"
+							:_input="({ value }) => assign(group, value)"
+						></e-form-input>
+						<div ot-if="group.type !== 'search' && group.type !== 'toggle'" class="head" ot-click="() => fold(group)">
+							<span class="label">{{ group.label }}</span>
+							<span ot-if="count(group)" class="badge">{{ count(group) }}</span>
+							<i :class="shown(group) ? 'caret turned' : 'caret'">chevron_right</i>
 						</div>
-						<button
-							ot-if="showClear && hasActive"
-							type="button"
-							class="head-clear"
-							ot-click="clearAll"
-						>
-							<i>refresh</i>
-							<span>{{ clearLabel }}</span>
-						</button>
-					</header>
-
-					<div class="groups">
-						<div ot-for="group in groups" :class="'group' + (collapsed[group.id] ? ' collapsed' : '')">
-							<div
-								ot-if="group.label"
-								:class="'group-head' + (collapsible ? ' collapsible' : '')"
-								ot-click="() => collapsible && toggleCollapse(group.id)"
-							>
-								<span class="group-label">{{ group.label }}</span>
-								<span ot-if="showCount && groupActiveCount(group) > 0" class="group-count">{{ groupActiveCount(group) }}</span>
-								<span class="group-spacer"></span>
-								<button
-									ot-if="isGroupActive(group)"
-									type="button"
-									class="group-clear"
-									ot-click="({ event }) => clearGroup(group, event)"
-									:ot-tooltip="{ text: 'Clear', position: { x: 'center', y: 'top' } }"
+						<div ot-if="group.type !== 'search' && group.type !== 'toggle' && shown(group)" class="body">
+							<div ot-if="group.type === 'options' || group.type === 'single'" class="choices">
+								<div
+									ot-for="option in group.options"
+									:ot-key="option.value"
+									:class="picked(group).includes(option.value) ? 'choice checked' : 'choice'"
+									ot-click="() => mark(group, option)"
 								>
-									<i>close</i>
-								</button>
-								<i ot-if="collapsible" class="group-chevron">expand_more</i>
-							</div>
-
-							<div ot-if="!collapsed[group.id]" class="group-body">
-
-								<!-- CHECKBOX -->
-								<div ot-if="group.type === 'checkbox'" class="options">
-									<div ot-if="group.searchable" class="search">
-										<e-form-input
-											size="s"
-											:value="searches[group.id] || ''"
-											:placeholder="'Search ' + (group.label || '').toLowerCase() + '…'"
-											icon="search"
-											background="bg-2"
-											:_input="({ value }) => setSearch(group.id, value)"
-										></e-form-input>
-									</div>
-									<div ot-for="option, index in filterOptions(group)" ot-if="!group.max || expanded[group.id] || index < group.max" class="option-wrap">
-										<e-form-checkbox
-											:label="option.label"
-											:icon="option.icon || ''"
-											:count="option.count != null ? option.count : ''"
-											:value="isChecked(group.id, option.value)"
-											:_change="() => toggleCheckbox(group, option.value)"
-											background="bg-2"
-											:variant="['border']"
-										></e-form-checkbox>
-									</div>
-
-									<button
-										ot-if="group.max && filterOptions(group).length > group.max"
-										type="button"
-										class="show-more"
-										ot-click="() => toggleExpand(group.id)"
-									>
-										<i>{{ expanded[group.id] ? 'expand_less' : 'expand_more' }}</i>
-										<span>{{ expanded[group.id] ? 'Show less' : 'Show ' + (filterOptions(group).length - group.max) + ' more' }}</span>
-									</button>
-								</div>
-
-								<!-- RADIO -->
-								<div ot-if="group.type === 'radio'" class="options">
-									<div ot-if="group.searchable" class="search">
-										<e-form-input
-											size="s"
-											:value="searches[group.id] || ''"
-											:placeholder="'Search ' + (group.label || '').toLowerCase() + '…'"
-											icon="search"
-											background="bg-2"
-											:_input="({ value }) => setSearch(group.id, value)"
-										></e-form-input>
-									</div>
-									<div ot-for="option, index in filterOptions(group)" ot-if="!group.max || expanded[group.id] || index < group.max" class="option-wrap">
-										<e-form-radio
-											:label="option.label"
-											:icon="option.icon || ''"
-											:count="option.count != null ? option.count : ''"
-											:value="isSelected(group.id, option.value)"
-											:_change="() => selectRadio(group, option.value)"
-											background="bg-2"
-											:variant="['border']"
-										></e-form-radio>
-									</div>
-
-									<button
-										ot-if="group.max && filterOptions(group).length > group.max"
-										type="button"
-										class="show-more"
-										ot-click="() => toggleExpand(group.id)"
-									>
-										<i>{{ expanded[group.id] ? 'expand_less' : 'expand_more' }}</i>
-										<span>{{ expanded[group.id] ? 'Show less' : 'Show ' + (filterOptions(group).length - group.max) + ' more' }}</span>
-									</button>
-								</div>
-
-								<!-- TAGS -->
-								<div ot-if="group.type === 'tags'" class="tags">
-									<button
-										ot-for="option in group.options"
-										type="button"
-										:class="'tag' + (isChecked(group.id, option.value) ? ' active' : '')"
-										ot-click="() => toggleCheckbox(group, option.value)"
-									>
-										<i ot-if="option.icon">{{ option.icon }}</i>
-										<span>{{ option.label }}</span>
-										<span ot-if="option.count != null" class="tag-count">{{ option.count }}</span>
-									</button>
-								</div>
-
-								<!-- SELECT -->
-								<e-form-select
-									ot-if="group.type === 'select'"
-									:value="getValue(group.id, '')"
-									:options="group.options"
-									:placeholder="(group.config && group.config.placeholder) || 'Select…'"
-									:searchable="group.searchable"
-									:_change="({ value }) => set(group.id, value)"
-									background="bg-2"
-								></e-form-select>
-
-								<!-- SEARCH -->
-								<e-form-input
-									ot-if="group.type === 'search'"
-									icon="search"
-									:value="getValue(group.id, '')"
-									:placeholder="(group.config && group.config.placeholder) || 'Search…'"
-									:_input="({ value }) => set(group.id, value)"
-									background="bg-2"
-									size="s"
-								></e-form-input>
-
-								<!-- RANGE -->
-								<div ot-if="group.type === 'range'" class="range">
-									<e-form-input
-										type="number"
-										:value="getRangeValue(group.id, 'min')"
-										:placeholder="(group.config && group.config.minPlaceholder) || 'Min'"
-										:_change="({ value }) => setRange(group.id, 'min', value)"
-										background="bg-2"
-										size="s"
-									></e-form-input>
-									<span class="range-dash">—</span>
-									<e-form-input
-										type="number"
-										:value="getRangeValue(group.id, 'max')"
-										:placeholder="(group.config && group.config.maxPlaceholder) || 'Max'"
-										:_change="({ value }) => setRange(group.id, 'max', value)"
-										background="bg-2"
-										size="s"
-									></e-form-input>
-								</div>
-
-								<!-- SLIDER -->
-								<div ot-if="group.type === 'slider'" class="slider-wrap">
-									<e-form-slider
-										:value="getValue(group.id, (group.config && group.config.min) || 0)"
-										:min="(group.config && group.config.min) || 0"
-										:max="(group.config && group.config.max) || 100"
-										:step="(group.config && group.config.step) || 1"
-										:showValue="true"
-										:_change="({ value }) => set(group.id, value)"
-										color="brand"
-									></e-form-slider>
-								</div>
-
-								<!-- DATE -->
-								<div ot-if="group.type === 'date'" class="date-range">
-									<e-form-date
-										:value="getRangeValue(group.id, 'from')"
-										:placeholder="(group.config && group.config.fromPlaceholder) || 'From'"
-										:_change="({ value }) => setRange(group.id, 'from', value)"
-										background="bg-2"
-										size="s"
-									></e-form-date>
-									<e-form-date
-										:value="getRangeValue(group.id, 'to')"
-										:placeholder="(group.config && group.config.toPlaceholder) || 'To'"
-										:_change="({ value }) => setRange(group.id, 'to', value)"
-										background="bg-2"
-										size="s"
-									></e-form-date>
-								</div>
-
-								<!-- TOGGLE -->
-								<div ot-if="group.type === 'toggle'" class="toggle-wrap">
-									<e-form-toggle
-										:label="(group.config && group.config.label) || group.label"
-										:value="!!state[group.id]"
-										:_change="({ value }) => set(group.id, value)"
-									></e-form-toggle>
+									<span :class="group.type === 'single' ? 'mark round' : 'mark'"><i>check</i></span>
+									<span class="text">{{ option.label }}</span>
+									<span ot-if="option.count != null" class="amount">{{ option.count }}</span>
 								</div>
 							</div>
+							<e-form-select
+								ot-if="group.type === 'select'"
+								:options="group.options"
+								:value="state[group.id] ? state[group.id] : ''"
+								:placeholder="group.placeholder ? group.placeholder : 'Pick...'"
+								:background="2"
+								:_change="({ value }) => assign(group, value)"
+							></e-form-select>
+							<e-form-date
+								ot-if="group.type === 'date'"
+								:value="state[group.id] ? state[group.id] : ''"
+								:background="2"
+								:_change="({ value }) => assign(group, value)"
+							></e-form-date>
+						</div>
+						<div ot-if="group.type === 'toggle'" class="switch">
+							<span class="label">{{ group.label }}</span>
+							<e-form-toggle :value="!!state[group.id]" :_change="({ value }) => assign(group, value)"></e-form-toggle>
 						</div>
 					</div>
-
-					<footer ot-if="hasApply" class="foot">
-						<e-form-button
-							:text="applyLabel"
-							icon="check"
-							:_click="apply"
-							color="brand"
-							:variant="['full']"
-						></e-form-button>
-					</footer>
-				</aside>
+				</div>
 			`;
 		}
 	});
