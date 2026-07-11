@@ -26,7 +26,7 @@ ui.modes = onetype.Addon('ui.modes', (addon) =>
 				type: 'array',
 				value: [],
 				each: { type: 'string' },
-				description: 'Screen ids the mode belongs to. Empty means the normal shell, outside any screen. While a screen is open only its modes show.'
+				description: 'Screen ids the item shows on. Empty means every screen and the shell.'
 			},
 			user: {
 				type: 'boolean',

@@ -4,7 +4,7 @@ ui.modes.Fn('item.visible', function(item)
 
 	const screen = $ot.ui.screens.active()?.Get('id');
 
-	if(screen ? !condition.screen.includes(screen) : condition.screen.length)
+	if(Array.isArray(condition.screen) && condition.screen.length && !condition.screen.includes(screen))
 	{
 		return false;
 	}

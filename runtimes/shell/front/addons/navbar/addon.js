@@ -26,7 +26,7 @@ ui.navbar = onetype.Addon('ui.navbar', (addon) =>
 				type: 'array',
 				value: [],
 				each: { type: 'string' },
-				description: 'Screen ids the item belongs to. Empty means the normal shell, outside any screen. While a screen is open only its items show.'
+				description: 'Screen ids the item shows on. Empty means every screen and the shell.'
 			},
 			mode: {
 				type: 'array|boolean',

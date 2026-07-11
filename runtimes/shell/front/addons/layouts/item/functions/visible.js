@@ -5,10 +5,10 @@ ui.layouts.Fn('item.visible', function(item)
 		return false;
 	}
 
-	const screen = $ot.ui.screens.active();
+	const screen = $ot.ui.screens.active()?.Get('id');
 	const screens = item.Get('screen');
 
-	if(screens !== true && (screen ? !screens.includes(screen.Get('id')) : screens.length))
+	if(Array.isArray(screens) && screens.length && !screens.includes(screen))
 	{
 		return false;
 	}
