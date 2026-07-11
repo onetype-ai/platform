@@ -41,13 +41,6 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 				{ id: 'map', icon: 'map' }
 			];
 
-			this.title = () =>
-			{
-				const slug = String(this.cms_collection);
-
-				return slug.charAt(0).toUpperCase() + slug.slice(1);
-			};
-
 			this.pick = ({ value }) =>
 			{
 				$ot.ui.layouts.data({ cms_content_view: value });
@@ -59,9 +52,8 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 			};
 
 			return `
-				<div class="ot-flex-vertical ot-gap-l ot-container-l ot-py-l">
-					<div class="ot-flex-between">
-						<e-global-heading :title="title()" element="h2"></e-global-heading>
+				<div class="ot-flex-vertical ot-gap-m ot-p-m">
+					<div class="ot-flex-end">
 						<e-navigation-tabs tone="contained" :items="views" :active="cms_content_view" :_change="pick"></e-navigation-tabs>
 					</div>
 					<div class="ot-flex-1 ot-scrollbar">
