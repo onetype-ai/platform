@@ -1,10 +1,11 @@
 onetype.AddonReady('ui.modes', (modes) =>
 {
 	modes.Item({
-		id: 'content',
+		id: 'presentation',
 		condition: { app: ['cms'] },
-		order: 2,
-		icon: 'article',
-		name: 'Content'
+		isDefault: true,
+		order: 1,
+		icon: 'web',
+		name: 'Presentation'
 	});
 });
