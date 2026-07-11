@@ -25,7 +25,6 @@ elements.ItemAdd({
 
 		this.On('ui.layouts.open', refresh);
 		this.On('ui.layouts.close', refresh);
-		this.On('ui.layouts.data', refresh);
 		this.On('ui.apps.open', refresh);
 		this.On('ui.apps.close', refresh);
 		this.On('ui.modes.switch', refresh);

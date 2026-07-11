@@ -1,15 +1,4 @@
-ui.layouts.Fn('data', function(values)
+ui.layouts.Fn('data', function()
 {
-	if(values)
-	{
-		const saved = $ot.modules.settings.get('ui.layouts.data', {});
-
-		$ot.modules.settings.set('ui.layouts.data', onetype.DataDefine({ ...saved, ...values }, this.Fn('config')));
-
-		onetype.Emit('ui.layouts.data', { values });
-	}
-
-	const saved = $ot.modules.settings.get('ui.layouts.data', {});
-
-	return Object.assign(onetype.DataDefine({ ...saved }, this.Fn('config')), ui.screens.Fn('data'));
+	return ui.screens.Fn('data');
 });

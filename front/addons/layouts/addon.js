@@ -81,12 +81,6 @@ ui.layouts = onetype.Addon('ui.layouts', (addon) =>
 		description: 'Slot of the layout the item goes into.'
 	});
 
-	addon.Field('config', {
-		type: 'object',
-		value: {},
-		description: 'Prop schema for the render. Merged with every other item config into one global data shape, validated and shared across all renders.'
-	});
-
 	addon.Field('render', {
 		type: 'string|function',
 		required: true,
@@ -97,6 +91,5 @@ ui.layouts = onetype.Addon('ui.layouts', (addon) =>
 $ot.ui.layouts = {
 	open: (id, data) => $ot.command('ui:layouts:open', data ? { id, data } : { id }),
 	close: (id) => $ot.command('ui:layouts:close', { id }),
-	toggle: (id, data) => $ot.command('ui:layouts:toggle', data ? { id, data } : { id }),
-	data: (values) => $ot.command('ui:layouts:data', { values })
+	toggle: (id, data) => $ot.command('ui:layouts:toggle', data ? { id, data } : { id })
 };

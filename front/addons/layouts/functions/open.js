@@ -9,7 +9,7 @@ ui.layouts.Fn('open', function(id, data)
 
 	if(data)
 	{
-		this.Fn('data', data);
+		this.StoreSet('values.' + id, data);
 	}
 
 	if(item.Get('isActive'))

@@ -18,7 +18,7 @@ ui.layouts.Fn('slots', function(zone)
 
 		slots[item.Get('slot')].push({
 			id: item.Get('id'),
-			data: data
+			data: { ...data, ...(this.StoreGet('values.' + item.Get('id')) || {}) }
 		});
 	});
 
