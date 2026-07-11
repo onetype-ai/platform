@@ -20,7 +20,7 @@ assets.Fn('import', [
 	'variables'
 ], 400);
 
-const shell = resolve(root, 'runtimes', 'shell', 'front');
+const shell = resolve(root, 'front');
 
 assets.Item({ type: 'css', order: 110, path: resolve(shell, 'styles') });
 
