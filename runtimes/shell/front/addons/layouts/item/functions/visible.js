@@ -5,6 +5,14 @@ ui.layouts.Fn('item.visible', function(item)
 		return false;
 	}
 
+	const screen = $ot.ui.screens.active();
+	const screens = item.Get('screen');
+
+	if(screen ? !screens.includes(screen.Get('id')) : screens.length)
+	{
+		return false;
+	}
+
 	const condition = item.Get('condition');
 
 	if(condition.app.length && !condition.app.includes($ot.ui.apps.active()?.Get('id')))

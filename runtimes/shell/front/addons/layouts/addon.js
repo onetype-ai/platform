@@ -58,6 +58,16 @@ ui.layouts = onetype.Addon('ui.layouts', (addon) =>
 		description: 'Visibility rules on top of the app filter. Empty object means no extra rules.'
 	});
 
+	addon.Field('screen', {
+		type: 'array',
+		value: [],
+		each: {
+			type: 'string',
+			description: 'A screen id the item belongs to.'
+		},
+		description: 'Screens the item renders on. Empty means the normal shell, outside any screen. While a screen is open only its items show.'
+	});
+
 	addon.Field('zone', {
 		type: 'string',
 		value: 'root',

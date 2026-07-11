@@ -29,6 +29,8 @@ elements.ItemAdd({
 		this.On('ui.apps.open', refresh);
 		this.On('ui.apps.close', refresh);
 		this.On('ui.modes.switch', refresh);
+		this.On('ui.screens.open', refresh);
+		this.On('ui.screens.close', refresh);
 
 		this.render = (item) =>
 		{
