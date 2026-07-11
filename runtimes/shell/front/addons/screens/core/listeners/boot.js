@@ -1,9 +1,9 @@
 $ot.boot.then(() =>
 {
-	const item = Object.values(ui.screens.Items()).find((screen) => screen.Get('route') === window.location.pathname);
+	const match = ui.screens.Fn('match', window.location.pathname);
 
-	if(item)
+	if(match)
 	{
-		$ot.command('ui:screens:open', { id: item.Get('id') });
+		$ot.command('ui:screens:open', { id: match.item.Get('id'), parameters: match.parameters });
 	}
 });

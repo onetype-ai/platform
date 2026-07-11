@@ -8,6 +8,11 @@ commands.Item({
 			type: 'string',
 			required: true,
 			description: 'ID of the screen to open. Must match a registered screen item.'
+		},
+		parameters: {
+			type: 'object',
+			value: {},
+			description: 'Route parameter values, mapped into the layouts data through the screen params map.'
 		}
 	},
 	out: {
@@ -25,7 +30,7 @@ commands.Item({
 			return resolve(null, 'Screen ' + properties.id + ' not found.', 404);
 		}
 
-		const changed = ui.screens.Fn('open', properties.id);
+		const changed = ui.screens.Fn('open', properties.id, properties.parameters);
 
 		if(!changed)
 		{

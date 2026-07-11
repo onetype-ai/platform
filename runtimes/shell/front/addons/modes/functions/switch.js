@@ -35,9 +35,19 @@ ui.modes.Fn('switch', function(id)
 
 	const screen = $ot.ui.screens.active();
 
-	if(screen && screen.Get('mode') && screen.Get('mode') !== id)
+	if(screen)
 	{
-		ui.screens.Fn('close');
+		const siblings = Object.values(ui.screens.Items()).filter((candidate) => candidate.Get('app') === screen.Get('app') && candidate.Get('mode') === id);
+		const next = siblings.find((candidate) => candidate.Get('isDefault')) || siblings[0];
+
+		if(next)
+		{
+			ui.screens.Fn('open', next.Get('id'));
+		}
+		else if(screen.Get('mode') && screen.Get('mode') !== id)
+		{
+			ui.screens.Fn('close');
+		}
 	}
 
 	onetype.Emit('ui.modes.switch', { id });

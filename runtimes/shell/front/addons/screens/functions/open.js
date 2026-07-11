@@ -1,8 +1,28 @@
-ui.screens.Fn('open', function(id)
+ui.screens.Fn('open', function(id, parameters = {})
 {
 	const item = this.ItemGet(id);
 
-	if(!item || $ot.ui.screens.active()?.Get('id') === id)
+	if(!item)
+	{
+		return false;
+	}
+
+	const values = {};
+
+	for(const [parameter, key] of Object.entries(item.Get('params')))
+	{
+		if(parameters[parameter] !== undefined)
+		{
+			values[key] = parameters[parameter];
+		}
+	}
+
+	if(Object.keys(values).length)
+	{
+		ui.layouts.Fn('data', values);
+	}
+
+	if($ot.ui.screens.active()?.Get('id') === id)
 	{
 		return false;
 	}
@@ -23,9 +43,11 @@ ui.screens.Fn('open', function(id)
 		ui.modes.Fn('switch', item.Get('mode'));
 	}
 
-	if(item.Get('route') && window.location.pathname !== item.Get('route'))
+	const url = this.Fn('url', item);
+
+	if(url && window.location.pathname !== url)
 	{
-		history.replaceState(null, '', item.Get('route'));
+		history.replaceState(null, '', url);
 	}
 
 	onetype.Emit('ui.screens.open', { id });
