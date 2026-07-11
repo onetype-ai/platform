@@ -3,7 +3,14 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 	layouts.Item({
 		id: 'cms-sidebar',
 		isActive: true,
-		condition: { app: ['cms'], mode: ['content', 'manage'] },
+		condition: {
+			app: ['cms'],
+			mode: ['content', 'manage'],
+			callback: function()
+			{
+				return $ot.ui.modes.active() !== 'content' || !this.cms_collection;
+			}
+		},
 		zone: 'root',
 		slot: 'left',
 		config: {
