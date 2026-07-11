@@ -47,6 +47,13 @@ const packages = onetype.Addon('packages', (addon) =>
 		description: 'Default limits the package ships, entity key to maximum count. Null means unlimited, the instance config overrides the numbers.'
 	});
 
+	addon.Field('features', {
+		type: 'object',
+		value: {},
+		required: true,
+		description: 'Feature switches the package ships, feature key to boolean. The instance config overrides the values.'
+	});
+
 	addon.Field('status', {
 		type: 'string',
 		value: 'enabled',
