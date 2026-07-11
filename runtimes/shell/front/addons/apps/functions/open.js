@@ -19,6 +19,11 @@ ui.apps.Fn('open', function(id)
 		previous.Get('onDeactivate')(previous);
 	}
 
+	if($ot.ui.screens.active())
+	{
+		ui.screens.Fn('close');
+	}
+
 	$ot.modules.settings.set('ui.apps.active', id);
 
 	if(item.Get('onActivate'))

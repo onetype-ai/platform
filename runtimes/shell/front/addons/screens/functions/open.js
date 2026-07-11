@@ -7,6 +7,11 @@ ui.screens.Fn('open', function(id)
 		return false;
 	}
 
+	if($ot.ui.apps.active())
+	{
+		ui.apps.Fn('close');
+	}
+
 	$ot.modules.settings.set('ui.screens.active', id);
 
 	if(item.Get('route') && window.location.pathname !== item.Get('route'))
