@@ -2,6 +2,13 @@ ui.navbar.Fn('item.visible', function(item)
 {
 	const condition = item.Get('condition');
 
+	const screen = $ot.ui.screens.active()?.Get('id');
+
+	if(screen ? !condition.screen.includes(screen) : condition.screen.length)
+	{
+		return false;
+	}
+
 	const app = $ot.ui.apps.active()?.Get('id');
 
 	if(condition.app === true && !app)
