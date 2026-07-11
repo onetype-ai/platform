@@ -1,0 +1,212 @@
+/* ===== VIEWS LIST ===== */
+
+.e-172cb8cd
+{
+	display: block;
+	width: 100%;
+}
+
+/* Colors */
+
+.e-172cb8cd .brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
+.e-172cb8cd .blue { --accent: var(--ot-blue); --tint: var(--ot-blue-opacity); }
+.e-172cb8cd .red { --accent: var(--ot-red); --tint: var(--ot-red-opacity); }
+.e-172cb8cd .orange { --accent: var(--ot-orange); --tint: var(--ot-orange-opacity); }
+.e-172cb8cd .green { --accent: var(--ot-green); --tint: var(--ot-green-opacity); }
+
+/* Box */
+
+.e-172cb8cd > .box
+{
+	width: 100%;
+}
+
+.e-172cb8cd > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); }
+.e-172cb8cd > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); }
+.e-172cb8cd > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); }
+
+.e-172cb8cd > .box.bg-1,
+.e-172cb8cd > .box.bg-2,
+.e-172cb8cd > .box.bg-3
+{
+	padding: var(--ot-spacing-x) var(--ot-spacing-m);
+	border: 1px solid var(--line);
+	border-radius: var(--ot-radius-l);
+	background: var(--fill);
+}
+
+/* Row */
+
+.e-172cb8cd > .box > .row
+{
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-m);
+	padding: var(--ot-spacing-s) var(--ot-spacing-x);
+	border-bottom: 1px solid var(--ot-bg-2-border);
+	transition: background var(--ot-transition-fast);
+}
+
+.e-172cb8cd > .box > .row:last-of-type
+{
+	border-bottom: none;
+}
+
+.e-172cb8cd > .box.clickable > .row
+{
+	cursor: pointer;
+}
+
+.e-172cb8cd > .box.clickable > .row:hover
+{
+	background: var(--ot-bg-2-hover);
+	border-radius: var(--ot-radius-m);
+}
+
+/* Lead */
+
+.e-172cb8cd > .box > .row > .lead
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 36px;
+	height: 36px;
+	border-radius: var(--ot-radius-m);
+	background: var(--tint);
+	overflow: hidden;
+	flex-shrink: 0;
+}
+
+.e-172cb8cd > .box > .row > .lead > img
+{
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.e-172cb8cd > .box > .row > .lead > i
+{
+	font-size: 18px;
+	color: var(--accent);
+}
+
+/* Main */
+
+.e-172cb8cd > .box > .row > .main
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	min-width: 0;
+	flex: 1;
+}
+
+.e-172cb8cd > .box > .row > .main > .title
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: var(--ot-size-m);
+	font-weight: 550;
+	color: var(--ot-text-1);
+}
+
+.e-172cb8cd > .box > .row > .main > .description
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-3);
+}
+
+/* Tags */
+
+.e-172cb8cd > .box > .row > .tags
+{
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	flex-shrink: 0;
+}
+
+.e-172cb8cd > .box > .row > .tags > .tag
+{
+	height: 22px;
+	display: inline-flex;
+	align-items: center;
+	padding: 0 8px;
+	border: 1px solid var(--ot-bg-3-border);
+	border-radius: 99px;
+	background: var(--ot-bg-2);
+	font-size: 11px;
+	font-weight: 500;
+	color: var(--ot-text-2);
+	white-space: nowrap;
+}
+
+/* Pill */
+
+.e-172cb8cd > .box > .row > .pill
+{
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 24px;
+	padding: 0 10px;
+	border-radius: 99px;
+	background: var(--tint);
+	font-size: var(--ot-size-s);
+	font-weight: 500;
+	color: var(--ot-text-1);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+.e-172cb8cd > .box > .row > .pill > .dot
+{
+	width: 6px;
+	height: 6px;
+	border-radius: 99px;
+	background: var(--accent);
+}
+
+/* Date */
+
+.e-172cb8cd > .box > .row > .date
+{
+	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	font-size: 11px;
+	color: var(--ot-text-3);
+	white-space: nowrap;
+	flex-shrink: 0;
+}
+
+/* Go */
+
+.e-172cb8cd > .box > .row > .go
+{
+	font-size: 16px;
+	color: var(--ot-text-3);
+	opacity: 0;
+	transform: translateX(-4px);
+	transition: opacity var(--ot-transition-fast), transform var(--ot-transition-fast);
+	flex-shrink: 0;
+}
+
+.e-172cb8cd > .box.clickable > .row:hover > .go
+{
+	opacity: 1;
+	transform: translateX(0);
+}
+
+/* Empty */
+
+.e-172cb8cd > .box > .empty
+{
+	padding: var(--ot-spacing-l);
+	text-align: center;
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-3);
+}
