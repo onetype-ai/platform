@@ -1,0 +1,190 @@
+/* ===== VIEWS BOARD ===== */
+
+.e-310b2af1
+{
+	display: block;
+	width: 100%;
+}
+
+/* Colors */
+
+.e-310b2af1 .brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
+.e-310b2af1 .blue { --accent: var(--ot-blue); --tint: var(--ot-blue-opacity); }
+.e-310b2af1 .red { --accent: var(--ot-red); --tint: var(--ot-red-opacity); }
+.e-310b2af1 .orange { --accent: var(--ot-orange); --tint: var(--ot-orange-opacity); }
+.e-310b2af1 .green { --accent: var(--ot-green); --tint: var(--ot-green-opacity); }
+
+/* Box */
+
+.e-310b2af1 > .box
+{
+	display: flex;
+	align-items: flex-start;
+	gap: var(--ot-spacing-m);
+	width: 100%;
+	overflow-x: auto;
+	padding-bottom: var(--ot-spacing-s);
+}
+
+/* Lane */
+
+.e-310b2af1 > .box > .lane
+{
+	display: flex;
+	flex-direction: column;
+	gap: var(--ot-spacing-s);
+	width: 280px;
+	flex-shrink: 0;
+}
+
+/* Head */
+
+.e-310b2af1 > .box > .lane > .head
+{
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 0 var(--ot-spacing-x);
+	height: 32px;
+}
+
+.e-310b2af1 > .box > .lane > .head > .dot
+{
+	width: 8px;
+	height: 8px;
+	border-radius: 99px;
+	background: var(--accent);
+}
+
+.e-310b2af1 > .box > .lane > .head > .label
+{
+	font-size: var(--ot-size-s);
+	font-weight: 600;
+	color: var(--ot-text-1);
+}
+
+.e-310b2af1 > .box > .lane > .head > .count
+{
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 20px;
+	height: 20px;
+	padding: 0 6px;
+	border-radius: 99px;
+	background: var(--tint);
+	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	font-size: 11px;
+	font-weight: 600;
+	color: var(--accent);
+}
+
+/* Cards */
+
+.e-310b2af1 > .box > .lane > .cards
+{
+	display: flex;
+	flex-direction: column;
+	gap: var(--ot-spacing-s);
+	padding: var(--ot-spacing-s);
+	border: 1px dashed var(--ot-bg-2-border);
+	border-radius: var(--ot-radius-l);
+	min-height: 120px;
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card
+{
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	padding: var(--ot-spacing-s);
+	border: 1px solid var(--line);
+	border-radius: var(--ot-radius-m);
+	background: var(--fill);
+	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast);
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --edge: var(--ot-bg-2-border); }
+.e-310b2af1 > .box > .lane > .cards > .card.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --edge: var(--ot-bg-3-border); }
+.e-310b2af1 > .box > .lane > .cards > .card.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --edge: var(--ot-bg-3-border); }
+
+.e-310b2af1 > .box.clickable > .lane > .cards > .card
+{
+	cursor: pointer;
+}
+
+.e-310b2af1 > .box.clickable > .lane > .cards > .card:hover
+{
+	border-color: var(--edge);
+	transform: translateY(-1px);
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .cover
+{
+	width: 100%;
+	aspect-ratio: 16 / 7;
+	border-radius: var(--ot-radius-s);
+	object-fit: cover;
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .title
+{
+	font-size: var(--ot-size-s);
+	font-weight: 600;
+	line-height: 1.4;
+	color: var(--ot-text-1);
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .description
+{
+	font-size: 12px;
+	line-height: 1.5;
+	color: var(--ot-text-3);
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .footer
+{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--ot-spacing-s);
+	margin-top: 2px;
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .footer > .avatar
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 20px;
+	border-radius: 99px;
+	background: var(--tint);
+	font-size: 8px;
+	font-weight: 650;
+	letter-spacing: 0.02em;
+	color: var(--accent);
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .footer > .date
+{
+	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	font-size: 11px;
+	color: var(--ot-text-3);
+}
+
+/* Blank */
+
+.e-310b2af1 > .box > .lane > .cards > .blank
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-3);
+}
