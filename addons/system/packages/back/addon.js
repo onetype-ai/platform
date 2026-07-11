@@ -70,6 +70,13 @@ const packages = onetype.Addon('packages', (addon) =>
 		description: 'Permissions the package requests, shown to the user before install.'
 	});
 
+	addon.Field('limits', {
+		type: 'object',
+		value: {},
+		required: true,
+		description: 'Default limits the package ships, entity key to maximum count. Null means unlimited, the instance config overrides the numbers.'
+	});
+
 	addon.Field('config', {
 		type: 'object',
 		value: {},

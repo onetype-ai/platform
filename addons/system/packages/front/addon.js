@@ -40,6 +40,13 @@ const packages = onetype.Addon('packages', (addon) =>
 		description: 'Accent color as a hex or rgba string.'
 	});
 
+	addon.Field('limits', {
+		type: 'object',
+		value: {},
+		required: true,
+		description: 'Default limits the package ships, entity key to maximum count. Null means unlimited, the instance config overrides the numbers.'
+	});
+
 	addon.Field('status', {
 		type: 'string',
 		value: 'enabled',
