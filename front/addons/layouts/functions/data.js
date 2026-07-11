@@ -9,5 +9,5 @@ ui.layouts.Fn('data', function(values)
 
 	const saved = $ot.modules.settings.get('ui.layouts.data', {});
 
-	return onetype.DataDefine({ ...saved }, this.Fn('config'));
+	return Object.assign(onetype.DataDefine({ ...saved }, this.Fn('config')), ui.screens.Fn('data'));
 });

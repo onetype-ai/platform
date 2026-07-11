@@ -31,10 +31,9 @@ ui.screens = onetype.Addon('ui.screens', (addon) =>
 		description: 'Marks the screen a mode switch opens when the mode has more than one.'
 	});
 
-	addon.Field('params', {
-		type: 'object',
-		value: {},
-		description: 'Route parameter name to layouts data key. Parameters from the URL fill the data on open, data changes rebuild the URL.'
+	addon.Field('data', {
+		type: 'function',
+		description: 'Called with the route parameters as this on open. Returns values merged into the layouts data while the screen is open, never persisted, recomputed from the URL on every load.'
 	});
 
 	addon.Field('config', {

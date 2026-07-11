@@ -7,25 +7,8 @@ ui.screens.Fn('open', function(id, parameters = {})
 		return false;
 	}
 
-	const values = {};
-
-	for(const [parameter, key] of Object.entries(item.Get('params')))
-	{
-		if(parameters[parameter] !== undefined)
-		{
-			values[key] = parameters[parameter];
-		}
-	}
-
-	if(Object.keys(values).length)
-	{
-		ui.layouts.Fn('data', values);
-	}
-
-	if($ot.ui.screens.active()?.Get('id') === id)
-	{
-		return false;
-	}
+	this.StoreSet('parameters', parameters);
+	this.StoreSet('data', item.Get('data') ? item.Get('data').call(parameters) : {});
 
 	$ot.modules.settings.set('ui.screens.active', id);
 

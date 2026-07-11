@@ -7,6 +7,9 @@ ui.screens.Fn('close', function()
 		return false;
 	}
 
+	this.StoreSet('parameters', {});
+	this.StoreSet('data', {});
+
 	$ot.modules.settings.set('ui.screens.active', null);
 
 	if(active.Get('route') && window.location.pathname !== '/')
