@@ -33,6 +33,13 @@ ui.modes.Fn('switch', function(id)
 		item.Get('onActivate')(item);
 	}
 
+	const screen = $ot.ui.screens.active();
+
+	if(screen && screen.Get('mode') && screen.Get('mode') !== id)
+	{
+		ui.screens.Fn('close');
+	}
+
 	onetype.Emit('ui.modes.switch', { id });
 
 	return true;

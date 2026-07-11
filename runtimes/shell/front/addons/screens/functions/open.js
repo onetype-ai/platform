@@ -7,12 +7,21 @@ ui.screens.Fn('open', function(id)
 		return false;
 	}
 
-	if($ot.ui.apps.active())
+	$ot.modules.settings.set('ui.screens.active', id);
+
+	if(item.Get('app'))
+	{
+		ui.apps.Fn('open', item.Get('app'));
+	}
+	else if($ot.ui.apps.active())
 	{
 		ui.apps.Fn('close');
 	}
 
-	$ot.modules.settings.set('ui.screens.active', id);
+	if(item.Get('mode'))
+	{
+		ui.modes.Fn('switch', item.Get('mode'));
+	}
 
 	if(item.Get('route') && window.location.pathname !== item.Get('route'))
 	{

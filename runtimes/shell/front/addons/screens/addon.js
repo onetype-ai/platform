@@ -11,6 +11,16 @@ ui.screens = onetype.Addon('ui.screens', (addon) =>
 		description: 'URL path the screen lives on. Opening the screen writes it into the address bar, loading the path opens the screen.'
 	});
 
+	addon.Field('app', {
+		type: 'string',
+		description: 'App the screen belongs to. Opening the screen opens the app, opening another app closes the screen. Empty closes the active app while the screen is open.'
+	});
+
+	addon.Field('mode', {
+		type: 'string',
+		description: 'Mode the screen switches to on open. Switching to another mode closes the screen. Empty leaves modes alone.'
+	});
+
 	addon.Field('config', {
 		type: 'object',
 		value: {},

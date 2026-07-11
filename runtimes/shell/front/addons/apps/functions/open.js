@@ -19,7 +19,9 @@ ui.apps.Fn('open', function(id)
 		previous.Get('onDeactivate')(previous);
 	}
 
-	if($ot.ui.screens.active())
+	const screen = $ot.ui.screens.active();
+
+	if(screen && screen.Get('app') !== id)
 	{
 		ui.screens.Fn('close');
 	}
