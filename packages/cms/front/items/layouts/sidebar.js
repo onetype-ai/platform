@@ -8,7 +8,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 		slot: 'left',
 		config: {
 			'cms_collection': {
-				type: 'string',
+				type: 'string|number',
 				value: '',
 				description: 'Slug of the collection selected in the sidebar.'
 			}
