@@ -16,6 +16,11 @@ import '#config/load.js';
 import '#runtimes/load.js';
 import '#packages/load.js';
 
+/* Workspace */
+import './addons/workspace/teams/back/load.js';
+import './addons/workspace/users/back/load.js';
+import './addons/workspace/projects/back/load.js';
+
 /* Items */
 import './kernel/items/assets/assets.js';
 import './kernel/items/database/primary.js';
