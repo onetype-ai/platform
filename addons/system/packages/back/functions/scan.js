@@ -13,7 +13,7 @@ packages.Fn('scan', function()
 
 	for(const entry of readdirSync(directory, { withFileTypes: true }))
 	{
-		const file = join(directory, entry.name, 'manifest.json');
+		const file = join(directory, entry.name, 'onetype.json');
 
 		if(!entry.isDirectory() || !existsSync(file))
 		{
