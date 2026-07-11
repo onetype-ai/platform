@@ -20,7 +20,7 @@ ui.screens.Fn('url', function(item)
 		}
 	}
 
-	const pattern = routes.findLast((route) => (route.match(/:(\w+)/g) || []).every((parameter) => values[parameter.slice(1)] !== undefined)) || routes[0];
+	const pattern = routes.findLast((route) => (route.match(/:(\w+)/g) || []).every((parameter) => values[parameter.slice(1)] !== undefined));
 
-	return onetype.RouteBuild(pattern, values);
+	return pattern ? onetype.RouteBuild(pattern, values) : null;
 });
