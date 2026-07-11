@@ -32,7 +32,7 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			background: {
 				type: 'number',
-				value: 2,
+				value: 1,
 				options: [1, 2, 3],
 				description: 'Background depth of the entry cards from 1 to 3.'
 			},
