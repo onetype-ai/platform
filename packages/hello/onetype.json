@@ -1,6 +1,6 @@
 {
 	"type": "package",
-	"slug": "hello",
+	"slug": "onetype/hello",
 	"name": "Hello",
 	"version": "0.1.0",
 	"description": "A minimal package that proves the install pipeline works.",

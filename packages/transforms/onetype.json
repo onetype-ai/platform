@@ -1,6 +1,6 @@
 {
 	"type": "package",
-	"slug": "transforms",
+	"slug": "onetype/transforms",
 	"name": "Transforms",
 	"version": "0.1.0",
 	"description": "DOM transforms for the platform. Declarative element transformations with configs, runtime dependencies and live updates.",

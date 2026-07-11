@@ -1,6 +1,6 @@
 {
 	"type": "package",
-	"slug": "developer",
+	"slug": "onetype/developer",
 	"name": "Developer",
 	"version": "0.1.0",
 	"description": "Developer tools for the platform. Element previews with parameters and code, addon reference with fields and commands, and live style tokens.",

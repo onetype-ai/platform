@@ -1,6 +1,6 @@
 {
 	"type": "package",
-	"slug": "website",
+	"slug": "onetype/website",
 	"name": "Website",
 	"version": "0.1.0",
 	"description": "The public onetype.ai website as a package. The platform presents itself, the site and the product are the same thing.",
