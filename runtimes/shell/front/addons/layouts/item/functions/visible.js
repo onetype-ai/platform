@@ -8,7 +8,7 @@ ui.layouts.Fn('item.visible', function(item)
 	const screen = $ot.ui.screens.active();
 	const screens = item.Get('screen');
 
-	if(screen ? !screens.includes(screen.Get('id')) : screens.length)
+	if(screens !== true && (screen ? !screens.includes(screen.Get('id')) : screens.length))
 	{
 		return false;
 	}

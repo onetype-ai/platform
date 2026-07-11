@@ -59,13 +59,13 @@ ui.layouts = onetype.Addon('ui.layouts', (addon) =>
 	});
 
 	addon.Field('screen', {
-		type: 'array',
+		type: 'array|boolean',
 		value: [],
 		each: {
 			type: 'string',
 			description: 'A screen id the item belongs to.'
 		},
-		description: 'Screens the item renders on. Empty means the normal shell, outside any screen. While a screen is open only its items show.'
+		description: 'Screens the item renders on. Empty means the normal shell, outside any screen. While a screen is open only its items show. True means every screen and the shell.'
 	});
 
 	addon.Field('zone', {
