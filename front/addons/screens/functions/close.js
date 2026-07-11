@@ -7,7 +7,8 @@ ui.screens.Fn('close', function()
 		return false;
 	}
 
-	this.StoreSet('parameters', {});
+	$ot.modules.settings.set('ui.screens.parameters', {});
+
 	this.StoreSet('data', {});
 
 	$ot.modules.settings.set('ui.screens.active', null);

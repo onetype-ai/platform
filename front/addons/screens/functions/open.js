@@ -7,7 +7,8 @@ ui.screens.Fn('open', function(id, parameters = {})
 		return false;
 	}
 
-	this.StoreSet('parameters', parameters);
+	$ot.modules.settings.set('ui.screens.parameters', parameters);
+
 	this.StoreSet('data', item.Get('data') ? item.Get('data').call(parameters) : {});
 
 	$ot.modules.settings.set('ui.screens.active', id);

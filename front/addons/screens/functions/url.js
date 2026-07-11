@@ -7,7 +7,7 @@ ui.screens.Fn('url', function(item)
 		return null;
 	}
 
-	const values = this.StoreGet('parameters') || {};
+	const values = $ot.modules.settings.get('ui.screens.parameters', {});
 	const filled = (route) => (route.match(/:(\w+)/g) || []).every((parameter) => values[parameter.slice(1)] !== null && values[parameter.slice(1)] !== undefined && values[parameter.slice(1)] !== '');
 	const pattern = routes.findLast(filled);
 
