@@ -98,4 +98,10 @@ const packages = onetype.Addon('packages', (addon) =>
 	});
 });
 
+onetype.$ot.system = onetype.$ot.system || {};
+
+onetype.$ot.system.packages = {
+	limits: (slug) => packages.Fn('limits', slug)
+};
+
 export default packages;

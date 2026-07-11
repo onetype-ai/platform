@@ -8,8 +8,7 @@
         "./workspace/teams": "./addons/workspace/teams/back/load.js",
         "./workspace/users": "./addons/workspace/users/back/load.js",
         "./workspace/projects": "./addons/workspace/projects/back/load.js",
-        "./workspace/tokens": "./addons/workspace/tokens/back/load.js",
-        "./packages": "./addons/system/packages/back/addon.js"
+        "./workspace/tokens": "./addons/workspace/tokens/back/load.js"
     },
     "license": "MIT",
     "author": "Dejan Tomic <hi@iamdejan.com>",
@@ -22,7 +21,6 @@
         "#packages/*": "./addons/system/packages/back/*",
         "#runtimes/*": "./addons/system/runtimes/back/*",
         "#config/*": "./addons/system/config/back/*",
-        "#collections/*": "./addons/system/collections/back/*"
     },
     "dependencies": {
         "@onetype/framework": "latest"

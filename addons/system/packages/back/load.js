@@ -4,7 +4,7 @@ import packages from './addon.js';
 import './functions/directories.js';
 import './functions/scan.js';
 import './functions/back.js';
-import './functions/limit.js';
+import './functions/limits.js';
 import './functions/list.js';
 import './functions/assets.js';
 
