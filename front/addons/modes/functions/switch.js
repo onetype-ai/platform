@@ -35,7 +35,7 @@ ui.modes.Fn('switch', function(id)
 
 	const screen = $ot.ui.screens.active();
 
-	if(screen)
+	if(screen && screen.Get('mode') !== id)
 	{
 		const siblings = Object.values(ui.screens.Items()).filter((candidate) => candidate.Get('app') === screen.Get('app') && candidate.Get('mode') === id);
 		const next = siblings.find((candidate) => candidate.Get('isDefault')) || siblings[0];
