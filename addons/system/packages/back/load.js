@@ -3,6 +3,7 @@ import packages from './addon.js';
 /* Functions */
 import './functions/directories.js';
 import './functions/scan.js';
+import './functions/order.js';
 import './functions/back.js';
 import './functions/limits.js';
 import './functions/list.js';

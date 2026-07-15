@@ -8,7 +8,7 @@ packages.Fn('assets', function(type)
 {
 	const files = [];
 
-	for(const item of Object.values(this.Items()))
+	for(const item of this.Fn('order'))
 	{
 		if(item.Get('status') !== 'enabled')
 		{
