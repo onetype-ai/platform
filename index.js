@@ -25,6 +25,7 @@ import './back/items/assets/assets.js';
 import './back/items/database/primary.js';
 import './back/items/commands/health.js';
 import './back/items/commands/crawl.js';
+import './back/items/commands/run.js';
 import './back/items/commands/html.js';
 import './back/items/html/icons.js';
 
