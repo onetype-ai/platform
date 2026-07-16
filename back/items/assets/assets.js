@@ -56,4 +56,4 @@ for(const category of ['system', 'workspace'])
 	}
 }
 
-assets.Fn('import', ['boot'], 600);
+assets.Fn('import', ['boot'], 99999);

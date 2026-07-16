@@ -4,6 +4,7 @@
 {
 	display: block;
 	width: 100%;
+	height: 100%;
 }
 
 /* Colors */
@@ -19,10 +20,34 @@
 .e-172ede25 > .box
 {
 	width: 100%;
-	border: 1px solid var(--ot-bg-2-border);
+	height: 100%;
+	border: 1px solid var(--line);
 	border-radius: var(--ot-radius-l);
-	background: var(--ot-bg-1);
-	overflow-x: auto;
+	background: var(--fill);
+	overflow: auto;
+}
+
+.e-172ede25 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); }
+.e-172ede25 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
+.e-172ede25 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
+
+.e-172ede25 > .box.clear
+{
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+}
+
+.e-172ede25 > .box.clear > .grid
+{
+	gap: 0;
+	background: transparent;
+}
+
+.e-172ede25 > .box.clear > .grid .cell
+{
+	background: transparent;
+	border-bottom: 1px solid var(--ot-bg-2-border);
 }
 
 /* Grid */
@@ -31,15 +56,20 @@
 {
 	display: grid;
 	gap: 1px;
-	background: var(--ot-bg-2-border);
+	background: var(--edge);
 	min-width: max-content;
 }
 
-.e-172ede25 > .box > .grid > .line
+.e-172ede25 > .box > .grid > .band > .line
 {
 	display: grid;
 	grid-template-columns: subgrid;
 	grid-column: 1 / -1;
+}
+
+.e-172ede25 > .box > .grid > .band
+{
+	display: contents;
 }
 
 /* Cells */
@@ -52,7 +82,7 @@
 	min-width: 0;
 	height: 40px;
 	padding: 0 10px;
-	background: var(--ot-bg-1);
+	background: var(--fill);
 	transition: background var(--ot-transition-fast);
 }
 
@@ -61,7 +91,7 @@
 .e-172ede25 > .box > .grid > .cell.head
 {
 	height: 36px;
-	background: var(--ot-bg-2);
+	background: var(--above);
 	font-size: 11px;
 	font-weight: 600;
 	letter-spacing: 0.04em;
@@ -82,9 +112,30 @@
 	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
 }
 
+/* Section */
+
+.e-172ede25 > .box > .grid > .band > .cell.section
+{
+	grid-column: 1 / -1;
+	height: 34px;
+	background: var(--above);
+	font-size: 11px;
+	font-weight: 650;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--ot-text-2);
+}
+
+.e-172ede25 > .box > .grid > .band > .cell.section > .count
+{
+	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+	font-weight: 500;
+	color: var(--ot-text-3);
+}
+
 /* Number */
 
-.e-172ede25 > .box > .grid > .line > .cell.number
+.e-172ede25 > .box > .grid > .band > .line > .cell.number
 {
 	justify-content: center;
 	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
@@ -92,41 +143,41 @@
 	color: var(--ot-text-3);
 }
 
-.e-172ede25 > .box > .grid > .line > .cell.number > .reveal
+.e-172ede25 > .box > .grid > .band > .line > .cell.number > .reveal
 {
 	display: none;
 	font-size: 13px;
 	color: var(--ot-text-1);
 }
 
-.e-172ede25 > .box > .grid > .line > .cell.number.openable
+.e-172ede25 > .box > .grid > .band > .line > .cell.number.openable
 {
 	cursor: pointer;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell.number.openable:hover > .index
+.e-172ede25 > .box > .grid > .band > .line > .cell.number.openable:hover > .index
 {
 	display: none;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell.number.openable:hover > .reveal
+.e-172ede25 > .box > .grid > .band > .line > .cell.number.openable:hover > .reveal
 {
 	display: block;
 }
 
 /* Selection */
 
-.e-172ede25 > .box > .grid > .line > .cell:not(.number)
+.e-172ede25 > .box > .grid > .band > .line > .cell:not(.number)
 {
 	cursor: cell;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell:not(.number):hover
+.e-172ede25 > .box > .grid > .band > .line > .cell:not(.number):hover
 {
 	background: var(--ot-bg-1-hover);
 }
 
-.e-172ede25 > .box > .grid > .line > .cell.active
+.e-172ede25 > .box > .grid > .band > .line > .cell.active
 {
 	outline: 2px solid var(--ot-brand);
 	outline-offset: -2px;
@@ -135,7 +186,7 @@
 
 /* Text */
 
-.e-172ede25 > .box > .grid > .line > .cell > .text
+.e-172ede25 > .box > .grid > .band > .line > .cell > .text
 {
 	overflow: hidden;
 	white-space: nowrap;
@@ -144,8 +195,8 @@
 	color: var(--ot-text-1);
 }
 
-.e-172ede25 > .box > .grid > .line > .cell > .digit,
-.e-172ede25 > .box > .grid > .line > .cell > .date
+.e-172ede25 > .box > .grid > .band > .line > .cell > .digit,
+.e-172ede25 > .box > .grid > .band > .line > .cell > .date
 {
 	font-family: ui-monospace, 'SF Mono', Menlo, monospace;
 	font-size: 12px;
@@ -153,14 +204,14 @@
 	white-space: nowrap;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell > .date
+.e-172ede25 > .box > .grid > .band > .line > .cell > .date
 {
 	color: var(--ot-text-3);
 }
 
 /* Pill */
 
-.e-172ede25 > .box > .grid > .line > .cell > .pill
+.e-172ede25 > .box > .grid > .band > .line > .cell > .pill
 {
 	display: inline-flex;
 	align-items: center;
@@ -175,7 +226,7 @@
 	white-space: nowrap;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell > .pill > .dot
+.e-172ede25 > .box > .grid > .band > .line > .cell > .pill > .dot
 {
 	width: 5px;
 	height: 5px;
@@ -185,7 +236,7 @@
 
 /* User */
 
-.e-172ede25 > .box > .grid > .line > .cell > .user
+.e-172ede25 > .box > .grid > .band > .line > .cell > .user
 {
 	display: inline-flex;
 	align-items: center;
@@ -193,7 +244,7 @@
 	min-width: 0;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell > .user > .avatar
+.e-172ede25 > .box > .grid > .band > .line > .cell > .user > .avatar
 {
 	display: flex;
 	align-items: center;
@@ -209,7 +260,7 @@
 	flex-shrink: 0;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell > .user > .name
+.e-172ede25 > .box > .grid > .band > .line > .cell > .user > .name
 {
 	overflow: hidden;
 	white-space: nowrap;
@@ -220,7 +271,7 @@
 
 /* Tags */
 
-.e-172ede25 > .box > .grid > .line > .cell > .tags
+.e-172ede25 > .box > .grid > .band > .line > .cell > .tags
 {
 	display: inline-flex;
 	align-items: center;
@@ -228,7 +279,7 @@
 	min-width: 0;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell > .tags > .tag
+.e-172ede25 > .box > .grid > .band > .line > .cell > .tags > .tag
 {
 	height: 20px;
 	display: inline-flex;
@@ -243,7 +294,7 @@
 	white-space: nowrap;
 }
 
-.e-172ede25 > .box > .grid > .line > .cell > .tags > .more
+.e-172ede25 > .box > .grid > .band > .line > .cell > .tags > .more
 {
 	font-size: 11px;
 	font-weight: 600;
@@ -252,7 +303,7 @@
 
 /* Thumb */
 
-.e-172ede25 > .box > .grid > .line > .cell > .thumb
+.e-172ede25 > .box > .grid > .band > .line > .cell > .thumb
 {
 	width: 26px;
 	height: 26px;

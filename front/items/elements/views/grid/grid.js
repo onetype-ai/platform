@@ -60,6 +60,16 @@ onetype.AddonReady('elements', (elements) =>
 				},
 				description: 'Entries top to bottom.'
 			},
+			background: {
+				type: 'number',
+				value: 1,
+				options: [1, 2, 3],
+				description: 'Surface depth of the grid, 1 sits on the canvas and 3 on the deepest panel. 0 renders transparent cells straight on the canvas.'
+			},
+			group: {
+				type: 'string',
+				description: 'Item property rows group under. Rows sharing a value render below one section row, items without it fall under Other. Empty disables grouping.'
+			},
 			empty: {
 				type: 'string',
 				value: 'No entries yet.',
@@ -129,6 +139,29 @@ onetype.AddonReady('elements', (elements) =>
 				}));
 
 				this.template = '44px ' + this.fields.map((definition) => definition.width ? definition.width : 'minmax(140px, 1fr)').join(' ');
+
+				if(this.group)
+				{
+					const sections = {};
+
+					this.rows.forEach((row) =>
+					{
+						const label = row.item[this.group] ? String(row.item[this.group]) : 'Other';
+
+						if(!sections[label])
+						{
+							sections[label] = { label, rows: [] };
+						}
+
+						sections[label].rows.push(row);
+					});
+
+					this.sections = Object.values(sections);
+				}
+				else
+				{
+					this.sections = [{ label: '', rows: this.rows }];
+				}
 			});
 
 			/* ===== HANDLERS ===== */
@@ -154,31 +187,34 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div class="box ot-scrollbar">
+				<div :class="'box ot-scrollbar' + (background ? ' bg-' + background : ' clear')">
 					<div class="grid" :style="'grid-template-columns: ' + template">
 						<div class="cell head corner">#</div>
 						<div ot-for="field in fields" :ot-key="field.key" class="cell head">
 							<i>{{ icons[field.type] }}</i>
 							<span>{{ field.label }}</span>
 						</div>
-						<div ot-for="row in rows" :ot-key="row.key" class="line">
-							<div :class="_open ? 'cell number openable' : 'cell number'" ot-click="({ event }) => open(event, row)">
-								<span class="index">{{ row.number }}</span>
-								<i class="reveal">open_in_full</i>
-							</div>
-							<div
-								ot-for="cell in row.cells"
-								:ot-key="cell.key"
-								:class="'cell' + (active.row === row.key && active.key === cell.key ? ' active' : '')"
-								ot-click="({ event }) => select(event, row, cell)"
-							>
-								<span ot-if="cell.type === 'text'" class="text">{{ cell.value }}</span>
-								<span ot-if="cell.type === 'number'" class="digit">{{ cell.value }}</span>
-								<span ot-if="cell.type === 'date'" class="date">{{ cell.value }}</span>
-								<span ot-if="cell.type === 'status'" :class="'pill ' + cell.color"><span class="dot"></span>{{ cell.label }}</span>
-								<span ot-if="cell.type === 'user'" :class="'user ' + cell.color"><span class="avatar">{{ cell.initials }}</span><span class="name">{{ cell.name }}</span></span>
-								<span ot-if="cell.type === 'tags'" class="tags"><span ot-for="tag in cell.shown" :ot-key="tag" class="tag">{{ tag }}</span><span ot-if="cell.more" class="more">+{{ cell.more }}</span></span>
-								<img ot-if="cell.type === 'image' && cell.value" class="thumb" :src="cell.value" />
+						<div ot-for="section in sections" :ot-key="section.label" class="band">
+							<div ot-if="section.label" class="cell section"><span>{{ section.label }}</span><span class="count">{{ section.rows.length }}</span></div>
+							<div ot-for="row in section.rows" :ot-key="row.key" class="line">
+								<div :class="_open ? 'cell number openable' : 'cell number'" ot-click="({ event }) => open(event, row)">
+									<span class="index">{{ row.number }}</span>
+									<i class="reveal">open_in_full</i>
+								</div>
+								<div
+									ot-for="cell in row.cells"
+									:ot-key="cell.key"
+									:class="'cell' + (active.row === row.key && active.key === cell.key ? ' active' : '')"
+									ot-click="({ event }) => select(event, row, cell)"
+								>
+									<span ot-if="cell.type === 'text'" class="text">{{ cell.value }}</span>
+									<span ot-if="cell.type === 'number'" class="digit">{{ cell.value }}</span>
+									<span ot-if="cell.type === 'date'" class="date">{{ cell.value }}</span>
+									<span ot-if="cell.type === 'status'" :class="'pill ' + cell.color"><span class="dot"></span>{{ cell.label }}</span>
+									<span ot-if="cell.type === 'user'" :class="'user ' + cell.color"><span class="avatar">{{ cell.initials }}</span><span class="name">{{ cell.name }}</span></span>
+									<span ot-if="cell.type === 'tags'" class="tags"><span ot-for="tag in cell.shown" :ot-key="tag" class="tag">{{ tag }}</span><span ot-if="cell.more" class="more">+{{ cell.more }}</span></span>
+									<img ot-if="cell.type === 'image' && cell.value" class="thumb" :src="cell.value" />
+								</div>
 							</div>
 						</div>
 					</div>
