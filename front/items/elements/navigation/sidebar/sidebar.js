@@ -20,7 +20,6 @@ onetype.AddonReady('elements', (elements) =>
 			},
 			version: {
 				type: 'string',
-				value: 'v2',
 				description: 'Version pill in the header.'
 			},
 			search: {
