@@ -23,8 +23,6 @@ elements.ItemAdd({
 		this.On('ui.apps.open', refresh);
 		this.On('ui.apps.close', refresh);
 		this.On('ui.modes.switch', refresh);
-		this.On('projects.open', refresh);
-		this.On('projects.close', refresh);
 
 		this.logo = 'https://images.onetype.ai/96752e47-1bea-4313-025c-5b76dc174200/public';
 

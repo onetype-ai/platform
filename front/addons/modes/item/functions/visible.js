@@ -31,11 +31,6 @@ ui.modes.Fn('item.visible', function(item)
 		return false;
 	}
 
-	if(condition.project && !$ot.projects.active())
-	{
-		return false;
-	}
-
 	/* @todo permission check — wire once permissions has/grant API exists */
 
 	if(condition.callback && condition.callback.call({}, item) === false)

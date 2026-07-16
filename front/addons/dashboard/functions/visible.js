@@ -41,11 +41,6 @@ ui.dashboard.Fn('visible', function(item)
 		return false;
 	}
 
-	if(condition.project && !$ot.projects?.active())
-	{
-		return false;
-	}
-
 	if(condition.callback && condition.callback.call({}, item) === false)
 	{
 		return false;

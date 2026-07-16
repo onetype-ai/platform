@@ -55,8 +55,6 @@ elements.ItemAdd({
 		this.On('ui.apps.open', refresh);
 		this.On('ui.apps.close', refresh);
 		this.On('ui.modes.switch', refresh);
-		this.On('projects.open', refresh);
-		this.On('projects.close', refresh);
 
 		return `<e-navigation-dock :items="items" :panel="panel"></e-navigation-dock>`;
 	}

@@ -18,7 +18,7 @@ $ot.boot = new Promise((resolve) =>
 	});
 });
 
-$ot.navigate = async ({ app = undefined, mode = undefined, project = undefined } = {}) =>
+$ot.navigate = async ({ app = undefined, mode = undefined } = {}) =>
 {
 	if(app !== undefined)
 	{
@@ -28,11 +28,6 @@ $ot.navigate = async ({ app = undefined, mode = undefined, project = undefined }
 	if(mode !== undefined)
 	{
 		await $ot.ui.modes.switch(mode);
-	}
-
-	if(project !== undefined)
-	{
-		await (project === null ? $ot.projects.close() : $ot.projects.open(project));
 	}
 };
 

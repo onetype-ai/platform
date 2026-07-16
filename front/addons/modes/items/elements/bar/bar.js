@@ -24,8 +24,6 @@ elements.ItemAdd({
 		this.On('ui.modes.switch', refresh);
 		this.On('ui.apps.open', refresh);
 		this.On('ui.apps.close', refresh);
-		this.On('projects.open', refresh);
-		this.On('projects.close', refresh);
 
 		this.change = ({ value }) =>
 		{
