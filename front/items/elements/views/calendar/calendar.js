@@ -37,8 +37,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Background depth of the day cells from 1 to 3.'
+				options: [0, 1, 2, 3],
+				description: 'Background depth of the day cells from 1 to 3. 0 renders transparent, without background or borders.'
 			},
 			_open: {
 				type: 'function',
@@ -147,7 +147,7 @@ onetype.AddonReady('elements', (elements) =>
 			/* ===== RENDER ===== */
 
 			return /* html */ `
-				<div :class="background ? 'box bg-' + background : 'box'">
+				<div :class="background || background === 0 ? 'box bg-' + background : 'box'">
 					<div class="bar">
 						<span class="label">{{ label }}</span>
 						<span class="controls">

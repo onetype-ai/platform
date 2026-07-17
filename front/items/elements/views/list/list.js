@@ -33,8 +33,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Background depth of the list surface from 1 to 3. Empty renders it bare.'
+				options: [0, 1, 2, 3],
+				description: 'Background depth of the list surface from 1 to 3. Empty renders it bare. 0 renders transparent, without background or borders.'
 			},
 			_open: {
 				type: 'function',
@@ -72,7 +72,7 @@ onetype.AddonReady('elements', (elements) =>
 			{
 				const list = ['box'];
 
-				if(this.background)
+				if(this.background || this.background === 0)
 				{
 					list.push('bg-' + this.background);
 				}

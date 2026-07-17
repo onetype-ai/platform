@@ -21,6 +21,7 @@
 	width: 100%;
 }
 
+.e-172cb8cd > .box.bg-0 { --fill: transparent; --line: transparent; }
 .e-172cb8cd > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); }
 .e-172cb8cd > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); }
 .e-172cb8cd > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); }

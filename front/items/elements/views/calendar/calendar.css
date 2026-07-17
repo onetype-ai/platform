@@ -25,6 +25,7 @@
 	overflow: hidden;
 }
 
+.e-2807c0ad > .box.bg-0 { --cell: transparent; border-color: transparent; }
 .e-2807c0ad > .box.bg-1 { --cell: var(--ot-bg-1); }
 .e-2807c0ad > .box.bg-2 { --cell: var(--ot-bg-2); }
 .e-2807c0ad > .box.bg-3 { --cell: var(--ot-bg-3); }
@@ -132,7 +133,7 @@
 	background: var(--cell, transparent);
 }
 
-.e-2807c0ad > .box:not(.bg-1):not(.bg-2):not(.bg-3) > .grid > .day
+.e-2807c0ad > .box:not(.bg-0):not(.bg-1):not(.bg-2):not(.bg-3) > .grid > .day
 {
 	background: var(--ot-bg-1);
 }
