@@ -1,6 +1,7 @@
 .e-7f52fac2
 {
 	display: block;
+	width: 100%;
 	height: 100%;
 	overflow-y: auto;
 }
@@ -10,9 +11,43 @@
 	display: flex;
 	flex-direction: column;
 	gap: var(--ot-spacing-l);
+	width: 100%;
+	min-height: 100%;
 	max-width: 1280px;
 	margin: 0 auto;
 	padding: var(--ot-spacing-l);
+}
+
+/* Pattern — full width backdrop behind the board */
+
+.e-7f52fac2 > .box.dots,
+.e-7f52fac2 > .box.lines
+{
+	--pattern: color-mix(in srgb, var(--ot-text-3) 14%, transparent);
+
+	max-width: none;
+}
+
+.e-7f52fac2 > .box.dots
+{
+	background-image: radial-gradient(var(--pattern) 1px, transparent 1px);
+	background-size: 22px 22px;
+}
+
+.e-7f52fac2 > .box.lines
+{
+	background-image:
+		linear-gradient(var(--pattern) 1px, transparent 1px),
+		linear-gradient(90deg, var(--pattern) 1px, transparent 1px);
+	background-size: 48px 48px;
+}
+
+.e-7f52fac2 > .box.dots > .section,
+.e-7f52fac2 > .box.lines > .section
+{
+	max-width: 1280px;
+	margin: 0 auto;
+	width: 100%;
 }
 
 /* Section */
@@ -96,10 +131,8 @@
 	flex-direction: column;
 	min-width: 0;
 	grid-column: span 4;
-	background: color-mix(in srgb, var(--ot-bg-2) 70%, transparent);
-	backdrop-filter: blur(16px) saturate(160%);
-	-webkit-backdrop-filter: blur(16px) saturate(160%);
-	border: 1px solid var(--ot-bg-3-border);
+	background: var(--ot-bg-1);
+	border: 1px solid var(--ot-bg-1-border);
 	border-radius: var(--ot-radius-l);
 	overflow: hidden;
 	transition: border-color var(--ot-transition-fast);

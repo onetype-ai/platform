@@ -32,6 +32,6 @@ ui.dashboard.types.Item({
 	},
 	render: function()
 	{
-		return `<e-data-table :columns="payload.columns" :rows="payload.rows"></e-data-table>`;
+		return `<e-data-table :background="0" :columns="payload.columns" :rows="payload.rows"></e-data-table>`;
 	}
 });

@@ -25,6 +25,6 @@ ui.dashboard.types.Item({
 	},
 	render: function()
 	{
-		return `<e-charts-bar :bars="payload.bars"></e-charts-bar>`;
+		return `<e-charts-bar :background="0" :bars="payload.bars"></e-charts-bar>`;
 	}
 });

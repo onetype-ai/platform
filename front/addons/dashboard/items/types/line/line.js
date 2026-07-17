@@ -31,6 +31,6 @@ ui.dashboard.types.Item({
 	},
 	render: function()
 	{
-		return `<e-charts-line :labels="payload.labels" :series="payload.series"></e-charts-line>`;
+		return `<e-charts-line :background="0" :labels="payload.labels" :series="payload.series"></e-charts-line>`;
 	}
 });

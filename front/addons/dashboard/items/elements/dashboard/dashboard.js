@@ -5,6 +5,13 @@ elements.ItemAdd({
 	description: 'Responsive board that lays out dashboard widgets on a twelve column grid, grouped into sections, and resolves each widget data.',
 	category: 'Dashboard',
 	metadata: { addon: 'ui.dashboard' },
+	config: {
+		pattern: {
+			type: 'string',
+			options: ['dots', 'lines'],
+			description: 'Backdrop pattern behind the board, drawn across the full element width. Empty renders a plain background.'
+		}
+	},
 	render: function()
 	{
 		const load = async (widget) =>
@@ -117,7 +124,7 @@ elements.ItemAdd({
 		this.body = (widget) => ui.dashboard.types.Render(widget.type, { color: widget.color, payload: widget.payload }).Element;
 
 		return `
-			<div class="box">
+			<div :class="pattern ? 'box ' + pattern : 'box'">
 				<section ot-for="section in sections" :ot-key="section.id || 'loose'" :class="classes(section)">
 					<header ot-if="section.title" :class="head(section)">
 						<i ot-if="section.icon">{{ section.icon }}</i>

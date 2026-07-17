@@ -26,6 +26,6 @@ ui.dashboard.types.Item({
 	},
 	render: function()
 	{
-		return `<e-charts-donut :label="payload.label" :segments="payload.segments"></e-charts-donut>`;
+		return `<e-charts-donut :background="0" :label="payload.label" :segments="payload.segments"></e-charts-donut>`;
 	}
 });

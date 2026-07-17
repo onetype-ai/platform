@@ -27,6 +27,6 @@ ui.dashboard.types.Item({
 	},
 	render: function()
 	{
-		return `<e-data-status :items="payload.items" :banner="false"></e-data-status>`;
+		return `<e-data-status :background="0" :items="payload.items" :banner="false"></e-data-status>`;
 	}
 });

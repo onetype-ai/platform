@@ -37,6 +37,6 @@ ui.dashboard.types.Item({
 			});
 		});
 
-		return `<e-data-timeline :events="list"></e-data-timeline>`;
+		return `<e-data-timeline :background="0" :events="list"></e-data-timeline>`;
 	}
 });
