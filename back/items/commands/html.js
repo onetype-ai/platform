@@ -4,6 +4,7 @@ import html from '@onetype/framework/html';
 commands.Item({
 	id: 'html',
 	exposed: true,
+	silent: true,
 	method: 'GET',
 	endpoint: '*',
 	type: 'HTML',
