@@ -26,6 +26,7 @@
 	background: var(--fill);
 }
 
+.e-29179902 > .box.bg-0 { --fill: transparent; --line: transparent; --above: transparent; --edge: transparent; }
 .e-29179902 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); }
 .e-29179902 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
 .e-29179902 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }

@@ -9,8 +9,8 @@ elements.ItemAdd({
 		background: {
 			type: 'number',
 			value: 1,
-			options: [1, 2, 3],
-			description: 'Background depth of the pill.'
+			options: [0, 1, 2, 3],
+			description: 'Background depth of the pill. 0 renders transparent, without background or borders.'
 		}
 	},
 	render: function()

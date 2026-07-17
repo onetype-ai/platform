@@ -21,6 +21,7 @@
 	--glow: var(--ot-brand-opacity);
 }
 
+.e-471f3f12 > .box.bg-0 { background: transparent; border: 1px solid transparent; border-radius: var(--ot-radius-l); }
 .e-471f3f12 > .box.bg-1 { background: var(--ot-bg-1); border: 1px solid var(--ot-bg-1-border); border-radius: var(--ot-radius-l); }
 .e-471f3f12 > .box.bg-2 { background: var(--ot-bg-2); border: 1px solid var(--ot-bg-2-border); border-radius: var(--ot-radius-l); }
 .e-471f3f12 > .box.bg-3 { background: var(--ot-bg-3); border: 1px solid var(--ot-bg-3-border); border-radius: var(--ot-radius-l); }

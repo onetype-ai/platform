@@ -23,6 +23,7 @@
 
 /* Surface */
 
+.e-4a15b201 > .box.bg-0 { background: transparent; border-color: transparent; }
 .e-4a15b201 > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-4a15b201 > .box.bg-2 { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-4a15b201 > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }

@@ -20,6 +20,7 @@
 	transition: border-color var(--ot-transition-fast), background var(--ot-transition-fast);
 }
 
+.e-32dcabc0 > .box.bg-0 { background: transparent; border-color: transparent; }
 .e-32dcabc0 > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-32dcabc0 > .box.bg-2 { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-32dcabc0 > .box.bg-3 { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }

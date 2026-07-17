@@ -260,6 +260,9 @@
 
 /* underline / pills — bg on box */
 
+.e-1a8b6ac1 > .box.bg-0.underline,
+.e-1a8b6ac1 > .box.bg-0.pills { background: transparent; }
+
 .e-1a8b6ac1 > .box.bg-1.underline,
 .e-1a8b6ac1 > .box.bg-1.pills { background: var(--ot-bg-1); padding: 0 var(--ot-spacing-m); }
 
@@ -271,12 +274,14 @@
 
 /* contained — bg on track */
 
+.e-1a8b6ac1 > .box.bg-0.contained > .tabs { background: transparent; border-color: transparent; }
 .e-1a8b6ac1 > .box.bg-1.contained > .tabs { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); }
 .e-1a8b6ac1 > .box.bg-2.contained > .tabs { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-1a8b6ac1 > .box.bg-3.contained > .tabs { background: var(--ot-bg-3); border-color: var(--ot-bg-3-border); }
 
 /* segmented — bg on track */
 
+.e-1a8b6ac1 > .box.bg-0.segmented > .tabs { background: transparent; border: 1px solid transparent; }
 .e-1a8b6ac1 > .box.bg-1.segmented > .tabs { background: var(--ot-bg-1); border: 1px solid var(--ot-bg-1-border); }
 .e-1a8b6ac1 > .box.bg-2.segmented > .tabs { background: var(--ot-bg-2); border: 1px solid var(--ot-bg-2-border); }
 .e-1a8b6ac1 > .box.bg-3.segmented > .tabs { background: var(--ot-bg-3); border: 1px solid var(--ot-bg-3-border); }

@@ -45,8 +45,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Background depth from 1 to 3, renders the chart on its own bordered surface.'
+				options: [0, 1, 2, 3],
+				description: 'Background depth from 1 to 3, renders the chart on its own bordered surface. 0 renders transparent, without background or borders.'
 			},
 			glow: {
 				type: 'string',
@@ -66,7 +66,7 @@ onetype.AddonReady('elements', (elements) =>
 			{
 				const list = ['box'];
 
-				if(this.background)
+				if(this.background || this.background === 0)
 				{
 					list.push('bg-' + this.background);
 				}

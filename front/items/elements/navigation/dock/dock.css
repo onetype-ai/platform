@@ -18,6 +18,7 @@
 	background: var(--fill);
 }
 
+.e-1a845976 > .box.bg-0 { --fill: transparent; --active: transparent; }
 .e-1a845976 > .box.bg-1 { --fill: var(--ot-bg-1); --active: var(--ot-bg-1-border); }
 .e-1a845976 > .box.bg-2 { --fill: var(--ot-bg-2); --active: var(--ot-bg-2-border); }
 .e-1a845976 > .box.bg-3 { --fill: var(--ot-bg-3); --active: var(--ot-bg-3-border); }

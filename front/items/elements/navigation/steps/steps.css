@@ -200,6 +200,8 @@
 
 /* ===== BACKGROUND ===== */
 
+.e-36dc8444 > .box.bg-0 { background: transparent; border-color: transparent; }
+
 .e-36dc8444 > .box.bg-1 { background: var(--ot-bg-1); border-color: var(--ot-bg-1-border); padding: var(--ot-spacing-s); }
 .e-36dc8444 > .box.bg-1 .step.upcoming > .marker { background: var(--ot-bg-2); border-color: var(--ot-bg-2-border); }
 .e-36dc8444 > .box.bg-1 .step:hover:not(.disabled) { background: var(--ot-bg-1-hover); }

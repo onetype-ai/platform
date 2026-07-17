@@ -17,8 +17,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Background of the whole bar, a depth on the bg scale. Lines and hover states follow it, nested controls sit one depth above.'
+				options: [0, 1, 2, 3],
+				description: 'Background of the whole bar, a depth on the bg scale. Lines and hover states follow it, nested controls sit one depth above. 0 renders transparent, without background or borders.'
 			},
 			items: {
 				type: 'array',

@@ -22,6 +22,7 @@
 	transition: border-color var(--ot-transition-fast), transform var(--ot-transition-fast), box-shadow var(--ot-transition-fast);
 }
 
+.e-7e973360 > .box.bg-0 { --fill: transparent; --line: transparent; --edge: transparent; }
 .e-7e973360 > .box.bg-1 { --fill: var(--ot-bg-1); --line: var(--ot-bg-1-border); --edge: var(--ot-bg-2-border); }
 .e-7e973360 > .box.bg-2 { --fill: var(--ot-bg-2); --line: var(--ot-bg-2-border); --edge: var(--ot-bg-3-border); }
 .e-7e973360 > .box.bg-3 { --fill: var(--ot-bg-3); --line: var(--ot-bg-3-border); --edge: var(--ot-bg-3-border); }

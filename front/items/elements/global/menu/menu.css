@@ -7,6 +7,7 @@
 
 /* Surface — depth set through the background prop */
 
+.e-4a1a1973 > .box.bg-0 { --fill: transparent; --line: transparent; --above: transparent; --edge: transparent; }
 .e-4a1a1973 > .box.bg-1 { --fill: var(--ot-bg-1-opacity); --line: var(--ot-bg-1-border); --above: var(--ot-bg-2); --edge: var(--ot-bg-2-border); }
 .e-4a1a1973 > .box.bg-2 { --fill: var(--ot-bg-2-opacity); --line: var(--ot-bg-2-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }
 .e-4a1a1973 > .box.bg-3 { --fill: var(--ot-bg-3-opacity); --line: var(--ot-bg-3-border); --above: var(--ot-bg-3); --edge: var(--ot-bg-3-border); }

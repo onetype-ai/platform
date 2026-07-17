@@ -86,8 +86,8 @@ onetype.AddonReady('elements', (elements) =>
 			background: {
 				type: 'number',
 				value: 1,
-				options: [1, 2, 3],
-				description: 'Background of the whole rail, a depth on the bg scale. Hover and colorless active states use the matching hover tone, so they always follow the rail.'
+				options: [0, 1, 2, 3],
+				description: 'Background of the whole rail, a depth on the bg scale. Hover and colorless active states use the matching hover tone, so they always follow the rail. 0 renders transparent, without background or borders.'
 			},
 			panel: {
 				type: 'object',
