@@ -10,43 +10,43 @@
 body.ot-layout-light .e-49430f40 > .box
 {
 	--ot-bg-1: rgba(255, 255, 255, 1);
-	--ot-bg-1-border: rgba(245, 245, 245, 1);
+	--ot-bg-1-border: rgba(243, 243, 243, 1);
 	--ot-bg-1-opacity: rgba(255, 255, 255, 0.85);
-	--ot-bg-1-hover: rgba(240, 240, 240, 1);
+	--ot-bg-1-hover: rgba(245, 245, 245, 1);
 
 	--ot-bg-2: rgba(250, 250, 250, 1);
-	--ot-bg-2-border: rgba(240, 240, 240, 1);
+	--ot-bg-2-border: rgba(238, 238, 238, 1);
 	--ot-bg-2-opacity: rgba(250, 250, 250, 0.85);
-	--ot-bg-2-hover: rgba(235, 235, 235, 1);
+	--ot-bg-2-hover: rgba(240, 240, 240, 1);
 
 	--ot-bg-3: rgba(245, 245, 245, 1);
-	--ot-bg-3-border: rgba(235, 235, 235, 1);
+	--ot-bg-3-border: rgba(233, 233, 233, 1);
 	--ot-bg-3-opacity: rgba(245, 245, 245, 0.85);
-	--ot-bg-3-hover: rgba(230, 230, 230, 1);
+	--ot-bg-3-hover: rgba(235, 235, 235, 1);
 
 	--ot-text-1: rgb(30, 30, 30);
 	--ot-text-2: rgb(60, 60, 60);
 	--ot-text-3: rgb(90, 90, 90);
 }
 
-/* Dark scheme — the same pattern mirrored, depths +5, borders +10, hovers +15 */
+/* Dark scheme — the same pattern mirrored, depths +5, hovers +10, borders +12 */
 
 body.ot-layout-dark .e-49430f40 > .box
 {
 	--ot-bg-1: rgba(30, 30, 30, 1);
-	--ot-bg-1-border: rgba(40, 40, 40, 1);
+	--ot-bg-1-border: rgba(42, 42, 42, 1);
 	--ot-bg-1-opacity: rgba(30, 30, 30, 0.85);
-	--ot-bg-1-hover: rgba(45, 45, 45, 1);
+	--ot-bg-1-hover: rgba(40, 40, 40, 1);
 
 	--ot-bg-2: rgba(35, 35, 35, 1);
-	--ot-bg-2-border: rgba(45, 45, 45, 1);
+	--ot-bg-2-border: rgba(47, 47, 47, 1);
 	--ot-bg-2-opacity: rgba(35, 35, 35, 0.85);
-	--ot-bg-2-hover: rgba(50, 50, 50, 1);
+	--ot-bg-2-hover: rgba(45, 45, 45, 1);
 
 	--ot-bg-3: rgba(40, 40, 40, 1);
-	--ot-bg-3-border: rgba(50, 50, 50, 1);
+	--ot-bg-3-border: rgba(52, 52, 52, 1);
 	--ot-bg-3-opacity: rgba(40, 40, 40, 0.85);
-	--ot-bg-3-hover: rgba(55, 55, 55, 1);
+	--ot-bg-3-hover: rgba(50, 50, 50, 1);
 
 	--ot-text-1: rgb(225, 225, 225);
 	--ot-text-2: rgb(195, 195, 195);
@@ -55,8 +55,6 @@ body.ot-layout-dark .e-49430f40 > .box
 
 .e-49430f40 > .box
 {
-	--mesh-line: color-mix(in srgb, var(--ot-text-3) 13.5%, transparent);
-
 	display: flex;
 	width: 100%;
 	height: 100%;
@@ -66,22 +64,6 @@ body.ot-layout-dark .e-49430f40 > .box
 	background: var(--ot-bg-2);
 	color: var(--ot-text-1);
 	overflow: hidden;
-}
-
-/* Grid — spotlight from the top, fading out evenly */
-
-.e-49430f40 > .box::after
-{
-	content: '';
-	position: absolute;
-	inset: 0;
-	background:
-		linear-gradient(90deg, var(--mesh-line) 1px, transparent 1px) center top / 64px 64px,
-		linear-gradient(var(--mesh-line) 1px, transparent 1px) center top / 64px 64px;
-	mask-image: radial-gradient(90% 90% at 50% 0%, black, transparent 90%);
-	-webkit-mask-image: radial-gradient(90% 90% at 50% 0%, black, transparent 90%);
-	opacity: 0.5;
-	pointer-events: none;
 }
 
 .e-49430f40 > .box > .middle
