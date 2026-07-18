@@ -1,5 +1,10 @@
 modules.settings.Fn('init', function()
 {
+	if(onetype.iframe)
+	{
+		return;
+	}
+
 	const raw = localStorage.getItem('onetype.settings');
 
 	if(!raw)

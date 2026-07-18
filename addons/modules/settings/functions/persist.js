@@ -1,5 +1,10 @@
 modules.settings.Fn('persist', function()
 {
+	if(onetype.iframe)
+	{
+		return {};
+	}
+
 	const data = {};
 
 	Object.values(this.Items()).forEach((item) =>
