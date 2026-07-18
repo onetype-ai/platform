@@ -231,6 +231,36 @@
 	color: var(--ot-text-1);
 }
 
+/* Title */
+
+.e-172ede25 > .box > .grid > .band > .line > .cell > .title
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	overflow: hidden;
+}
+
+.e-172ede25 > .box > .grid > .band > .line > .cell > .title > .name
+{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: var(--ot-size-s);
+	font-weight: 600;
+	color: var(--ot-text-1);
+}
+
+.e-172ede25 > .box > .grid > .band > .line > .cell > .title > .sub
+{
+	overflow: hidden;
+	max-width: 300px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-size: 10px;
+	color: var(--ot-text-3);
+}
+
 .e-172ede25 > .box > .grid > .band > .line > .cell > .digit,
 .e-172ede25 > .box > .grid > .band > .line > .cell > .date
 {

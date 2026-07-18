@@ -33,8 +33,12 @@ onetype.AddonReady('elements', (elements) =>
 						type: {
 							type: 'string',
 							value: 'text',
-							options: ['text', 'number', 'date', 'status', 'user', 'tags', 'image'],
-							description: 'Cell renderer for the column. Status reads label and color, user reads name and color, tags reads an array of strings.'
+							options: ['text', 'title', 'number', 'date', 'status', 'user', 'tags', 'image'],
+							description: 'Cell renderer for the column. Title reads the value bold with sub underneath, status reads label and color, user reads name and color, tags reads an array of strings.'
+						},
+						sub: {
+							type: 'string',
+							description: 'Item property shown underneath the value, for the title cell type.'
 						},
 						width: {
 							type: 'string',
@@ -106,6 +110,11 @@ onetype.AddonReady('elements', (elements) =>
 			{
 				const value = item[field.key];
 				const result = { key: field.key, type: field.type, value: value == null ? '' : value };
+
+				if(field.type === 'title')
+				{
+					result.sub = field.sub ? item[field.sub] : '';
+				}
 
 				if(field.type === 'status')
 				{
@@ -221,6 +230,10 @@ onetype.AddonReady('elements', (elements) =>
 									ot-click="({ event }) => select(event, entry.row, cell)"
 								>
 									<span ot-if="cell.type === 'text'" class="text">{{ cell.value }}</span>
+									<span ot-if="cell.type === 'title'" class="title">
+										<span class="name">{{ cell.value }}</span>
+										<span ot-if="cell.sub" class="sub">{{ cell.sub }}</span>
+									</span>
 									<span ot-if="cell.type === 'number'" class="digit">{{ cell.value }}</span>
 									<span ot-if="cell.type === 'date'" class="date">{{ cell.value }}</span>
 									<span ot-if="cell.type === 'status'" :class="'pill ' + cell.color"><span class="dot"></span>{{ cell.label }}</span>
