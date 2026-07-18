@@ -1,0 +1,78 @@
+/* ===== BREADCRUMBS ===== */
+
+.e-198c782d
+{
+	display: block;
+	min-width: 0;
+}
+
+.e-198c782d > .box
+{
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 2px;
+	min-width: 0;
+}
+
+.e-198c782d > .box > .step
+{
+	display: flex;
+	align-items: center;
+	gap: 2px;
+	min-width: 0;
+}
+
+/* Crumb */
+
+.e-198c782d .crumb
+{
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	height: 26px;
+	padding: 0 8px;
+	border-radius: var(--ot-radius-s);
+	font-size: var(--ot-size-s);
+	color: var(--ot-text-3);
+	white-space: nowrap;
+	transition: color var(--ot-transition-fast), background var(--ot-transition-fast);
+}
+
+.e-198c782d .crumb > i
+{
+	font-size: 15px;
+}
+
+.e-198c782d .crumb > .label
+{
+	max-width: 220px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.e-198c782d .crumb.clickable
+{
+	cursor: pointer;
+}
+
+.e-198c782d .crumb.clickable:hover
+{
+	background: var(--ot-bg-2-hover);
+	color: var(--ot-text-1);
+}
+
+.e-198c782d .crumb.current
+{
+	color: var(--ot-text-1);
+	font-weight: 550;
+}
+
+/* Separator */
+
+.e-198c782d .separator
+{
+	font-size: 15px;
+	color: color-mix(in srgb, var(--ot-text-3) 55%, transparent);
+	flex-shrink: 0;
+}

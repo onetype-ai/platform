@@ -1,0 +1,106 @@
+/* ===== SIDEBAR VIEW ===== */
+
+.e-6be28f59
+{
+	display: block;
+	min-width: 0;
+}
+
+.e-6be28f59 > .box
+{
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+}
+
+/* Entry */
+
+.e-6be28f59 .entry
+{
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: var(--ot-spacing-s);
+	padding: 10px 12px;
+	border-radius: var(--ot-radius-m);
+	cursor: pointer;
+	transition: background var(--ot-transition-fast);
+}
+
+.e-6be28f59 .entry:hover
+{
+	background: var(--ot-bg-2-hover);
+}
+
+.e-6be28f59 .entry.active
+{
+	background: var(--ot-bg-2);
+}
+
+/* Rail */
+
+.e-6be28f59 .entry > .rail
+{
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%) scaleY(0);
+	width: 3px;
+	height: 55%;
+	border-radius: 99px;
+	background: var(--ot-brand);
+	transition: transform var(--ot-transition-fast);
+}
+
+.e-6be28f59 .entry.active > .rail
+{
+	transform: translateY(-50%) scaleY(1);
+}
+
+/* Icon */
+
+.e-6be28f59 .entry > .icon
+{
+	font-size: 18px;
+	color: var(--ot-text-3);
+	transition: color var(--ot-transition-fast);
+	flex-shrink: 0;
+}
+
+.e-6be28f59 .entry.active > .icon
+{
+	color: var(--ot-brand);
+}
+
+/* Text */
+
+.e-6be28f59 .entry > .text
+{
+	display: flex;
+	flex-direction: column;
+	gap: 1px;
+	min-width: 0;
+}
+
+.e-6be28f59 .entry > .text > .label
+{
+	font-size: var(--ot-size-m);
+	font-weight: 500;
+	color: var(--ot-text-2);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	transition: color var(--ot-transition-fast);
+}
+
+.e-6be28f59 .entry:hover > .text > .label,
+.e-6be28f59 .entry.active > .text > .label
+{
+	color: var(--ot-text-1);
+}
+
+.e-6be28f59 .entry > .text > .hint
+{
+	font-size: 11px;
+	color: var(--ot-text-3);
+}
