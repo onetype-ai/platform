@@ -144,6 +144,31 @@
 	color: var(--ot-text-3);
 }
 
+/* Nested sections — deeper levels soften and indent */
+
+.e-172ede25 > .box > .grid > .band > .cell.section.depth-1
+{
+	height: 30px;
+	background: var(--fill);
+	font-size: var(--ot-size-s);
+	font-weight: 550;
+	letter-spacing: normal;
+	text-transform: none;
+	color: var(--ot-text-2);
+}
+
+.e-172ede25 > .box > .grid > .band > .cell.section.depth-2
+{
+	height: 28px;
+	padding-left: calc(var(--ot-spacing-m) + var(--ot-spacing-l));
+	background: transparent;
+	font-size: var(--ot-size-s);
+	font-weight: 500;
+	letter-spacing: normal;
+	text-transform: none;
+	color: var(--ot-text-3);
+}
+
 /* Number */
 
 .e-172ede25 > .box > .grid > .band > .line > .cell.number

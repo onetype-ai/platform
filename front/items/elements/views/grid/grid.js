@@ -67,8 +67,8 @@ onetype.AddonReady('elements', (elements) =>
 				description: 'Surface depth of the grid, 1 sits on the canvas and 3 on the deepest panel. 0 renders transparent cells straight on the canvas, without background or borders.'
 			},
 			group: {
-				type: 'string',
-				description: 'Item property rows group under. Rows sharing a value render below one section row, items without it fall under Other. Empty disables grouping.'
+				type: 'string|array',
+				description: 'Item property rows group under, or an array of properties for nested sections — first property is the outer level. Items without a value fall under Other. Empty disables grouping.'
 			},
 			empty: {
 				type: 'string',
@@ -140,28 +140,41 @@ onetype.AddonReady('elements', (elements) =>
 
 				this.template = '44px ' + this.fields.map((definition) => definition.width ? definition.width : 'minmax(140px, 1fr)').join(' ');
 
-				if(this.group)
+				const levels = (Array.isArray(this.group) ? this.group : [this.group]).filter(Boolean);
+
+				const build = (rows, depth, prefix) =>
 				{
-					const sections = {};
-
-					this.rows.forEach((row) =>
+					if(depth >= levels.length)
 					{
-						const label = row.item[this.group] ? String(row.item[this.group]) : 'Other';
+						return rows.map((row) => ({ kind: 'row', key: prefix + 'r' + row.key, row }));
+					}
 
-						if(!sections[label])
+					const buckets = {};
+
+					rows.forEach((row) =>
+					{
+						const label = row.item[levels[depth]] ? String(row.item[levels[depth]]) : 'Other';
+
+						if(!buckets[label])
 						{
-							sections[label] = { label, rows: [] };
+							buckets[label] = [];
 						}
 
-						sections[label].rows.push(row);
+						buckets[label].push(row);
 					});
 
-					this.sections = Object.values(sections);
-				}
-				else
-				{
-					this.sections = [{ label: '', rows: this.rows }];
-				}
+					const entries = [];
+
+					for(const [label, bucket] of Object.entries(buckets))
+					{
+						entries.push({ kind: 'section', key: prefix + 's' + label, label, depth, count: bucket.length });
+						entries.push(...build(bucket, depth + 1, prefix + label + '/'));
+					}
+
+					return entries;
+				};
+
+				this.entries = build(this.rows, 0, '');
 			});
 
 			/* ===== HANDLERS ===== */
@@ -194,18 +207,18 @@ onetype.AddonReady('elements', (elements) =>
 							<i>{{ icons[field.type] }}</i>
 							<span>{{ field.label }}</span>
 						</div>
-						<div ot-for="section in sections" :ot-key="section.label" class="band">
-							<div ot-if="section.label" class="cell section"><span>{{ section.label }}</span><span class="count">{{ section.rows.length }}</span></div>
-							<div ot-for="row in section.rows" :ot-key="row.key" class="line">
-								<div :class="_open ? 'cell number openable' : 'cell number'" ot-click="({ event }) => open(event, row)">
-									<span class="index">{{ row.number }}</span>
+						<div ot-for="entry in entries" :ot-key="entry.key" class="band">
+							<div ot-if="entry.kind === 'section'" :class="'cell section depth-' + entry.depth"><span>{{ entry.label }}</span><span class="count">{{ entry.count }}</span></div>
+							<div ot-if="entry.kind === 'row'" class="line">
+								<div :class="_open ? 'cell number openable' : 'cell number'" ot-click="({ event }) => open(event, entry.row)">
+									<span class="index">{{ entry.row.number }}</span>
 									<i class="reveal">open_in_full</i>
 								</div>
 								<div
-									ot-for="cell in row.cells"
+									ot-for="cell in entry.row.cells"
 									:ot-key="cell.key"
-									:class="'cell' + (active.row === row.key && active.key === cell.key ? ' active' : '')"
-									ot-click="({ event }) => select(event, row, cell)"
+									:class="'cell' + (active.row === entry.row.key && active.key === cell.key ? ' active' : '')"
+									ot-click="({ event }) => select(event, entry.row, cell)"
 								>
 									<span ot-if="cell.type === 'text'" class="text">{{ cell.value }}</span>
 									<span ot-if="cell.type === 'number'" class="digit">{{ cell.value }}</span>
