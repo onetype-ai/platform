@@ -117,7 +117,6 @@ elements.ItemAdd({
 
 		this.classes = (section) => section.background ? 'section panel bg-' + section.background : 'section';
 
-		this.head = (section) => section.color ? 'head ' + section.color : 'head';
 
 		this.card = (widget) => widget.color ? 'card ' + widget.color : 'card';
 
@@ -126,13 +125,13 @@ elements.ItemAdd({
 		return `
 			<div :class="pattern ? 'box ' + pattern : 'box'">
 				<section ot-for="section in sections" :ot-key="section.id || 'loose'" :class="classes(section)">
-					<header ot-if="section.title" :class="head(section)">
-						<i ot-if="section.icon">{{ section.icon }}</i>
-						<div class="text">
-							<span class="title">{{ section.title }}</span>
-							<span ot-if="section.description" class="description">{{ section.description }}</span>
-						</div>
-					</header>
+					<e-global-heading
+						ot-if="section.title"
+						:icon="section.icon"
+						:title="section.title"
+						:description="section.description"
+						element="h3"
+					></e-global-heading>
 					<div class="grid">
 						<div ot-for="widget in section.widgets" :ot-key="widget.id" :class="card(widget)" :style="'grid-column: span ' + widget.span">
 							<header ot-if="widget.title || widget.icon">

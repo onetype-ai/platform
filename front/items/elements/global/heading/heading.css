@@ -168,3 +168,11 @@
 {
 	justify-content: center;
 }
+
+/* Border — closes the heading from the content below */
+
+.e-49fb116e > .box.border
+{
+	padding-bottom: var(--ot-spacing-m);
+	border-bottom: 1px solid var(--ot-bg-2-border);
+}

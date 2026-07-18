@@ -44,6 +44,11 @@ onetype.AddonReady('elements', (elements) =>
 				value: 'brand',
 				options: ['brand', 'blue', 'red', 'orange', 'green'],
 				description: 'Accent color of the eyebrow, tile and the em accent.'
+			},
+			border: {
+				type: 'boolean',
+				value: false,
+				description: 'Closes the heading with a bottom hairline and spacing, separating it from the content below.'
 			}
 		},
 		render: function()
@@ -60,7 +65,11 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.classes = () =>
 			{
-				return ['box', this.align, this.element, this.color].join(' ');
+				const list = ['box', this.align, this.element, this.color];
+
+				this.border && list.push('border');
+
+				return list.join(' ');
 			};
 
 			/* ===== RENDER ===== */
