@@ -61,7 +61,7 @@ onetype.AddonReady('elements', (elements) =>
 				],
 				each: {
 					type: 'object',
-					description: 'A single entry with id, title, description, the group field value, author and date.'
+					description: 'A single entry with id, title, description, the group field value, author, date and optional badges as { label, icon, color } chips.'
 				},
 				description: 'Entries distributed into the columns.'
 			},
@@ -93,6 +93,7 @@ onetype.AddonReady('elements', (elements) =>
 					item: item,
 					title: item.title,
 					description: item.description,
+					badges: Array.isArray(item.badges) ? item.badges.map((badge) => ({ label: badge.label, icon: badge.icon, color: badge.color ? badge.color : 'brand' })) : [],
 					image: item.image,
 					author: author ? { name: author.name, initials: author.name.split(' ').map((word) => word.charAt(0)).slice(0, 2).join(''), color: author.color ? author.color : 'brand' } : null,
 					date: item.date
@@ -150,6 +151,9 @@ onetype.AddonReady('elements', (elements) =>
 							<div ot-for="card in lane.cards" :ot-key="card.key" class="card" ot-click="({ event }) => open(event, card.item)">
 								<img ot-if="card.image" class="cover" :src="card.image" loading="lazy" />
 								<span class="title">{{ card.title }}</span>
+								<span ot-if="card.badges.length" class="badges">
+									<span ot-for="badge in card.badges" :ot-key="badge.label" :class="'badge ' + badge.color"><i ot-if="badge.icon">{{ badge.icon }}</i>{{ badge.label }}</span>
+								</span>
 								<span ot-if="card.description" class="description">{{ card.description }}</span>
 								<span ot-if="card.author || card.date" class="footer">
 									<span ot-if="card.author" :class="'avatar ' + card.author.color" :ot-tooltip="{ text: card.author.name, position: { x: 'center', y: 'top' } }">{{ card.author.initials }}</span>

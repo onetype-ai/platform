@@ -138,6 +138,37 @@
 	color: var(--ot-text-1);
 }
 
+.e-310b2af1 > .box > .lane > .cards > .card > .badges
+{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .badges > .badge
+{
+	display: inline-flex;
+	align-items: center;
+	gap: 4px;
+	padding: 2px 8px;
+	border-radius: 99px;
+	background: var(--tint);
+	font-size: 10.5px;
+	font-weight: 600;
+	color: var(--accent);
+}
+
+.e-310b2af1 > .box > .lane > .cards > .card > .badges > .badge.brand { --accent: var(--ot-brand); --tint: var(--ot-brand-opacity); }
+.e-310b2af1 > .box > .lane > .cards > .card > .badges > .badge.blue { --accent: var(--ot-blue); --tint: var(--ot-blue-opacity); }
+.e-310b2af1 > .box > .lane > .cards > .card > .badges > .badge.red { --accent: var(--ot-red); --tint: var(--ot-red-opacity); }
+.e-310b2af1 > .box > .lane > .cards > .card > .badges > .badge.orange { --accent: var(--ot-orange); --tint: var(--ot-orange-opacity); }
+.e-310b2af1 > .box > .lane > .cards > .card > .badges > .badge.green { --accent: var(--ot-green); --tint: var(--ot-green-opacity); }
+
+.e-310b2af1 > .box > .lane > .cards > .card > .badges > .badge > i
+{
+	font-size: 12px;
+}
+
 .e-310b2af1 > .box > .lane > .cards > .card > .description
 {
 	font-size: 12px;
