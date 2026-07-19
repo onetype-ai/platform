@@ -14,7 +14,6 @@
 	flex-direction: column;
 	gap: var(--ot-spacing-s);
 	width: 100%;
-	height: 100%;
 }
 
 /* Depth */
@@ -164,7 +163,8 @@
 
 .e-24227249 > .box > .entry form.write > textarea
 {
-	background: var(--fill);
+	background: var(--above);
+	border-color: var(--stroke);
 }
 
 .e-24227249 form.write > textarea:focus
