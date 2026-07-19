@@ -1,3 +1,5 @@
+import './addon.js';
+
 const system = {};
 const modules = {};
 const ui = {};
