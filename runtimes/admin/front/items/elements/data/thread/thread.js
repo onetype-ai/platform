@@ -172,10 +172,10 @@ onetype.AddonReady('elements', (elements) =>
 								<span class="text">{{ entry.reply.text }}</span>
 							</div>
 						</div>
-						<e-form-textarea ot-if="_reply && entry.replyable && !entry.reply" :placeholder="replyPlaceholder" :rows="2" :maxlength="2000" :counter="false" :background="above()" :_submit="replier(entry.id)"></e-form-textarea>
+						<e-form-textarea ot-if="_reply && entry.replyable && !entry.reply" :placeholder="replyPlaceholder" :rows="2" :maxlength="2000" :counter="false" :background="above()" :_enter="replier(entry.id)"></e-form-textarea>
 					</div>
 					<div ot-if="_send" class="composer">
-						<e-form-textarea :placeholder="placeholder" :rows="2" :maxlength="2000" :counter="false" :background="above()" :_submit="sender()"></e-form-textarea>
+						<e-form-textarea :placeholder="placeholder" :rows="2" :maxlength="2000" :counter="false" :background="above()" :_enter="sender()"></e-form-textarea>
 					</div>
 				</div>
 			`;

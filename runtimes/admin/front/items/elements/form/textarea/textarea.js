@@ -88,7 +88,7 @@ onetype.AddonReady('elements', (elements) =>
 				type: 'function',
 				description: 'Called with { event, value } on blur.'
 			},
-			_submit: {
+			_enter: {
 				type: 'function',
 				description: 'Called with { value } when Enter is pressed without Shift, then the field clears. Shift and Enter inserts a newline.'
 			}
@@ -178,7 +178,7 @@ onetype.AddonReady('elements', (elements) =>
 
 			this.keydown = ({ event, value }) =>
 			{
-				if(event.key !== 'Enter' || event.shiftKey || !this._submit)
+				if(event.key !== 'Enter' || event.shiftKey || !this._enter)
 				{
 					return;
 				}
@@ -190,7 +190,7 @@ onetype.AddonReady('elements', (elements) =>
 					return;
 				}
 
-				this._submit({ value });
+				this._enter({ value });
 
 				this.value = '';
 				this.length = 0;
