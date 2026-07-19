@@ -87,6 +87,10 @@ onetype.AddonReady('elements', (elements) =>
 			_blur: {
 				type: 'function',
 				description: 'Called with { event, value } on blur.'
+			},
+			_submit: {
+				type: 'function',
+				description: 'Called with { value } when Enter is pressed without Shift, then the field clears. Shift and Enter inserts a newline.'
 			}
 		},
 		render: function()
@@ -172,6 +176,28 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
+			this.keydown = ({ event, value }) =>
+			{
+				if(event.key !== 'Enter' || event.shiftKey || !this._submit)
+				{
+					return;
+				}
+
+				event.preventDefault();
+
+				if(!value.trim())
+				{
+					return;
+				}
+
+				this._submit({ value });
+
+				this.value = '';
+				this.length = 0;
+				event.target.value = '';
+				this.resizeTextarea();
+			};
+
 			this.focus = ({ event, value }) =>
 			{
 				if(this._focus)
@@ -205,6 +231,7 @@ onetype.AddonReady('elements', (elements) =>
 						ot-change="change"
 						ot-focus="focus"
 						ot-blur="blur"
+						ot-keydown="keydown"
 					>{{ value }}</textarea>
 					<div ot-if="showCounter" class="counter">
 						<span :class="length >= maxlength ? 'full' : ''">{{ length }}</span>

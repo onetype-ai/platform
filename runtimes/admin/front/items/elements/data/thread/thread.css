@@ -128,54 +128,9 @@
 	color: var(--ot-text-2);
 }
 
-/* Write */
+/* Composer */
 
-.e-24227249 form.write
-{
-	position: relative;
-}
-
-.e-24227249 form.write.composer
+.e-24227249 > .box > .composer
 {
 	margin-top: auto;
-}
-
-.e-24227249 form.write > .action
-{
-	position: absolute;
-	right: var(--ot-spacing-s);
-	bottom: calc(var(--ot-spacing-s) + 4px);
-}
-
-.e-24227249 form.write > textarea
-{
-	width: 100%;
-	padding: var(--ot-spacing-s);
-	padding-right: 52px;
-	border: 1px solid var(--edge);
-	border-radius: var(--ot-radius-m);
-	background: var(--above);
-	font-family: inherit;
-	font-size: 13px;
-	line-height: 1.5;
-	color: var(--ot-text-1);
-	resize: vertical;
-	transition: border-color var(--ot-transition-fast);
-}
-
-.e-24227249 > .box > .entry form.write > textarea
-{
-	background: var(--above);
-	border-color: var(--stroke);
-}
-
-.e-24227249 form.write > textarea:focus
-{
-	outline: none;
-	border-color: var(--accent, var(--ot-brand));
-}
-
-.e-24227249 form.write > textarea::placeholder
-{
-	color: var(--ot-text-3);
 }

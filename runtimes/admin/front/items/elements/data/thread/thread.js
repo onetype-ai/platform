@@ -97,11 +97,6 @@ onetype.AddonReady('elements', (elements) =>
 				value: 'Write a reply...',
 				description: 'Placeholder of the reply forms.'
 			},
-			sendIcon: {
-				type: 'string',
-				value: 'send',
-				description: 'Icon of the composer send action.'
-			},
 			emptyIcon: {
 				type: 'string',
 				value: 'forum',
@@ -141,30 +136,22 @@ onetype.AddonReady('elements', (elements) =>
 				return entry.replyable && !entry.reply ? 'entry open ' + this.color : 'entry ' + this.color;
 			};
 
-			this.send = ({ event }) =>
+			this.above = () => Math.min(this.background + 1, 3);
+
+			this.sender = () => ({ value }) =>
 			{
-				const form = onetype.FormGet(event.target);
-
-				if(!form.message || !this._send)
+				if(this._send)
 				{
-					return;
+					this._send({ value });
 				}
-
-				event.target.reset();
-
-				this._send({ value: form.message });
 			};
 
-			this.reply = (id, { event }) =>
+			this.replier = (id) => ({ value }) =>
 			{
-				const form = onetype.FormGet(event.target);
-
-				if(!form.reply || !this._reply)
+				if(this._reply)
 				{
-					return;
+					this._reply({ id, value });
 				}
-
-				this._reply({ id, value: form.reply });
 			};
 
 			return /* html */ `
@@ -185,19 +172,11 @@ onetype.AddonReady('elements', (elements) =>
 								<span class="text">{{ entry.reply.text }}</span>
 							</div>
 						</div>
-						<form ot-if="_reply && entry.replyable && !entry.reply" class="write" ot-submit.prevent="(payload) => reply(entry.id, payload)">
-							<textarea name="reply" rows="2" :placeholder="replyPlaceholder"></textarea>
-							<div class="action">
-								<e-form-button text="" :icon="sendIcon" :color="color" type="submit"></e-form-button>
-							</div>
-						</form>
+						<e-form-textarea ot-if="_reply && entry.replyable && !entry.reply" :placeholder="replyPlaceholder" :rows="2" :maxlength="2000" :counter="false" :background="above()" :_submit="replier(entry.id)"></e-form-textarea>
 					</div>
-					<form ot-if="_send" class="write composer" ot-submit.prevent="(payload) => send(payload)">
-						<textarea name="message" rows="2" :placeholder="placeholder"></textarea>
-						<div class="action">
-							<e-form-button text="" :icon="sendIcon" :color="color" type="submit"></e-form-button>
-						</div>
-					</form>
+					<div ot-if="_send" class="composer">
+						<e-form-textarea :placeholder="placeholder" :rows="2" :maxlength="2000" :counter="false" :background="above()" :_submit="sender()"></e-form-textarea>
+					</div>
 				</div>
 			`;
 		}
