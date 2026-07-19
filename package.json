@@ -15,7 +15,7 @@
         "url": "https://github.com/onetype-ai/platform.git"
     },
     "imports": {
-        "#elements-service/*": "./back/services/elements/*",
+        "#elements-service/*": "./kernel/services/elements/*",
         "#packages/*": "./addons/system/packages/back/*",
         "#runtimes/*": "./addons/system/runtimes/back/*",
         "#collections/*": "./addons/system/collections/back/*"
