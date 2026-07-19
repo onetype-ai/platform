@@ -160,7 +160,6 @@ onetype.AddonReady('elements', (elements) =>
 									<span ot-if="card.date" class="date">{{ card.date }}</span>
 								</span>
 							</div>
-							<div ot-if="!lane.cards.length" class="blank">Nothing here</div>
 							<button ot-if="_create && lane.create" class="create" ot-click.stop="({ event }) => create(event, lane.key)">
 								<i>add</i>
 								<span>Create</span>
