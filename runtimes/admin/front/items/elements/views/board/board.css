@@ -180,6 +180,37 @@
 	color: var(--ot-text-3);
 }
 
+/* Create */
+
+.e-310b2af1 > .box > .lane > .cards > .create
+{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 6px;
+	height: 32px;
+	border: none;
+	border-radius: var(--ot-radius-m);
+	background: transparent;
+	font-family: inherit;
+	font-size: var(--ot-size-s);
+	font-weight: 500;
+	color: var(--ot-text-3);
+	cursor: pointer;
+	transition: background var(--ot-transition-fast), color var(--ot-transition-fast);
+}
+
+.e-310b2af1 > .box > .lane > .cards > .create > i
+{
+	font-size: 16px;
+}
+
+.e-310b2af1 > .box > .lane > .cards > .create:hover
+{
+	background: var(--above);
+	color: var(--ot-text-1);
+}
+
 /* Blank */
 
 .e-310b2af1 > .box > .lane > .cards > .blank

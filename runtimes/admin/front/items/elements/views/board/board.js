@@ -69,6 +69,10 @@ onetype.AddonReady('elements', (elements) =>
 			_open: {
 				type: 'function',
 				description: 'Called with { event, value } when an entry card is opened.'
+			},
+			_create: {
+				type: 'function',
+				description: 'Called with { event, value } when the create action of a column is clicked, value being the column value. Omitted hides the create actions.'
 			}
 		},
 		render: function()
@@ -118,6 +122,14 @@ onetype.AddonReady('elements', (elements) =>
 				}
 			};
 
+			this.create = (event, value) =>
+			{
+				if(this._create)
+				{
+					this._create({ event, value });
+				}
+			};
+
 			/* ===== RENDER ===== */
 
 			return /* html */ `
@@ -139,6 +151,10 @@ onetype.AddonReady('elements', (elements) =>
 								</span>
 							</div>
 							<div ot-if="!lane.cards.length" class="blank">Nothing here</div>
+							<button ot-if="_create" class="create" ot-click.stop="({ event }) => create(event, lane.key)">
+								<i>add</i>
+								<span>Create</span>
+							</button>
 						</div>
 					</div>
 				</div>
