@@ -151,7 +151,7 @@
 
 .e-3152fd59 > .box > .plane > .card > .words > .title
 {
-	font-size: var(--ot-size-s);
+	font-size: var(--ot-size-m);
 	font-weight: 600;
 	line-height: 1.4;
 	color: var(--ot-text-1);

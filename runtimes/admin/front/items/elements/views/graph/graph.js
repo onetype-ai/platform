@@ -232,7 +232,7 @@ onetype.AddonReady('elements', (elements) =>
 							</div>
 							<div ot-if="card.node.avatar || (card.node.tags && card.node.tags.length)" class="footer">
 								<span ot-if="card.node.avatar" class="avatar" :ot-tooltip="card.node.title">{{ card.node.avatar }}</span>
-								<span class="tags">
+								<span ot-if="card.node.tags && card.node.tags.length" class="tags">
 									<span ot-for="tag in card.node.tags" :ot-key="tag" class="tag">{{ tag }}</span>
 								</span>
 							</div>
