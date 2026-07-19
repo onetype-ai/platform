@@ -139,6 +139,9 @@ onetype.AddonReady('elements', (elements) =>
 							<span class="entry">{{ entry }}</span>
 						</div>
 					</div>
+					<div class="bottom">
+						<slot name="bottom"></slot>
+					</div>
 				</div>
 			`;
 		}

@@ -174,3 +174,15 @@
 	color: var(--ot-text-3);
 	opacity: 0.5;
 }
+
+/* Bottom slot */
+
+.e-7e9415d3 > .box > .bottom:empty
+{
+	display: none;
+}
+
+.e-7e9415d3 > .box > .bottom
+{
+	margin-top: var(--ot-spacing-s);
+}
