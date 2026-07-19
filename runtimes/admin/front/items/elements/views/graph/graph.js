@@ -22,7 +22,7 @@ onetype.AddonReady('elements', (elements) =>
 				],
 				each: {
 					type: 'object',
-					description: 'A single node: id, title, subtitle, description, avatar text, color, badge as the kind label, meta, tags array, rows as { label, value }, list as { icon, label, sublabel, badge } with a listLabel caption, and children of the same shape.'
+					description: 'A single node: id, title, subtitle, description, avatar text, color, badge as the kind label, meta, tags as strings or { label, tooltip }, rows as { label, value }, list as { icon, label, sublabel, badge } with a listLabel caption, and children of the same shape.'
 				},
 				description: 'Nodes of the first level, nested through children.'
 			},
@@ -76,7 +76,9 @@ onetype.AddonReady('elements', (elements) =>
 
 				if(node.avatar || (Array.isArray(node.tags) && node.tags.length))
 				{
-					height = height + 34;
+					const rows = Array.isArray(node.tags) ? Math.max(1, Math.ceil(node.tags.length / 3)) : 1;
+
+					height = height + 10 + rows * 24;
 				}
 
 				return height + 10;
@@ -160,6 +162,10 @@ onetype.AddonReady('elements', (elements) =>
 				return { cards, links, width, height };
 			};
 
+			this.label = (tag) => typeof tag === 'string' ? tag : tag.label;
+
+			this.tip = (tag) => typeof tag === 'string' ? '' : (tag.tooltip ? tag.tooltip : '');
+
 			this.pick = (node) =>
 			{
 				this.current = node.id;
@@ -233,7 +239,7 @@ onetype.AddonReady('elements', (elements) =>
 							<div ot-if="card.node.avatar || (card.node.tags && card.node.tags.length)" class="footer">
 								<span ot-if="card.node.avatar" class="avatar" :ot-tooltip="card.node.title">{{ card.node.avatar }}</span>
 								<span ot-if="card.node.tags && card.node.tags.length" class="tags">
-									<span ot-for="tag in card.node.tags" :ot-key="tag" class="tag">{{ tag }}</span>
+									<span ot-for="tag in card.node.tags" :ot-key="label(tag)" class="tag" :ot-tooltip="tip(tag)">{{ label(tag) }}</span>
 								</span>
 							</div>
 						</div>
