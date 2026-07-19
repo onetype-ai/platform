@@ -241,7 +241,7 @@ onetype.AddonReady('elements', (elements) =>
 						</div>
 						<div ot-if="group.type === 'toggle'" class="switch">
 							<span class="label">{{ group.label }}</span>
-							<e-form-toggle :value="!!state[group.id]" :_change="({ value }) => assign(group, value)"></e-form-toggle>
+							<e-form-toggle :value="!!state[group.id]" label="" description="" :_change="({ value }) => assign(group, value)"></e-form-toggle>
 						</div>
 					</div>
 				</div>
