@@ -7,7 +7,7 @@ packages.Fn('list', function()
 	for(const item of Object.values(this.Items()))
 	{
 		list[item.Get('slug')] = {
-			...item.Get(['slug', 'type', 'name', 'version', 'description', 'icon', 'color', 'status', 'permissions', 'features', 'config']),
+			...item.Get(['slug', 'name', 'version', 'description', 'icon', 'color', 'status', 'permissions', 'features', 'config']),
 			limits: this.Fn('limits', item.Get('slug'))
 		};
 	}

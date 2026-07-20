@@ -21,25 +21,20 @@ assets.Fn('import', [
 	'variables'
 ], 400);
 
-/* Runtimes register from packages during boot, so their ui and
-   module assets join here as items arrive, not at import. */
+const front = resolve(root, 'front');
+
+assets.Item({ type: 'css', order: 110, path: resolve(front, 'styles') });
+
+assets.Item({ type: 'js', order: 500, path: resolve(front, 'core') });
+
+assets.Item({ type: 'js', order: 540, path: front, ignore: [resolve(front, 'styles'), resolve(front, 'core')] });
+
+/* Runtimes register from packages during boot, so their module
+   assets join here as items arrive, not at import. */
 const registered = new Set();
 
 runtimes.ItemOn('add', (item) =>
 {
-	if(item.Get('ui') && !registered.has('ui'))
-	{
-		registered.add('ui');
-
-		const front = resolve(root, 'front');
-
-		assets.Item({ type: 'css', order: 110, path: resolve(front, 'styles') });
-
-		assets.Item({ type: 'js', order: 500, path: resolve(front, 'core') });
-
-		assets.Item({ type: 'js', order: 540, path: front, ignore: [resolve(front, 'styles'), resolve(front, 'core')] });
-	}
-
 	for(const name of item.Get('modules'))
 	{
 		if(registered.has('module.' + name))
@@ -58,7 +53,7 @@ const core = resolve(root, 'addons', 'core');
 
 for(const name of readdirSync(core, { withFileTypes: true }))
 {
-	if(!name.isDirectory())
+	if(!name.isDirectory() || ['persistence', 'settings', 'users', 'tokens'].includes(name.name))
 	{
 		continue;
 	}

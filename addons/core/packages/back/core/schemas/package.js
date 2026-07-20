@@ -1,47 +1,39 @@
 import onetype from '@onetype/framework';
 
-const packages = onetype.Addon('packages', (addon) =>
-{
-	addon.Field('slug', {
+onetype.DataSchema('platform.package', {
+	slug: {
 		type: 'string',
 		required: true,
 		description: 'Stable text key from the manifest, like hello or builder. Packages are addressed by slug.'
-	});
-
-	addon.Field('name', {
+	},
+	name: {
 		type: 'string',
 		required: true,
 		description: 'Package name shown in the catalog and on the rail.'
-	});
-
-	addon.Field('version', {
+	},
+	version: {
 		type: 'string',
 		required: true,
 		description: 'Semver version read from the manifest on disk.'
-	});
-
-	addon.Field('description', {
+	},
+	description: {
 		type: 'string',
 		description: 'Short one line description of what the package does.'
-	});
-
-	addon.Field('icon', {
+	},
+	icon: {
 		type: 'string',
 		description: 'Material Symbols icon name.'
-	});
-
-	addon.Field('color', {
+	},
+	color: {
 		type: 'string',
 		description: 'Accent color as a hex or rgba string.'
-	});
-
-	addon.Field('core', {
+	},
+	core: {
 		type: 'string',
 		value: '*',
 		description: 'Semver range of the core version this package requires.'
-	});
-
-	addon.Field('depends', {
+	},
+	depends: {
 		type: 'array',
 		value: [],
 		required: true,
@@ -50,9 +42,8 @@ const packages = onetype.Addon('packages', (addon) =>
 			description: 'A dependency package slug.'
 		},
 		description: 'Slugs of packages this one depends on.'
-	});
-
-	addon.Field('runtimes', {
+	},
+	runtimes: {
 		type: 'array',
 		value: [],
 		each: {
@@ -60,9 +51,8 @@ const packages = onetype.Addon('packages', (addon) =>
 			description: 'A runtime slug the package runs on.'
 		},
 		description: 'Runtimes the package belongs to. Empty runs on every runtime.'
-	});
-
-	addon.Field('permissions', {
+	},
+	permissions: {
 		type: 'array',
 		value: [],
 		required: true,
@@ -71,41 +61,34 @@ const packages = onetype.Addon('packages', (addon) =>
 			description: 'A single permission id the package requests, like database or zones:canvas.'
 		},
 		description: 'Permissions the package requests, shown to the user before install.'
-	});
-
-	addon.Field('limits', {
+	},
+	limits: {
 		type: 'object',
 		value: {},
 		required: true,
 		description: 'Default limits the package ships, entity key to maximum count. Null means unlimited, the instance config overrides the numbers.'
-	});
-
-	addon.Field('features', {
+	},
+	features: {
 		type: 'object',
 		value: {},
 		required: true,
 		description: 'Feature switches the package ships, feature key to boolean. The instance config overrides the values.'
-	});
-
-	addon.Field('config', {
+	},
+	config: {
 		type: 'object',
 		value: {},
 		required: true,
 		description: 'Config schema the package exposes, used to validate install data.'
-	});
-
-	addon.Field('path', {
+	},
+	path: {
 		type: 'string',
 		required: true,
 		description: 'Absolute path to the package folder on disk, the folder that holds the manifest.'
-	});
-
-	addon.Field('status', {
+	},
+	status: {
 		type: 'string',
 		value: 'enabled',
 		options: ['enabled', 'disabled'],
 		description: 'Whether the package is active in this container. Disabled packages exist on disk but do not load.'
-	});
+	}
 });
-
-export default packages;
