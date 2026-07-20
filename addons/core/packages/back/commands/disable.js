@@ -28,6 +28,13 @@ packages.CommandAdd({
 			return resolve(null, 'Package ' + properties.slug + ' is already disabled.', 400);
 		}
 
+		const dependants = item.Fn('is.dependant');
+
+		if(dependants.length)
+		{
+			return resolve(null, 'Package ' + item.Get('slug') + ' is required by ' + dependants.join(', ') + ' and cannot be disabled.', 400);
+		}
+
 		packages.disable(item.Get('slug'));
 
 		resolve(item.GetData(), 'Package ' + item.Get('slug') + ' is now disabled.');

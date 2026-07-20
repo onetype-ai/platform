@@ -5,7 +5,7 @@ import { readdirSync } from 'fs';
 
 const root = resolve(import.meta.dirname, '..', '..', '..');
 
-assets.Fn('import', ['framework', 'styles'], 100);
+assets.Fn('import', ['framework'], 100);
 assets.Fn('import', ['commands'], 200);
 assets.Fn('import', ['database'], 300);
 assets.Fn('import', [

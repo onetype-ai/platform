@@ -10,6 +10,11 @@ packages.FnExpose('disable', function(slug)
 		return false;
 	}
 
+	if(item.Fn('is.dependant').length)
+	{
+		return false;
+	}
+
 	item.Fn('disable');
 
 	onetype.Emit('platform.packages.disable', { slug: item.Get('slug') });

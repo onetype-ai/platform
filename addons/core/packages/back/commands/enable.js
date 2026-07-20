@@ -30,6 +30,11 @@ packages.CommandAdd({
 
 		packages.enable(item.Get('slug'));
 
+		if(item.Get('status') === 'blocked')
+		{
+			return resolve(item.GetData(), 'Package ' + item.Get('slug') + ' is enabled but will not load. ' + item.Get('message'));
+		}
+
 		resolve(item.GetData(), 'Package ' + item.Get('slug') + ' is now enabled.');
 	}
 });

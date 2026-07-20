@@ -12,6 +12,15 @@ packages.FnExpose('enable', function(slug)
 
 	item.Fn('enable');
 
+	const blocked = item.Fn('is.blocked');
+
+	if(blocked)
+	{
+		item.Set('status', 'blocked');
+	}
+
+	item.Set('message', blocked ? blocked : '');
+
 	onetype.Emit('platform.packages.enable', { slug: item.Get('slug') });
 
 	return true;
