@@ -21,9 +21,11 @@ packages.Fn('sync', function()
 		return list;
 	};
 
-	this.methods.instance = () =>
+	this.methods.instance = (slug) =>
 	{
-		return Object.values(config.Items()).find((candidate) => candidate.Get('key') === 'packages').Get('value');
+		const value = Object.values(config.Items()).find((item) => item.Get('key') === 'packages').Get('value');
+
+		return value.find((entry) => entry.slug === slug);
 	};
 
 	this.methods.exists = (slug) =>
@@ -47,7 +49,7 @@ packages.Fn('sync', function()
 			continue;
 		}
 
-		const entry = this.methods.instance()[manifest.slug];
+		const entry = this.methods.instance(manifest.slug);
 
 		if(entry)
 		{
