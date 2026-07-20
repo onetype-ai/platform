@@ -1,39 +1,32 @@
-const packages = onetype.Addon('packages', (addon) =>
-{
-	addon.Field('slug', {
+onetype.DataSchema('platform.package', {
+	slug: {
 		type: 'string',
 		required: true,
 		description: 'Stable text key from the manifest, like hello or builder. Packages are addressed by slug.'
-	});
-
-	addon.Field('name', {
+	},
+	name: {
 		type: 'string',
 		required: true,
 		description: 'Package name shown in the catalog and on the rail.'
-	});
-
-	addon.Field('version', {
+	},
+	version: {
 		type: 'string',
 		required: true,
 		description: 'Semver version read from the manifest on disk.'
-	});
-
-	addon.Field('description', {
+	},
+	description: {
 		type: 'string',
 		description: 'Short one line description of what the package does.'
-	});
-
-	addon.Field('icon', {
+	},
+	icon: {
 		type: 'string',
 		description: 'Material Symbols icon name.'
-	});
-
-	addon.Field('color', {
+	},
+	color: {
 		type: 'string',
 		description: 'Accent color as a hex or rgba string.'
-	});
-
-	addon.Field('permissions', {
+	},
+	permissions: {
 		type: 'array',
 		value: [],
 		required: true,
@@ -42,33 +35,29 @@ const packages = onetype.Addon('packages', (addon) =>
 			description: 'A single permission id the package requests, like database or zones:canvas.'
 		},
 		description: 'Permissions the package requests, shown to the user before install.'
-	});
-
-	addon.Field('limits', {
+	},
+	limits: {
 		type: 'object',
 		value: {},
 		required: true,
-		description: 'Default limits the package ships, entity key to maximum count. Null means unlimited, the instance config overrides the numbers.'
-	});
-
-	addon.Field('features', {
+		description: 'Limits of the package, entity key to maximum count. Null means unlimited.'
+	},
+	features: {
 		type: 'object',
 		value: {},
 		required: true,
-		description: 'Feature switches the package ships, feature key to boolean. The instance config overrides the values.'
-	});
-
-	addon.Field('config', {
+		description: 'Feature switches of the package, feature key to boolean.'
+	},
+	config: {
 		type: 'object',
 		value: {},
 		required: true,
 		description: 'Config schema the package exposes, used to validate install data.'
-	});
-
-	addon.Field('status', {
+	},
+	status: {
 		type: 'string',
 		value: 'enabled',
 		options: ['enabled', 'disabled'],
 		description: 'Whether the package is active in this container. Disabled packages exist on disk but do not load.'
-	});
+	}
 });
