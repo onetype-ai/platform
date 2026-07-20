@@ -17,6 +17,7 @@
         "url": "https://github.com/onetype-ai/platform.git"
     },
     "imports": {
+        "#config/*": "./addons/core/config/back/*",
         "#platform/*": "./back/*",
         "#packages/*": "./addons/core/packages/back/*",
         "#persistence/*": "./addons/core/persistence/back/*",
