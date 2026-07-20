@@ -1,4 +1,8 @@
+import onetype from '@onetype/framework';
 import config from './addon.js';
+
+/* Emitters */
+import './core/emitters/set.js';
 
 /* Functions */
 import './functions/read.js';
@@ -27,6 +31,8 @@ $ot.platform.config = {
 		}
 
 		item.Set('value', value);
+
+		onetype.Emit('platform.config.set', { key, value });
 
 		return true;
 	},

@@ -16,6 +16,8 @@ $ot.platform.config = {
 
 		item.Set('value', value);
 
+		onetype.Emit('platform.config.set', { key, value });
+
 		return true;
 	},
 	one: (key) =>
