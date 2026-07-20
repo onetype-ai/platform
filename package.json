@@ -5,12 +5,13 @@
     "type": "module",
     "exports": {
         ".": "./index.js",
+        "./server": "./server.js",
         "./runtimes": "./addons/core/runtimes/back/load.js",
         "./users": "./addons/core/users/back/load.js",
         "./tokens": "./addons/core/tokens/back/load.js",
         "./*": "./*"
     },
-    "license": "MIT",
+    "license": "SEE LICENSE IN LICENSE.md",
     "author": "Dejan Tomic <hi@iamdejan.com>",
     "repository": {
         "type": "git",
