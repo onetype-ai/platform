@@ -20,7 +20,6 @@
         "#config/*": "./addons/core/config/back/*",
         "#platform/*": "./back/*",
         "#packages/*": "./addons/core/packages/back/*",
-        "#persistence/*": "./addons/core/persistence/back/*",
         "#runtimes/*": "./addons/core/runtimes/back/*",
         "#tokens/*": "./addons/core/tokens/back/*",
         "#users/*": "./addons/core/users/back/*"

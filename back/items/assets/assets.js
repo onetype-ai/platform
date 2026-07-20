@@ -53,7 +53,7 @@ const core = resolve(root, 'addons', 'core');
 
 for(const name of readdirSync(core, { withFileTypes: true }))
 {
-	if(!name.isDirectory() || ['persistence', 'settings', 'users', 'tokens'].includes(name.name))
+	if(!name.isDirectory() || ['settings', 'users', 'tokens'].includes(name.name))
 	{
 		continue;
 	}
