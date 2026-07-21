@@ -9,11 +9,6 @@ onetype.SchemasRegister('platform.package.manifest', {
 		required: true,
 		description: 'Package name shown in the catalog and on the rail.'
 	},
-	version: {
-		type: 'string',
-		required: true,
-		description: 'Semver version of the package.'
-	},
 	description: {
 		type: 'string',
 		description: 'Short one line description of what the package does.'
@@ -25,11 +20,6 @@ onetype.SchemasRegister('platform.package.manifest', {
 	color: {
 		type: 'string',
 		description: 'Accent color as a hex or rgba string.'
-	},
-	core: {
-		type: 'string',
-		value: '*',
-		description: 'Semver range of the core version the package requires.'
 	},
 	depends: {
 		type: 'array',
@@ -81,12 +71,6 @@ onetype.SchemasRegister('platform.package.manifest', {
 		value: {},
 		required: true,
 		description: 'Feature switches the package ships, feature key to boolean.'
-	},
-	config: {
-		type: 'object',
-		value: {},
-		required: true,
-		description: 'Config schema the package exposes, used to validate install data.'
 	},
 	status: {
 		type: 'string',
