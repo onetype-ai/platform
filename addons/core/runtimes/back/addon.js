@@ -19,7 +19,8 @@ const runtimes = onetype.Addon('runtimes', (addon) =>
 
 	addon.Field('domain', {
 		type: 'string',
-		description: 'Hostname this runtime answers on, like admin.example.com. Empty serves every domain that nothing else claims.'
+		value: '',
+		description: 'Hostname this runtime answers on, like admin.example.com. A star serves every domain that nothing else claims, empty answers nowhere.'
 	});
 
 	addon.Field('path', {

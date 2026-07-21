@@ -10,7 +10,12 @@ runtimes.Fn('match', function(hostname, pathname)
 		const domain = item.Get('domain');
 		const path = item.Get('path');
 
-		if(domain && domain !== hostname)
+		if(!domain)
+		{
+			continue;
+		}
+
+		if(domain !== '*' && domain !== hostname)
 		{
 			continue;
 		}
@@ -20,7 +25,7 @@ runtimes.Fn('match', function(hostname, pathname)
 			continue;
 		}
 
-		const specificity = (domain ? 1000 : 0) + path.length;
+		const specificity = (domain !== '*' ? 1000 : 0) + path.length;
 
 		if(specificity > score)
 		{
