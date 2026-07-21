@@ -1,6 +1,6 @@
-onetype.EmitRegister('modules.shortcuts.toggle', {
+onetype.EmitRegister('platform.shortcuts.toggle', {
 	description: 'Fired after a shortcut is enabled or disabled through the modules:shortcuts:toggle command. Not fired when the state did not change.',
-	metadata: { addon: 'modules.shortcuts' },
+	metadata: { addon: 'shortcuts' },
 	config: {
 		id: {
 			type: 'string',

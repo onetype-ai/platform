@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('register', function()
+shortcuts.Fn('register', function()
 {
 	if(this.StoreGet('registered'))
 	{
@@ -26,7 +26,7 @@ $ot.modules.shortcuts.Fn('register', function()
 				event.preventDefault();
 			}
 
-			$ot.modules.shortcuts.trigger(item.Get('id'));
+			shortcuts.Command('trigger', { id: item.Get('id') });
 		}
 	};
 

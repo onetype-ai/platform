@@ -1,10 +1,9 @@
-elements.ItemAdd({
-	id: 'shortcuts-panel',
+shortcuts.ElementAdd({
+	id: 'panel',
 	icon: 'keyboard',
 	name: 'Shortcuts Panel',
 	description: 'Every registered shortcut, grouped, with an enable toggle and key rebinding per row.',
 	category: 'Shortcuts',
-	metadata: { addon: 'modules.shortcuts' },
 	render: function()
 	{
 		this.recording = null;
@@ -13,16 +12,16 @@ elements.ItemAdd({
 
 		const refresh = () =>
 		{
-			this.groups = $ot.modules.shortcuts.Fn('list', this.query);
+			this.groups = shortcuts.list(this.query);
 		};
 
 		refresh();
 
-		this.On('@addon.item.added', (item) => item.addon.GetName() === 'modules.shortcuts' && refresh());
-		this.On('@addon.item.removed', (item) => item.addon.GetName() === 'modules.shortcuts' && refresh());
+		this.On('@addon.item.added', (item) => item.addon.GetName() === 'shortcuts' && refresh());
+		this.On('@addon.item.removed', (item) => item.addon.GetName() === 'shortcuts' && refresh());
 
-		this.On('modules.shortcuts.toggle', refresh);
-		this.On('modules.shortcuts.rebind', refresh);
+		this.On('platform.shortcuts.toggle', refresh);
+		this.On('platform.shortcuts.rebind', refresh);
 
 		this.change = (row) =>
 		{
@@ -30,7 +29,7 @@ elements.ItemAdd({
 			{
 				this.cancel();
 
-				$ot.modules.shortcuts.toggle(row.id, value);
+				shortcuts.Command('toggle', { id: row.id, enabled: value });
 			};
 		};
 
@@ -75,11 +74,11 @@ elements.ItemAdd({
 					return;
 				}
 
-				const combination = $ot.modules.shortcuts.Fn('parse', event);
+				const combination = shortcuts.parse(event);
 
 				this.cancel();
 
-				$ot.modules.shortcuts.rebind(row.id, combination);
+				shortcuts.Command('rebind', { id: row.id, key: combination });
 			};
 
 			window.addEventListener('keydown', this.listener, true);
@@ -89,7 +88,7 @@ elements.ItemAdd({
 		{
 			this.cancel();
 
-			$ot.modules.shortcuts.rebind(row.id);
+			shortcuts.Command('rebind', { id: row.id });
 		};
 
 		this.OnUnmounted(() => this.cancel());

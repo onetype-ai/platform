@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('match', function(key)
+shortcuts.Fn('match', function(key)
 {
 	return Object.values(this.Items()).filter((item) =>
 	{

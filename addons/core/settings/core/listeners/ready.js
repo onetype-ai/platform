@@ -1,4 +1,4 @@
-onetype.EmitOn('@document.ready', async () =>
+onetype.EmitOn('onetype.document.ready', async () =>
 {
 	await $ot.system.persistence.load();
 

@@ -1,8 +1,7 @@
-commands.Item({
-	id: 'modules:shortcuts:rebind',
+shortcuts.CommandAdd({
+	id: 'rebind',
 	exposed: true,
-	description: 'Change the key combination of a shortcut and persist it across reloads. Omit key to restore the default combination and drop the stored override. Emits $ot.modules.shortcuts.rebind. Does nothing when the shortcut already uses the requested key.',
-	metadata: { addon: 'modules.shortcuts' },
+	description: 'Change the key combination of a shortcut and persist it across reloads. Omit key to restore the default combination and drop the stored override. Emits shortcuts.rebind. Does nothing when the shortcut already uses the requested key.',
 	in: {
 		id: {
 			type: 'string',
@@ -33,7 +32,7 @@ commands.Item({
 			resolve(null, message, code);
 		};
 
-		const item = $ot.modules.shortcuts.ItemGet(properties.id);
+		const item = shortcuts.ItemGet(properties.id);
 
 		if(!item)
 		{
@@ -50,13 +49,13 @@ commands.Item({
 		{
 			key = key.toLowerCase();
 
-			if(!$ot.modules.shortcuts.Fn('valid', key))
+			if(!shortcuts.valid(key))
 			{
 				return fail('Key ' + key + ' is not a valid combination.', 400);
 			}
 		}
 
-		if(!$ot.modules.shortcuts.Fn('rebind', properties.id, key))
+		if(!shortcuts.rebind(properties.id, key))
 		{
 			return resolve({ id: properties.id, key }, 'Shortcut ' + properties.id + ' already uses ' + key + '.');
 		}

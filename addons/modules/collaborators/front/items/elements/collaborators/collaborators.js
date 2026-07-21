@@ -1,10 +1,9 @@
-elements.ItemAdd({
-	id: 'collaborators',
+collaborators.ElementAdd({
+	id: 'avatars',
 	icon: 'group',
 	name: 'Collaborators',
 	description: 'Avatar stack of everyone in the editor plus a live named cursor for every collaborator except the local session.',
 	category: 'Collaborators',
-	metadata: { addon: 'collaborators' },
 	render: function()
 	{
 		const refresh = () =>
@@ -15,13 +14,13 @@ elements.ItemAdd({
 
 		this.Compute(refresh);
 
-		this.On('collaborators.join', refresh);
-		this.On('collaborators.leave', refresh);
+		this.On('platform.collaborators.join', refresh);
+		this.On('platform.collaborators.leave', refresh);
 
 		/* Cursor moves write straight to the DOM, the store keeps
 		   the last spot so a re-render lands on the same place. */
 
-		this.On('collaborators.move', (data) =>
+		this.On('platform.collaborators.move', (data) =>
 		{
 			const node = this.Element && this.Element.querySelector('[data-cursor="' + data.id + '"]');
 
@@ -58,7 +57,7 @@ elements.ItemAdd({
 
 			const self = this.people.find((person) => person.self);
 
-			self && $ot.command('collaborators:move', { id: self.id, x: event.clientX, y: event.clientY });
+			self && collaborators.Command('move', { id: self.id, x: event.clientX, y: event.clientY });
 		};
 
 		this.OnMounted(() => document.addEventListener('mousemove', track));

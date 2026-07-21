@@ -1,6 +1,6 @@
-$ot.modules.shortcuts.Fn('save', function(id, changes)
+shortcuts.Fn('save', function(id, changes)
 {
-	const saved = { ...$ot.modules.settings.get('modules.shortcuts.state', {}) };
+	const saved = { ...config.get('shortcuts.state') };
 	const entry = { ...saved[id], ...changes };
 
 	for(const field in entry)
@@ -20,5 +20,5 @@ $ot.modules.shortcuts.Fn('save', function(id, changes)
 		delete saved[id];
 	}
 
-	$ot.modules.settings.set('modules.shortcuts.state', saved);
+	config.set('shortcuts.state', saved);
 });

@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 onetype.EmitRegister('platform.config.set', {
 	description: 'Fires after a config value changes through the platform config facade. Listeners react to the new value, they cannot cancel the change.',
 	metadata: { addon: 'config' },

@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 const packages = onetype.Addon('packages', (addon) =>
 {
 	addon.Field('slug', {

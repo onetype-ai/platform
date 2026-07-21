@@ -1,9 +1,8 @@
-commands.Item({
-	id: 'collaborators:move',
+collaborators.CommandAdd({
+	id: 'move',
 	exposed: true,
 	silent: true,
 	description: 'Move the cursor of a collaborator to a viewport position. Fires constantly while a collaborator works, so the terminal skips it.',
-	metadata: { addon: 'collaborators' },
 	in: {
 		id: {
 			type: 'string',
@@ -36,7 +35,7 @@ commands.Item({
 
 		collaborators.StoreSet('cursor:' + properties.id, { x: properties.x, y: properties.y });
 
-		onetype.Emit('collaborators.move', { id: properties.id, x: properties.x, y: properties.y });
+		onetype.Emit('platform.collaborators.move', { id: properties.id, x: properties.x, y: properties.y });
 
 		resolve({ id: properties.id }, 'Collaborator ' + properties.id + ' cursor at ' + properties.x + ', ' + properties.y + '.');
 	}

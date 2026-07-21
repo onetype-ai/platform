@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import platform from '#platform/addon.js';
 
 platform.FnExpose('reload', async function()

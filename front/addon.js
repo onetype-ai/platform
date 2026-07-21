@@ -4,7 +4,7 @@ const platform = onetype.Addon('platform', (addon) =>
 
 	$ot.platform.boot = new Promise((resolve) =>
 	{
-		onetype.EmitOn('@document.ready', async () =>
+		onetype.EmitOn('onetype.document.ready', async () =>
 		{
 			await onetype.Middleware('platform.boot');
 			await onetype.Emit('platform.boot');

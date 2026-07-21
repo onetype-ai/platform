@@ -1,4 +1,4 @@
-onetype.DataSchema('workspace.user', {
+onetype.SchemasRegister('workspace.user', {
 	id: {
 		type: 'number',
 		description: 'Unique user id.'

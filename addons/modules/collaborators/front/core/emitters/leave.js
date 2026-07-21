@@ -1,4 +1,4 @@
-onetype.EmitRegister('collaborators.leave', {
+onetype.EmitRegister('platform.collaborators.leave', {
 	description: 'Fired after a collaborator leaves the editor and the avatar with the cursor disappears.',
 	metadata: { addon: 'collaborators' },
 	config: {

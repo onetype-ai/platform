@@ -1,7 +1,7 @@
-onetype.EmitOn('modules.shortcuts.rebind', (change) =>
+onetype.EmitOn('platform.shortcuts.rebind', (change) =>
 {
-	const item = $ot.modules.shortcuts.ItemGet(change.id);
-	const entry = $ot.ui.explorer.ItemGet('shortcut-' + change.id);
+	const item = shortcuts.ItemGet(change.id);
+	const entry = admin.explorer.ItemGet('shortcut-' + change.id);
 
 	if(item && entry)
 	{

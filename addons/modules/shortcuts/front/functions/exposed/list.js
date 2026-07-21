@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('list', function(query)
+shortcuts.FnExpose('list', function(query)
 {
 	const groups = {};
 

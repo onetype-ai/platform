@@ -1,8 +1,7 @@
-commands.Item({
-	id: 'modules:shortcuts:trigger',
+shortcuts.CommandAdd({
+	id: 'trigger',
 	exposed: true,
-	description: 'Run a shortcut by id, the same as pressing its key combination. Emits $ot.modules.shortcuts.trigger before the callback executes. Fails when the shortcut does not exist or is disabled.',
-	metadata: { addon: 'modules.shortcuts' },
+	description: 'Run a shortcut by id, the same as pressing its key combination. Emits shortcuts.trigger before the callback executes. Fails when the shortcut does not exist or is disabled.',
 	in: {
 		id: {
 			type: 'string',
@@ -25,7 +24,7 @@ commands.Item({
 			resolve(null, message, code);
 		};
 
-		const item = $ot.modules.shortcuts.ItemGet(properties.id);
+		const item = shortcuts.ItemGet(properties.id);
 
 		if(!item)
 		{
@@ -39,7 +38,7 @@ commands.Item({
 
 		try
 		{
-			await $ot.modules.shortcuts.Fn('trigger', properties.id);
+			await shortcuts.trigger(properties.id);
 
 			resolve({ id: properties.id }, 'Shortcut ' + properties.id + ' executed.');
 		}

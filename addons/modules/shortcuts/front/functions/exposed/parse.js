@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('parse', function(event)
+shortcuts.FnExpose('parse', function(event)
 {
 	const parts = ['ctrl', 'alt', 'shift', 'meta'].filter((modifier) => event[modifier + 'Key']);
 	const name = event.key.toLowerCase();

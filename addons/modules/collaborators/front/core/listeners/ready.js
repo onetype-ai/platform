@@ -1,10 +1,10 @@
 /* TEMP — the local session and the assistant join here
    until real sessions and the socket transport exist. */
 
-onetype.EmitOn('@document.ready', () =>
+onetype.EmitOn('onetype.document.ready', () =>
 {
-	const person = $ot.workspace.users.ItemGet('dejan');
+	const user = $ot.get('user');
 
-	$ot.command('collaborators:join', { id: 'dejan', name: person ? person.Get('name') : 'Dejan', self: true });
-	$ot.command('collaborators:join', { id: 'assistant', name: 'Assistant', type: 'agent', color: 'brand' });
+	collaborators.Command('join', { id: user ? String(user.id) : 'local', name: user ? user.name : 'Local', self: true });
+	collaborators.Command('join', { id: 'assistant', name: 'Assistant', type: 'agent', color: 'brand' });
 });

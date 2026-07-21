@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import config from '#config/addon.js';
 
 config.Fn('item.value', function(item)

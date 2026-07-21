@@ -1,8 +1,7 @@
-commands.Item({
-	id: 'collaborators:leave',
+collaborators.CommandAdd({
+	id: 'leave',
 	exposed: true,
 	description: 'Leave the editor. The avatar and the cursor of the collaborator disappear.',
-	metadata: { addon: 'collaborators' },
 	in: {
 		id: {
 			type: 'string',
@@ -30,7 +29,7 @@ commands.Item({
 		collaborators.ItemRemove(properties.id);
 		collaborators.StoreDelete('cursor:' + properties.id);
 
-		onetype.Emit('collaborators.leave', { id: properties.id });
+		onetype.Emit('platform.collaborators.leave', { id: properties.id });
 
 		resolve({ id: properties.id }, 'Collaborator ' + name + ' left the editor.');
 	}

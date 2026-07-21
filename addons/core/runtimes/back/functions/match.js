@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import runtimes from '#runtimes/addon.js';
 
 runtimes.Fn('match', function(hostname, pathname)

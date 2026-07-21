@@ -1,4 +1,4 @@
-onetype.EmitRegister('collaborators.move', {
+onetype.EmitRegister('platform.collaborators.move', {
 	description: 'Fired on every cursor move of a collaborator. The cursor layer writes the position straight to the DOM, nothing re-renders.',
 	metadata: { addon: 'collaborators' },
 	config: {

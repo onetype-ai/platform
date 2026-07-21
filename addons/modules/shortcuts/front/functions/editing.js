@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('editing', function(target)
+shortcuts.Fn('editing', function(target)
 {
 	if(!target)
 	{

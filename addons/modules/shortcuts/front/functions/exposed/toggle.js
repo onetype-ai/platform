@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('toggle', function(id, enabled)
+shortcuts.FnExpose('toggle', function(id, enabled)
 {
 	const item = this.ItemGet(id);
 
@@ -9,7 +9,7 @@ $ot.modules.shortcuts.Fn('toggle', function(id, enabled)
 
 	this.Fn('save', id, { enabled: enabled === item.Get('enabled') ? undefined : enabled });
 
-	onetype.Emit('modules.shortcuts.toggle', { id, enabled });
+	onetype.Emit('platform.shortcuts.toggle', { id, enabled });
 
 	return true;
 });

@@ -1,4 +1,4 @@
-$ot.modules.shortcuts = onetype.Addon('modules.shortcuts', (addon) =>
+const shortcuts = onetype.Addon('shortcuts', (addon) =>
 {
 	addon.Field('id', {
 		type: 'string',
@@ -85,10 +85,4 @@ $ot.modules.shortcuts = onetype.Addon('modules.shortcuts', (addon) =>
 		value: 1,
 		description: 'Run position when multiple shortcuts match the same key. Lower runs first.'
 	});
-});
-
-Object.assign($ot.modules.shortcuts, {
-	trigger: (id) => $ot.command('modules:shortcuts:trigger', { id }),
-	toggle: (id, enabled) => $ot.command('modules:shortcuts:toggle', enabled === undefined ? { id } : { id, enabled }),
-	rebind: (id, key) => $ot.command('modules:shortcuts:rebind', key === undefined ? { id } : { id, key })
 });

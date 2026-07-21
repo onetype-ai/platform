@@ -1,4 +1,4 @@
-onetype.AddonReady('ui.navbar', (navbar) =>
+onetype.AddonReady('admin.navbar', (navbar) =>
 {
 	navbar.Item({
 		id: 'shortcuts',

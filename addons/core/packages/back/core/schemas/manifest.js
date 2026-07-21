@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('platform.package.manifest', {
+onetype.SchemasRegister('platform.package.manifest', {
 	slug: {
 		type: 'string',
 		required: true,

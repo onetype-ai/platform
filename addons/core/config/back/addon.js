@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 const config = onetype.Addon('config', (addon) =>
 {
 	addon.Field('key', {

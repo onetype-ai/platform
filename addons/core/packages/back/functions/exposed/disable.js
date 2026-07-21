@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import packages from '#packages/addon.js';
 
 packages.FnExpose('disable', function(slug)

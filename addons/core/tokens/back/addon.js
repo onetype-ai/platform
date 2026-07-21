@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 const tokens = onetype.Addon('workspace.tokens', (addon) =>
 {
 	addon.Table('tokens');

@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('valid', function(key)
+shortcuts.FnExpose('valid', function(key)
 {
 	const modifiers = ['ctrl', 'alt', 'shift', 'meta'];
 	const parts = key.split('+').filter((part) => part !== '');

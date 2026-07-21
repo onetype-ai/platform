@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('platform.package', {
+onetype.SchemasRegister('platform.package', {
 	id: {
 		type: 'string|number',
 		description: 'Runtime item identifier.'

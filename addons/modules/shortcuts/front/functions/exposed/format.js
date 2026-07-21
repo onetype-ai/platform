@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('format', function(key)
+shortcuts.FnExpose('format', function(key)
 {
 	const map = {
 		meta: '⌘',

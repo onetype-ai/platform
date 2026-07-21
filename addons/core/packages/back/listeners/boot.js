@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import packages from '#packages/addon.js';
 
 onetype.MiddlewareIntercept('platform.boot', async (middleware) =>

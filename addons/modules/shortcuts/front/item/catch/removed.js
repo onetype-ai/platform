@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.ItemOn('removed', (item) =>
+shortcuts.ItemOn('removed', (item) =>
 {
-	$ot.ui.explorer.ItemRemove('shortcut-' + item.Get('id'));
+	admin.explorer.ItemRemove('shortcut-' + item.Get('id'));
 });

@@ -1,8 +1,7 @@
-commands.Item({
-	id: 'modules:shortcuts:toggle',
+shortcuts.CommandAdd({
+	id: 'toggle',
 	exposed: true,
-	description: 'Enable or disable a shortcut and persist it across reloads. Flips the current state unless enabled is passed explicitly. Emits $ot.modules.shortcuts.toggle. Does nothing when the shortcut is already in the requested state.',
-	metadata: { addon: 'modules.shortcuts' },
+	description: 'Enable or disable a shortcut and persist it across reloads. Flips the current state unless enabled is passed explicitly. Emits shortcuts.toggle. Does nothing when the shortcut is already in the requested state.',
 	in: {
 		id: {
 			type: 'string',
@@ -26,7 +25,7 @@ commands.Item({
 	},
 	callback: function(properties, resolve)
 	{
-		const item = $ot.modules.shortcuts.ItemGet(properties.id);
+		const item = shortcuts.ItemGet(properties.id);
 
 		if(!item)
 		{
@@ -37,7 +36,7 @@ commands.Item({
 
 		const enabled = properties.enabled === undefined ? !item.Fn('enabled') : properties.enabled;
 
-		if(!$ot.modules.shortcuts.Fn('toggle', properties.id, enabled))
+		if(!shortcuts.toggle(properties.id, enabled))
 		{
 			return resolve({ id: properties.id, enabled }, 'Shortcut ' + properties.id + ' is already ' + (enabled ? 'enabled' : 'disabled') + '.');
 		}

@@ -1,4 +1,4 @@
-onetype.EmitOn('@document.ready', () =>
+onetype.EmitOn('onetype.document.ready', () =>
 {
-	$ot.modules.shortcuts.Fn('register');
+	shortcuts.Fn('register');
 });

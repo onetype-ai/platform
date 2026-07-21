@@ -1,8 +1,7 @@
-commands.Item({
-	id: 'collaborators:join',
+collaborators.CommandAdd({
+	id: 'join',
 	exposed: true,
 	description: 'Join the editor as a collaborator. The avatar appears in the navbar and a named cursor follows the collaborator around, except for the local session.',
-	metadata: { addon: 'collaborators' },
 	in: {
 		id: {
 			type: 'string',
@@ -16,17 +15,17 @@ commands.Item({
 		},
 		color: {
 			type: 'string',
-			default: '',
+			value: '',
 			description: 'Color token, one of brand, blue, red, orange, green. Empty picks the next free color.'
 		},
 		type: {
 			type: 'string',
-			default: 'user',
+			value: 'user',
 			description: 'user is a person, agent is an AI assistant.'
 		},
 		self: {
 			type: 'boolean',
-			default: false,
+			value: false,
 			description: 'Marks the local session. The own cursor is never drawn.'
 		}
 	},
@@ -58,7 +57,7 @@ commands.Item({
 			self: properties.self
 		});
 
-		onetype.Emit('collaborators.join', { id: properties.id });
+		onetype.Emit('platform.collaborators.join', { id: properties.id });
 
 		resolve({ id: properties.id, color }, 'Collaborator ' + properties.name + ' joined the editor.');
 	}

@@ -1,6 +1,6 @@
-$ot.modules.shortcuts.ItemOn('modified', (item) =>
+shortcuts.ItemOn('modified', (item) =>
 {
-	const entry = $ot.ui.explorer.ItemGet('shortcut-' + item.Get('id'));
+	const entry = admin.explorer.ItemGet('shortcut-' + item.Get('id'));
 
 	if(entry)
 	{

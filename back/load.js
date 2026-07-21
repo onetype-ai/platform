@@ -17,6 +17,7 @@ import './items/database/primary.js';
 import './items/commands/health.js';
 import './items/commands/html.js';
 import './items/commands/run.js';
+import './items/html/state.js';
 import './items/html/icons.js';
 
 /* Servers */

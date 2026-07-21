@@ -1,6 +1,4 @@
-import onetype from '@onetype/framework';
-
-onetype.DataSchema('workspace.token', {
+onetype.SchemasRegister('workspace.token', {
 	id: {
 		type: 'number',
 		description: 'Unique token id.'

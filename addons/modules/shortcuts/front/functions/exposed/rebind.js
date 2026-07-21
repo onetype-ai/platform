@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('rebind', function(id, key)
+shortcuts.FnExpose('rebind', function(id, key)
 {
 	const item = this.ItemGet(id);
 
@@ -9,7 +9,7 @@ $ot.modules.shortcuts.Fn('rebind', function(id, key)
 
 	this.Fn('save', id, { key: key === item.Get('key') ? undefined : key });
 
-	onetype.Emit('modules.shortcuts.rebind', { id, key });
+	onetype.Emit('platform.shortcuts.rebind', { id, key });
 
 	return true;
 });

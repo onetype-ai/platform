@@ -1,11 +1,11 @@
 /* ===== COLLABORATORS ===== */
 
-.e-deb3929
+.e-2e224d44
 {
 	display: block;
 }
 
-.e-deb3929 > .box
+.e-2e224d44 > .box
 {
 	display: flex;
 	align-items: center;
@@ -14,13 +14,13 @@
 
 /* Avatar stack */
 
-.e-deb3929 .people
+.e-2e224d44 .people
 {
 	display: flex;
 	align-items: center;
 }
 
-.e-deb3929 .avatar
+.e-2e224d44 .avatar
 {
 	display: flex;
 	align-items: center;
@@ -35,31 +35,31 @@
 	transition: transform var(--ot-transition-fast);
 }
 
-.e-deb3929 .avatar + .avatar
+.e-2e224d44 .avatar + .avatar
 {
 	margin-left: -7px;
 }
 
-.e-deb3929 .avatar:hover
+.e-2e224d44 .avatar:hover
 {
 	transform: translateY(-1px);
 	z-index: 1;
 }
 
-.e-deb3929 .avatar > i
+.e-2e224d44 .avatar > i
 {
 	font-size: 16px;
 }
 
-.e-deb3929 .avatar.brand  { background: var(--ot-brand-opacity); color: var(--ot-brand); }
-.e-deb3929 .avatar.blue   { background: var(--ot-blue-opacity); color: var(--ot-blue); }
-.e-deb3929 .avatar.red    { background: var(--ot-red-opacity); color: var(--ot-red); }
-.e-deb3929 .avatar.orange { background: var(--ot-orange-opacity); color: var(--ot-orange); }
-.e-deb3929 .avatar.green  { background: var(--ot-green-opacity); color: var(--ot-green); }
+.e-2e224d44 .avatar.brand  { background: var(--ot-brand-opacity); color: var(--ot-brand); }
+.e-2e224d44 .avatar.blue   { background: var(--ot-blue-opacity); color: var(--ot-blue); }
+.e-2e224d44 .avatar.red    { background: var(--ot-red-opacity); color: var(--ot-red); }
+.e-2e224d44 .avatar.orange { background: var(--ot-orange-opacity); color: var(--ot-orange); }
+.e-2e224d44 .avatar.green  { background: var(--ot-green-opacity); color: var(--ot-green); }
 
 /* Cursor layer */
 
-.e-deb3929 .cursors
+.e-2e224d44 .cursors
 {
 	position: fixed;
 	inset: 0;
@@ -67,7 +67,7 @@
 	pointer-events: none;
 }
 
-.e-deb3929 .cursor
+.e-2e224d44 .cursor
 {
 	position: absolute;
 	top: 0;
@@ -75,12 +75,12 @@
 	transition: transform var(--ot-transition-fast);
 }
 
-.e-deb3929 .cursor > svg
+.e-2e224d44 .cursor > svg
 {
 	display: block;
 }
 
-.e-deb3929 .cursor > .tag
+.e-2e224d44 .cursor > .tag
 {
 	position: absolute;
 	top: 16px;
@@ -93,19 +93,19 @@
 	white-space: nowrap;
 }
 
-.e-deb3929 .cursor.brand  { color: var(--ot-brand); }
-.e-deb3929 .cursor.blue   { color: var(--ot-blue); }
-.e-deb3929 .cursor.red    { color: var(--ot-red); }
-.e-deb3929 .cursor.orange { color: var(--ot-orange); }
-.e-deb3929 .cursor.green  { color: var(--ot-green); }
+.e-2e224d44 .cursor.brand  { color: var(--ot-brand); }
+.e-2e224d44 .cursor.blue   { color: var(--ot-blue); }
+.e-2e224d44 .cursor.red    { color: var(--ot-red); }
+.e-2e224d44 .cursor.orange { color: var(--ot-orange); }
+.e-2e224d44 .cursor.green  { color: var(--ot-green); }
 
-.e-deb3929 .cursor > svg path
+.e-2e224d44 .cursor > svg path
 {
 	fill: currentColor;
 }
 
-.e-deb3929 .cursor.brand > .tag  { background: var(--ot-brand); }
-.e-deb3929 .cursor.blue > .tag   { background: var(--ot-blue); }
-.e-deb3929 .cursor.red > .tag    { background: var(--ot-red); }
-.e-deb3929 .cursor.orange > .tag { background: var(--ot-orange); }
-.e-deb3929 .cursor.green > .tag  { background: var(--ot-green); }
+.e-2e224d44 .cursor.brand > .tag  { background: var(--ot-brand); }
+.e-2e224d44 .cursor.blue > .tag   { background: var(--ot-blue); }
+.e-2e224d44 .cursor.red > .tag    { background: var(--ot-red); }
+.e-2e224d44 .cursor.orange > .tag { background: var(--ot-orange); }
+.e-2e224d44 .cursor.green > .tag  { background: var(--ot-green); }

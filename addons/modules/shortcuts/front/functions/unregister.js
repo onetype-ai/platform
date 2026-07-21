@@ -1,4 +1,4 @@
-$ot.modules.shortcuts.Fn('unregister', function()
+shortcuts.Fn('unregister', function()
 {
 	if(!this.StoreGet('registered'))
 	{

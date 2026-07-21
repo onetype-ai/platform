@@ -1,5 +1,3 @@
-import onetype from '@onetype/framework';
-
 const users = onetype.Addon('workspace.users', (addon) =>
 {
 	addon.Table('users');

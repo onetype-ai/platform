@@ -1,4 +1,3 @@
-import onetype from '@onetype/framework';
 import config from '#config/addon.js';
 import packages from '#packages/addon.js';
 import { readdirSync, readFileSync, existsSync } from 'fs';
