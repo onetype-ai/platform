@@ -102,7 +102,7 @@ shortcuts.ElementAdd({
 		return `
 			<div class="box">
 				<div class="finder">
-					<e-ui-form-input icon="search" placeholder="Search shortcuts..." :value="query" :clearable="true" :background="3" :_input="input" :_change="input"></e-ui-form-input>
+					<e-admin-form-input icon="search" placeholder="Search shortcuts..." :value="query" :clearable="true" :background="3" :_input="input" :_change="input"></e-admin-form-input>
 				</div>
 				<div ot-if="!groups.length && query" class="blank">No shortcuts match "{{ query }}"</div>
 				<div ot-for="group in groups" :ot-key="group.name" class="group">
@@ -119,7 +119,7 @@ shortcuts.ElementAdd({
 							<i ot-if="row.custom" class="reset" :ot-tooltip="{ text: 'Restore default key', position: { x: 'center', y: 'top' } }" ot-click="reset(row)">history</i>
 							<kbd :class="recording === row.id ? 'recording' : (row.custom ? 'custom' : '')" :ot-tooltip="{ text: 'Click, then press the new keys', position: { x: 'center', y: 'top' } }" ot-click="record(row)">{{ recording === row.id ? 'Press keys' : row.key }}</kbd>
 						</span>
-						<e-ui-form-toggle :value="row.enabled" :_change="change(row)"></e-ui-form-toggle>
+						<e-admin-form-toggle :value="row.enabled" :_change="change(row)"></e-admin-form-toggle>
 					</div>
 				</div>
 			</div>
