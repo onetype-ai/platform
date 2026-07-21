@@ -4,7 +4,14 @@ onetype.MiddlewareIntercept('servers.http.request', async (middleware) =>
 {
 	const http = middleware.value;
 
-	http.state.packages = $ot.get('packages');
+	const list = {};
+
+	for(const item of Object.values(packages.Items()))
+	{
+		list[item.Get('slug')] = item.Get(['slug', 'name', 'version', 'description', 'icon', 'color', 'core', 'depends', 'runtimes', 'status', 'message', 'permissions', 'features', 'config', 'limits']);
+	}
+
+	http.state.packages = list;
 
 	await middleware.next();
 });
