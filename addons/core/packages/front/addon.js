@@ -66,9 +66,9 @@ const packages = onetype.Addon('packages', (addon) =>
 		value: [],
 		each: {
 			type: 'string',
-			description: 'A runtime slug the package runs on.'
+			description: 'A runtime slug the package runs on, or the star that means every runtime.'
 		},
-		description: 'Runtimes the package belongs to. Empty runs on every runtime.'
+		description: 'Runtimes the package loads on natively. A star runs on every runtime, empty loads only when another package bundles this one.'
 	});
 
 	addon.Field('permissions', {

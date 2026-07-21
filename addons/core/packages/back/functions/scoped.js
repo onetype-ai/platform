@@ -33,7 +33,7 @@ packages.Fn('scoped', function(scope)
 
 		const runtimes = item.Get('runtimes');
 
-		if(!runtimes.length || runtimes.includes(scope))
+		if(runtimes.includes('*') || runtimes.includes(scope))
 		{
 			this.methods.add(item);
 		}
