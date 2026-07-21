@@ -118,15 +118,15 @@ elements.ItemAdd({
 					<div class="code" :ot-tooltip="{ text: 'Copy id', position: { x: 'center', y: 'top' } }" ot-click="copy(item)">{{ item.id }}</div>
 				</div>
 				<div class="control" ot-if="item.type !== 'transfer' && item.type !== 'table'">
-					<e-form-toggle ot-if="item.type === 'toggle'" :value="item.value" :_change="toggle(item)"></e-form-toggle>
-					<e-form-input ot-if="item.type === 'input'" :value="item.value" :_change="change(item)"></e-form-input>
-					<e-form-select ot-if="item.type === 'select'" :options="item.options" :value="item.value" :_change="change(item)"></e-form-select>
+					<e-ui-form-toggle ot-if="item.type === 'toggle'" :value="item.value" :_change="toggle(item)"></e-ui-form-toggle>
+					<e-ui-form-input ot-if="item.type === 'input'" :value="item.value" :_change="change(item)"></e-ui-form-input>
+					<e-ui-form-select ot-if="item.type === 'select'" :options="item.options" :value="item.value" :_change="change(item)"></e-ui-form-select>
 				</div>
 				<div ot-if="item.type === 'transfer'" class="picker">
-					<e-form-transfer :items="item.options" :value="item.value" :_change="change(item)"></e-form-transfer>
+					<e-ui-form-transfer :items="item.options" :value="item.value" :_change="change(item)"></e-ui-form-transfer>
 				</div>
 				<div ot-if="item.type === 'table'" class="grid">
-					<e-data-table :columns="item.columns" :items="item.rows" :variant="['border']"></e-data-table>
+					<e-ui-data-table :columns="item.columns" :items="item.rows" :variant="['border']"></e-ui-data-table>
 				</div>
 			</div>
 		`;
@@ -135,12 +135,12 @@ elements.ItemAdd({
 			<div class="box">
 				<div class="ot-container-s ot-py-l">
 					<div class="search">
-						<e-form-input icon="search" placeholder="Search all settings" :value="query" :_input="search"></e-form-input>
+						<e-ui-form-input icon="search" placeholder="Search all settings" :value="query" :_input="search"></e-ui-form-input>
 						<span class="count" ot-if="mode === 'search'">{{ results.length }} {{ results.length === 1 ? 'match' : 'matches' }}</span>
 					</div>
 
 					<div ot-if="mode === 'search'">
-						<e-status-empty ot-if="!results.length" icon="search_off" title="No matches" description="No settings match the search."></e-status-empty>
+						<e-ui-status-empty ot-if="!results.length" icon="search_off" title="No matches" description="No settings match the search."></e-ui-status-empty>
 						${rows('results')}
 					</div>
 
@@ -150,11 +150,11 @@ elements.ItemAdd({
 							<span class="title">{{ section.label }}</span>
 							<span class="tally" ot-if="mode === 'group'">{{ section.items.length }}</span>
 							<div class="who" ot-if="mode === 'scope' && !instance">
-								<e-form-select :options="section.instances" :value="chosen" :_change="pick"></e-form-select>
+								<e-ui-form-select :options="section.instances" :value="chosen" :_change="pick"></e-ui-form-select>
 							</div>
 						</div>
-						<e-status-empty ot-if="mode === 'scope' && !section.selected" icon="person_search" :title="'No ' + section.label.toLowerCase() + ' selected'" :description="'Choose a ' + section.label.toLowerCase() + ' to see and edit their settings.'"></e-status-empty>
-						<e-status-empty ot-if="mode === 'group' && !section.items.length" icon="tune" title="Nothing here" description="This group has no visible settings."></e-status-empty>
+						<e-ui-status-empty ot-if="mode === 'scope' && !section.selected" icon="person_search" :title="'No ' + section.label.toLowerCase() + ' selected'" :description="'Choose a ' + section.label.toLowerCase() + ' to see and edit their settings.'"></e-ui-status-empty>
+						<e-ui-status-empty ot-if="mode === 'group' && !section.items.length" icon="tune" title="Nothing here" description="This group has no visible settings."></e-ui-status-empty>
 						${rows('section.items')}
 					</div>
 				</div>

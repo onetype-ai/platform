@@ -23,7 +23,6 @@ import './items/commands/run.js';
 import './items/html/assets.js.js';
 import './items/html/assets.css.js';
 import './items/html/state.js';
-import './items/html/icons.js';
 
 /* Listeners */
 import './listeners/boot.js';

@@ -50,7 +50,7 @@ onetype.AddonReady('ui.layouts', (layouts) =>
 				$ot.ui.layouts.open('settings-content', kind === 'scope' ? { scope: id } : { group: id });
 			};
 
-			return `<e-navigation-sidebar :items="items" :active="active" :_click="select"></e-navigation-sidebar>`;
+			return `<e-ui-navigation-sidebar :items="items" :active="active" :_click="select"></e-ui-navigation-sidebar>`;
 		}
 	});
 });
