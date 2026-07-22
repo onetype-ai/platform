@@ -1,3 +1,4 @@
-import commands from '@onetype/framework/commands';
-
-commands.Fn('expose', 'commands:run', '/api/commands/run');
+onetype.AddonReady('commands', (commands) =>
+{
+	commands.Fn('expose', 'commands:run', '/api/commands/run');
+});

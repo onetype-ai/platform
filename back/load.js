@@ -5,7 +5,7 @@ import './functions/author.js';
 import './functions/exposed/reload.js';
 
 /* Commands */
-import './commands/reload.js';
+import './items/commands/reload.js';
 
 /* Register */
 import './_/register/middlewares.js';

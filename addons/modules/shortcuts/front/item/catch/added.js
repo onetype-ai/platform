@@ -15,7 +15,7 @@ onetype.AddonReady('admin.explorer', (explorer) =>
 			hint: item.Fn('hint'),
 			keywords: [item.Get('id')],
 			condition: { callback: () => item.Fn('enabled') },
-			callback: () => shortcuts.Command('trigger', { id: item.Get('id') })
+			callback: () => commands.Fn('run', 'shortcuts:trigger', { id: item.Get('id') })
 		});
 	}));
 });

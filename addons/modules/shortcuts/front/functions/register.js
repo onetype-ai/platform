@@ -26,7 +26,7 @@ shortcuts.Fn('register', function()
 				event.preventDefault();
 			}
 
-			shortcuts.Command('trigger', { id: item.Get('id') });
+			commands.Fn('run', 'shortcuts:trigger', { id: item.Get('id') });
 		}
 	};
 

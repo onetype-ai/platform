@@ -57,7 +57,7 @@ collaborators.ElementAdd({
 
 			const self = this.people.find((person) => person.self);
 
-			self && collaborators.Command('move', { id: self.id, x: event.clientX, y: event.clientY });
+			self && commands.Fn('run', 'collaborators:move', { id: self.id, x: event.clientX, y: event.clientY });
 		};
 
 		this.OnMounted(() => document.addEventListener('mousemove', track));

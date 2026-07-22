@@ -29,7 +29,7 @@ shortcuts.ElementAdd({
 			{
 				this.cancel();
 
-				shortcuts.Command('toggle', { id: row.id, enabled: value });
+				commands.Fn('run', 'shortcuts:toggle', { id: row.id, enabled: value });
 			};
 		};
 
@@ -78,7 +78,7 @@ shortcuts.ElementAdd({
 
 				this.cancel();
 
-				shortcuts.Command('rebind', { id: row.id, key: combination });
+				commands.Fn('run', 'shortcuts:rebind', { id: row.id, key: combination });
 			};
 
 			window.addEventListener('keydown', this.listener, true);
@@ -88,7 +88,7 @@ shortcuts.ElementAdd({
 		{
 			this.cancel();
 
-			shortcuts.Command('rebind', { id: row.id });
+			commands.Fn('run', 'shortcuts:rebind', { id: row.id });
 		};
 
 		this.OnUnmounted(() => this.cancel());
