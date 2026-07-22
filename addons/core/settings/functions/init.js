@@ -1,28 +1,28 @@
 $ot.modules.settings.Fn('init', function()
 {
-	if(onetype.iframe)
-	{
-		return;
-	}
+    if(onetype.iframe)
+    {
+        return;
+    }
 
-	Object.entries($ot.system.persistence.data).forEach(([key, value]) =>
-	{
-		if(!key.startsWith('settings.'))
-		{
-			return;
-		}
+    Object.entries($ot.system.persistence.data).forEach(([key, value]) =>
+    {
+        if(!key.startsWith('settings.'))
+        {
+            return;
+        }
 
-		const id = key.slice('settings.'.length);
+        const id = key.slice('settings.'.length);
 
-		let item = this.ItemGet(id);
+        let item = this.ItemGet(id);
 
-		if(!item)
-		{
-			item = this.Item({ id });
-		}
+        if(!item)
+        {
+            item = this.Item({ id });
+        }
 
-		item.Set('value', value);
+        item.Set('value', value);
 
-		onetype.Emit('modules.settings.change', { id, value });
-	});
+        onetype.Emit('modules.settings.change', { id, value });
+    });
 });

@@ -4,7 +4,7 @@ import { resolve } from 'path';
 
 config.Fn('read', function()
 {
-	const file = resolve(process.cwd(), 'onetype-config.json');
+    const file = resolve(process.cwd(), 'onetype-config.json');
 
-	return existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : {};
+    return existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : {};
 });

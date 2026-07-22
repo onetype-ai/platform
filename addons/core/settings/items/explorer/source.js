@@ -1,27 +1,27 @@
 onetype.AddonReady('ui.explorer', (explorer) =>
 {
-	$ot.modules.settings.ItemOn('add', (item) =>
-	{
-		if(!item.Get('type'))
-		{
-			return;
-		}
+    $ot.modules.settings.ItemOn('add', (item) =>
+    {
+        if(!item.Get('type'))
+        {
+            return;
+        }
 
-		explorer.Item({
-			id: 'setting-' + item.Get('id'),
-			order: 40,
-			group: 'Settings',
-			prefix: 'settings',
-			icon: 'settings',
-			label: item.Get('label') || item.Get('id'),
-			hint: item.Get('description') || '',
-			keywords: [item.Get('id')],
-			callback: () => $ot.command('modules:settings:open', { group: item.Get('id').split('.')[0] })
-		});
-	});
+        explorer.Item({
+            id: 'setting-' + item.Get('id'),
+            order: 40,
+            group: 'Settings',
+            prefix: 'settings',
+            icon: 'settings',
+            label: item.Get('label') || item.Get('id'),
+            hint: item.Get('description') || '',
+            keywords: [item.Get('id')],
+            callback: () => $ot.command('modules:settings:open', { group: item.Get('id').split('.')[0] })
+        });
+    });
 
-	$ot.modules.settings.ItemOn('remove', (item) =>
-	{
-		explorer.ItemRemove('setting-' + item.Get('id'));
-	});
+    $ot.modules.settings.ItemOn('remove', (item) =>
+    {
+        explorer.ItemRemove('setting-' + item.Get('id'));
+    });
 });

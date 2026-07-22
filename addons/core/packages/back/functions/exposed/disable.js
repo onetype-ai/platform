@@ -2,21 +2,21 @@ import packages from '#packages/addon.js';
 
 packages.FnExpose('disable', function(slug)
 {
-	const item = this.one(slug);
+    const item = this.one(slug);
 
-	if(!item)
-	{
-		return false;
-	}
+    if(!item)
+    {
+        return false;
+    }
 
-	if(item.Fn('is.dependant').length)
-	{
-		return false;
-	}
+    if(item.Fn('is.dependant').length)
+    {
+        return false;
+    }
 
-	item.Fn('disable');
+    item.Fn('disable');
 
-	onetype.Emit('platform.packages.disable', { slug: item.Get('slug') });
+    onetype.Emit('platform.packages.disable', { slug: item.Get('slug') });
 
-	return true;
+    return true;
 });

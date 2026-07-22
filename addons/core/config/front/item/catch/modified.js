@@ -1,4 +1,4 @@
 config.ItemOn('modified', () =>
 {
-	config.Fn('write');
+    config.Fn('write');
 });

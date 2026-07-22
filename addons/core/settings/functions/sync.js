@@ -1,15 +1,15 @@
 $ot.modules.settings.Fn('sync', function()
 {
-	const data = {};
+    const data = {};
 
-	Object.values(this.Items()).forEach((item) =>
-	{
-		const value = item.Get('value');
+    Object.values(this.Items()).forEach((item) =>
+    {
+        const value = item.Get('value');
 
-		data[item.Get('id')] = value === null || value === undefined ? item.Get('default') : value;
-	});
+        data[item.Get('id')] = value === null || value === undefined ? item.Get('default') : value;
+    });
 
-	onetype.StateSet('settings', data);
+    onetype.StateSet('settings', data);
 
-	return this;
+    return this;
 });

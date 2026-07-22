@@ -2,20 +2,20 @@ import platform from '#platform/addon.js';
 
 platform.Fn('author', function()
 {
-	const colors = ['\x1b[38;5;167m', '\x1b[38;5;173m', '\x1b[38;5;209m', '\x1b[38;5;209m', '\x1b[38;5;216m', '\x1b[38;5;223m'];
+    const colors = ['\x1b[38;5;167m', '\x1b[38;5;173m', '\x1b[38;5;209m', '\x1b[38;5;209m', '\x1b[38;5;216m', '\x1b[38;5;223m'];
 
-	const logo = [
-		' ██████╗ ███╗   ██╗███████╗████████╗██╗   ██╗██████╗ ███████╗',
-		'██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝',
-		'██║   ██║██╔██╗ ██║█████╗     ██║    ╚████╔╝ ██████╔╝█████╗  ',
-		'██║   ██║██║╚██╗██║██╔══╝     ██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ',
-		'╚██████╔╝██║ ╚████║███████╗   ██║      ██║   ██║     ███████╗',
-		' ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝      ╚═╝   ╚═╝     ╚══════╝'
-	];
+    const logo = [
+        ' ██████╗ ███╗   ██╗███████╗████████╗██╗   ██╗██████╗ ███████╗',
+        '██╔═══██╗████╗  ██║██╔════╝╚══██╔══╝╚██╗ ██╔╝██╔══██╗██╔════╝',
+        '██║   ██║██╔██╗ ██║█████╗     ██║    ╚████╔╝ ██████╔╝█████╗  ',
+        '██║   ██║██║╚██╗██║██╔══╝     ██║     ╚██╔╝  ██╔═══╝ ██╔══╝  ',
+        '╚██████╔╝██║ ╚████║███████╗   ██║      ██║   ██║     ███████╗',
+        ' ╚═════╝ ╚═╝  ╚═══╝╚══════╝   ╚═╝      ╚═╝   ╚═╝     ╚══════╝'
+    ];
 
-	console.log('');
-	logo.forEach((line, index) => console.log('  ' + colors[index] + line + '\x1b[0m'));
-	console.log('');
-	console.log('  \x1b[1m\x1b[38;5;255mPlatform Ready!\x1b[0m  \x1b[38;5;245mBuilt by\x1b[0m \x1b[38;5;254mDejan Tomic\x1b[0m \x1b[38;5;240m· with Stefan Pakic · design Petr Bilek\x1b[0m');
-	console.log('');
+    console.log('');
+    logo.forEach((line, index) => console.log('  ' + colors[index] + line + '\x1b[0m'));
+    console.log('');
+    console.log('  \x1b[1m\x1b[38;5;255mPlatform Ready!\x1b[0m  \x1b[38;5;245mBuilt by\x1b[0m \x1b[38;5;254mDejan Tomic\x1b[0m \x1b[38;5;240m· with Stefan Pakic · design Petr Bilek\x1b[0m');
+    console.log('');
 });

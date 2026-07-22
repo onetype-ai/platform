@@ -1,6 +1,6 @@
 shortcuts.Fn('item.key', function(item)
 {
-	const entry = config.get('shortcuts.state')[item.Get('id')];
+    const entry = config.get('shortcuts.state')[item.Get('id')];
 
-	return entry && entry.key ? entry.key : item.Get('key');
+    return entry && entry.key ? entry.key : item.Get('key');
 });

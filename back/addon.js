@@ -1,6 +1,6 @@
 const platform = onetype.Addon('platform', (addon) =>
 {
-	$ot.platform = {};
+    $ot.platform = {};
 });
 
 export default platform;

@@ -1,6 +1,6 @@
 config.FnExpose('get', function(id)
 {
-	const item = this.one(id);
+    const item = this.one(id);
 
-	return item ? item.Get('value') : null;
+    return item ? item.Get('value') : null;
 });

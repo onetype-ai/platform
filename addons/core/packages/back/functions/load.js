@@ -2,29 +2,29 @@ import packages from '#packages/addon.js';
 
 packages.Fn('load', async function()
 {
-	this.methods.ordered = () =>
-	{
-		return Object.values(this.Items())
-			.filter((item) => item.Get('status') === 'enabled')
-			.map((item) => ({ item, order: item.Fn('find.order') }))
-			.sort((one, two) => one.order - two.order)
-			.map((entry) => entry.item);
-	};
+    this.methods.ordered = () =>
+    {
+        return Object.values(this.Items())
+            .filter((item) => item.Get('status') === 'enabled')
+            .map((item) => ({ item, order: item.Fn('find.order') }))
+            .sort((one, two) => one.order - two.order)
+            .map((entry) => entry.item);
+    };
 
-	for(const item of this.methods.ordered())
-	{
-		const blocked = item.Fn('is.blocked');
+    for(const item of this.methods.ordered())
+    {
+        const blocked = item.Fn('is.blocked');
 
-		if(blocked)
-		{
-			item.Set('status', 'blocked');
-			item.Set('message', blocked);
+        if(blocked)
+        {
+            item.Set('status', 'blocked');
+            item.Set('message', blocked);
 
-			continue;
-		}
+            continue;
+        }
 
-		item.Fn('load.front');
+        item.Fn('load.front');
 
-		await item.Fn('load.back');
-	}
+        await item.Fn('load.back');
+    }
 });

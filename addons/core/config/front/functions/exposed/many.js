@@ -1,4 +1,4 @@
 config.FnExpose('many', function()
 {
-	return Object.values(this.Items());
+    return Object.values(this.Items());
 });

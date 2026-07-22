@@ -1,47 +1,47 @@
 $ot.modules.settings.Fn('set', function(id, value, instance = null)
 {
-	let item = this.ItemGet(id);
+    let item = this.ItemGet(id);
 
-	if(!item)
-	{
-		item = this.Item({ id });
-	}
+    if(!item)
+    {
+        item = this.Item({ id });
+    }
 
-	const scope = item.Get('scope');
+    const scope = item.Get('scope');
 
-	if(scope)
-	{
-		const target = instance || this.Fn('scope.active', scope);
+    if(scope)
+    {
+        const target = instance || this.Fn('scope.active', scope);
 
-		if(!target)
-		{
-			onetype.Error(400, 'Setting :id: is scoped to :scope: and no instance is active.', {id, scope});
+        if(!target)
+        {
+            onetype.Error(400, 'Setting :id: is scoped to :scope: and no instance is active.', {id, scope});
 
-			return item;
-		}
+            return item;
+        }
 
-		const map = { ...(item.Get('value') || {}) };
+        const map = { ...(item.Get('value') || {}) };
 
-		map[target] = value;
+        map[target] = value;
 
-		item.Set('value', map);
-	}
-	else
-	{
-		item.Set('value', value);
-	}
+        item.Set('value', map);
+    }
+    else
+    {
+        item.Set('value', value);
+    }
 
-	if(item.Get('storage') === 'local')
-	{
-		this.Fn('persist');
-	}
+    if(item.Get('storage') === 'local')
+    {
+        this.Fn('persist');
+    }
 
-	if(item.Get('onChange'))
-	{
-		item.Get('onChange')(value, item, instance);
-	}
+    if(item.Get('onChange'))
+    {
+        item.Get('onChange')(value, item, instance);
+    }
 
-	onetype.Emit('modules.settings.change', { id, value, instance });
+    onetype.Emit('modules.settings.change', { id, value, instance });
 
-	return item;
+    return item;
 });

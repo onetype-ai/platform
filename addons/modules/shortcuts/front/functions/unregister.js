@@ -1,17 +1,17 @@
 shortcuts.Fn('unregister', function()
 {
-	if(!this.StoreGet('registered'))
-	{
-		return;
-	}
+    if(!this.StoreGet('registered'))
+    {
+        return;
+    }
 
-	const handler = this.StoreGet('handler');
+    const handler = this.StoreGet('handler');
 
-	if(handler)
-	{
-		document.removeEventListener('keydown', handler);
-	}
+    if(handler)
+    {
+        document.removeEventListener('keydown', handler);
+    }
 
-	this.StoreSet('registered', false);
-	this.StoreSet('handler', null);
+    this.StoreSet('registered', false);
+    this.StoreSet('handler', null);
 });

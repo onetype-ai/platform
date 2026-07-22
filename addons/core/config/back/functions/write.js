@@ -4,12 +4,12 @@ import { resolve } from 'path';
 
 config.Fn('write', function()
 {
-	const data = {};
+    const data = {};
 
-	for(const item of Object.values(this.Items()))
-	{
-		data[item.Get('id')] = item.Get('value');
-	}
+    for(const item of Object.values(this.Items()))
+    {
+        data[item.Get('id')] = item.Get('value');
+    }
 
-	writeFileSync(resolve(process.cwd(), 'onetype-config.json'), JSON.stringify(data, null, '\t') + '\n');
+    writeFileSync(resolve(process.cwd(), 'onetype-config.json'), JSON.stringify(data, null, '\t') + '\n');
 });

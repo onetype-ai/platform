@@ -2,5 +2,5 @@ import packages from '#packages/addon.js';
 
 packages.ItemOn('modified', () =>
 {
-	packages.Fn('config.save');
+    packages.Fn('config.save');
 });

@@ -1,8 +1,8 @@
 onetype.EmitOn('onetype.document.ready', async () =>
 {
-	await $ot.system.persistence.load();
+    await $ot.system.persistence.load();
 
-	$ot.modules.settings.Fn('init');
+    $ot.modules.settings.Fn('init');
 
-	onetype.Emit('modules.settings.ready');
+    onetype.Emit('modules.settings.ready');
 });

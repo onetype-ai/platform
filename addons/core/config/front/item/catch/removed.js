@@ -1,4 +1,4 @@
 config.ItemOn('removed', () =>
 {
-	config.Fn('write');
+    config.Fn('write');
 });

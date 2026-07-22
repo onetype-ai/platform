@@ -2,27 +2,27 @@ import config from '#config/addon.js';
 
 config.Fn('item.value', function(item)
 {
-	const data = this.Fn('read');
+    const data = this.Fn('read');
 
-	if(!(item.Get('id') in data))
-	{
-		return item.Get('value');
-	}
+    if(!(item.Get('id') in data))
+    {
+        return item.Get('value');
+    }
 
-	const define = item.Get('config');
-	const value = data[item.Get('id')];
+    const define = item.Get('config');
+    const value = data[item.Get('id')];
 
-	if(!Object.keys(define).length)
-	{
-		return value;
-	}
+    if(!Object.keys(define).length)
+    {
+        return value;
+    }
 
-	try
-	{
-		return onetype.DataDefineOne(value, define);
-	}
-	catch(error)
-	{
-		return item.Get('value');
-	}
+    try
+    {
+        return onetype.DataDefineOne(value, define);
+    }
+    catch(error)
+    {
+        return item.Get('value');
+    }
 });

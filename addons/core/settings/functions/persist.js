@@ -1,21 +1,21 @@
 $ot.modules.settings.Fn('persist', function()
 {
-	if(onetype.iframe)
-	{
-		return {};
-	}
+    if(onetype.iframe)
+    {
+        return {};
+    }
 
-	const data = {};
+    const data = {};
 
-	Object.values(this.Items()).forEach((item) =>
-	{
-		if(item.Get('storage') === 'local')
-		{
-			data[item.Get('id')] = item.Get('value');
+    Object.values(this.Items()).forEach((item) =>
+    {
+        if(item.Get('storage') === 'local')
+        {
+            data[item.Get('id')] = item.Get('value');
 
-			$ot.system.persistence.set('settings.' + item.Get('id'), item.Get('value'));
-		}
-	});
+            $ot.system.persistence.set('settings.' + item.Get('id'), item.Get('value'));
+        }
+    });
 
-	return data;
+    return data;
 });
