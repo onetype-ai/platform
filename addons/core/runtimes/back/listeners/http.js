@@ -7,7 +7,7 @@ onetype.MiddlewareIntercept('servers.http.request', async (middleware) =>
 	const matched = runtimes.Fn('match', http.url.hostname, http.url.pathname);
 	const base = matched && matched.Get('path') !== '/' ? matched.Get('path') : '';
 
-	http.state.runtime = matched ? matched.Get('slug') : null;
+	http.state.runtime = matched ? matched.Get('id') : null;
 	http.state.base = base;
 
 	if(base && http.url.pathname.startsWith(base))

@@ -1,9 +1,9 @@
 const runtimes = onetype.Addon('runtimes', (addon) =>
 {
-	addon.Field('slug', {
+	addon.Field('id', {
 		type: 'string',
 		required: true,
-		description: 'Stable text key like core or site. Domains map to a runtime by slug, packages declare which runtimes they belong to.'
+		description: 'Stable text key like core or site. Domains map to a runtime by id, packages declare which runtimes they belong to.'
 	});
 
 	addon.Field('name', {
