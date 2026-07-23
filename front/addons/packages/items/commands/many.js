@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'packages:many',
-        addon: 'packages',
+        addon: 'platform.packages',
         description: 'List every package of the instance with its manifest and status.',
         exposed: false,
         out: {

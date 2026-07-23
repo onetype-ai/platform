@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'packages:one',
-        addon: 'packages',
+        addon: 'platform.packages',
         description: 'Read one package by its slug.',
         exposed: false,
         in: {

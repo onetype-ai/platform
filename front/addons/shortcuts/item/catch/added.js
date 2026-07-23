@@ -1,9 +1,6 @@
-onetype.AddonReady('admin.explorer', (explorer) =>
+platform.shortcuts.ItemOn('added', (item) =>
 {
-    /* The added catch fires for items that exist before item/functions load — the
-       microtask waits for the whole bundle, then projects into the explorer. */
-
-    queueMicrotask(() => platform.shortcuts.ItemOn('added', (item) =>
+    onetype.AddonReady('admin.explorer', (explorer) =>
     {
         explorer.Item({
             id: 'shortcut-' + item.Get('id'),
@@ -17,5 +14,5 @@ onetype.AddonReady('admin.explorer', (explorer) =>
             condition: { callback: () => item.Fn('enabled') },
             callback: () => commands.Fn('run', 'shortcuts:trigger', { id: item.Get('id') })
         });
-    }));
+    });
 });

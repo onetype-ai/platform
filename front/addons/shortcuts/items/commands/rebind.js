@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'shortcuts:rebind',
-        addon: 'shortcuts',
+        addon: 'platform.shortcuts',
         description: 'Change the key combination of a shortcut and persist it across reloads. Omit key to restore the default combination and drop the stored override. Emits platform.shortcuts.rebind. Does nothing when the shortcut already uses the requested key.',
         exposed: true,
         in: {

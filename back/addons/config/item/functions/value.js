@@ -23,6 +23,8 @@ platform.config.Fn('item.value', function(item)
     }
     catch(error)
     {
+        onetype.Error(400, 'Config value :id: rejected: :reason:', { id: item.Get('id'), reason: error.message });
+
         return item.Get('value');
     }
 });

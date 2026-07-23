@@ -15,5 +15,3 @@ import './item/functions/value.js';
 import './item/catch/added.js';
 import './item/catch/modified.js';
 import './item/catch/removed.js';
-
-export default platform.config;

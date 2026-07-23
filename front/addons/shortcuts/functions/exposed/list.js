@@ -28,6 +28,6 @@ platform.shortcuts.FnExpose('list', function(query)
 
     return Object.keys(groups).sort().map((name) =>
     {
-        return { name, shortcuts: groups[name].sort((a, b) => a.name.localeCompare(b.name)) };
+        return { name, shortcuts: groups[name].sort((left, right) => left.name.localeCompare(right.name)) };
     });
 });

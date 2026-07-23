@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'packages:disable',
-        addon: 'packages',
+        addon: 'platform.packages',
         description: 'Disable a package on the instance. The package stops loading on the next boot.',
         exposed: false,
         in: {

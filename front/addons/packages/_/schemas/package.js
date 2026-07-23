@@ -1,6 +1,6 @@
 onetype.SchemasRegister('platform.packages.package', {
     description: 'The platform package shape.',
-    addon: 'packages',
+    addon: 'platform.packages',
     config: {
         id: {
             type: 'string|number',

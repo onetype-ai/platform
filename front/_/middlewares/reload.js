@@ -1,5 +1,6 @@
 onetype.MiddlewareRegister('platform.reload', {
     description: 'Runs before the front asks the platform to restart. Interceptors persist what must not be lost or set cancel to stop the reload.',
+    addon: 'platform',
     config: {
         cancel: {
             type: 'boolean',

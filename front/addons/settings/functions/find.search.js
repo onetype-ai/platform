@@ -19,7 +19,7 @@ platform.settings.Fn('find.search', function(query)
         const scope = item.Get('scope');
         const addon = (item.Get('metadata') || {}).addon || 'other';
         const entry = Object.values(documentation.Items()).find((doc) => doc.Get('addon') === addon);
-        const instance = scope ? this.Fn('scope.active', scope) : null;
+        const instance = scope ? this.Fn('get.active', scope) : null;
 
         if(scope && !instance)
         {
@@ -36,7 +36,7 @@ platform.settings.Fn('find.search', function(query)
             columns: item.Get('columns'),
             rows: item.Get('type') === 'table' ? (typeof item.Get('options') === 'function' ? item.Get('options')() : item.Get('options')) : [],
             instance,
-            badge: scope ? (this.Fn('scopes')[scope] || {}).label || scope : (entry ? entry.Get('label') : addon)
+            badge: scope ? (this.Fn('get.scopes')[scope] || {}).label || scope : (entry ? entry.Get('label') : addon)
         });
     });
 

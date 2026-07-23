@@ -1,6 +1,6 @@
 platform.settings.Fn('get.scoped', function(selection = {}, query = '')
 {
-    return Object.values(this.Fn('scopes')).map((scope) =>
+    return Object.values(this.Fn('get.scopes')).map((scope) =>
     {
         const selected = selection[scope.id] || null;
         const items = [];

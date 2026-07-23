@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'settings:open',
-        addon: 'settings',
+        addon: 'platform.settings',
         description: 'Open settings in a side panel. Without input it shows everything searchable. Bind it to one group for a single addon, or to a scope and instance for the settings of one user, collection or similar.',
         exposed: true,
         in: {
@@ -32,7 +32,7 @@ onetype.AddonReady('commands', (commands) =>
 
             if(properties.scope)
             {
-                const scope = platform.settings.Fn('scopes')[properties.scope];
+                const scope = platform.settings.Fn('get.scopes')[properties.scope];
 
                 if(!scope)
                 {
@@ -73,7 +73,7 @@ onetype.AddonReady('commands', (commands) =>
                 position: 'right',
                 width: 'l',
                 padding: 'none',
-                content: '<e-settings-content ' + attributes.join(' ') + '></e-settings-content>'
+                content: '<e-platform-settings-content ' + attributes.join(' ') + '></e-platform-settings-content>'
             });
 
             resolve({ title }, title + (description ? ' for ' + description : '') + ' opened.');

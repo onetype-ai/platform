@@ -1,6 +1,6 @@
 onetype.EmitRegister('platform.settings.change', {
-    description: 'Fired after a setting value changes, through the modules:settings:set command, a direct set or the restore on load.',
-    metadata: { addon: 'platform.settings' },
+    description: 'Fired after a setting value changes, through the platform:settings:set command, a direct set or the restore on load.',
+    addon: 'platform.settings',
     config: {
         id: {
             type: 'string',

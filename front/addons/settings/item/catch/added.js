@@ -1,1 +1,4 @@
-platform.settings.ItemOn('added', () => platform.settings.Fn('sync'));
+platform.settings.ItemOn('added', () =>
+{
+    platform.settings.Fn('sync');
+});

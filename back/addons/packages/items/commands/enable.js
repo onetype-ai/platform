@@ -4,7 +4,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'packages:enable',
-        addon: 'packages',
+        addon: 'platform.packages',
         description: 'Enable a package on the instance. The package loads on the next boot.',
         exposed: true,
         method: 'POST',

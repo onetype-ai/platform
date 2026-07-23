@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'settings:set',
-        addon: 'settings',
+        addon: 'platform.settings',
         description: 'Set a setting value. Persists it through the setting storage, syncs the settings state and emits platform.settings.change. The value must match the setting control, string for input, number for number, boolean for toggle, one of the options for select, array for list.',
         exposed: true,
         in: {
@@ -51,7 +51,7 @@ onetype.AddonReady('commands', (commands) =>
                 }
                 catch(error)
                 {
-                    return resolve(null, 'Setting ' + properties.id + ' expects ' + types[control] + '.', 400);
+                    return resolve(null, 'Setting ' + properties.id + ' expects ' + types[control] + ': ' + error.message, 400);
                 }
             }
 
@@ -67,14 +67,14 @@ onetype.AddonReady('commands', (commands) =>
 
             const scope = item.Get('scope');
 
-            if(scope && !properties.instance && !platform.settings.Fn('scope.active', scope))
+            if(scope && !properties.instance && !platform.settings.Fn('get.active', scope))
             {
                 return resolve(null, 'Setting ' + properties.id + ' is scoped to ' + scope + ', pass an instance.', 400);
             }
 
             platform.settings.set(properties.id, properties.value, properties.instance || null);
 
-            const suffix = scope ? ' for ' + scope + ' ' + (properties.instance || platform.settings.Fn('scope.active', scope)) : '';
+            const suffix = scope ? ' for ' + scope + ' ' + (properties.instance || platform.settings.Fn('get.active', scope)) : '';
 
             resolve({ id: properties.id, value: properties.value }, 'Setting ' + properties.id + suffix + ' set to ' + JSON.stringify(properties.value) + '.');
         }

@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'collaborators:leave',
-        addon: 'collaborators',
+        addon: 'platform.collaborators',
         description: 'Leave the editor. The avatar and the cursor of the collaborator disappear.',
         exposed: true,
         in: {

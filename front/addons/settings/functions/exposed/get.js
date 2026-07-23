@@ -12,7 +12,7 @@ platform.settings.FnExpose('get', function(id, fallback = null, instance = null)
 
     if(scope)
     {
-        const target = instance || this.Fn('scope.active', scope);
+        const target = instance || this.Fn('get.active', scope);
 
         value = target && value && typeof value === 'object' ? value[target] : undefined;
     }

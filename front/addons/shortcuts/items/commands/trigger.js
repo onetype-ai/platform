@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'shortcuts:trigger',
-        addon: 'shortcuts',
+        addon: 'platform.shortcuts',
         description: 'Run a shortcut by id, the same as pressing its key combination. Emits platform.shortcuts.trigger before the callback executes. Fails when the shortcut does not exist or is disabled.',
         exposed: true,
         in: {

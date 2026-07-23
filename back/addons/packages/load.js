@@ -37,5 +37,3 @@ import './items/config/packages.js';
 
 import './listeners/middlewares/platform.boot.js';
 import './listeners/middlewares/servers.http.request.js';
-
-export default platform.packages;

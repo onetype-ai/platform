@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'collaborators:join',
-        addon: 'collaborators',
+        addon: 'platform.collaborators',
         description: 'Join the editor as a collaborator. The avatar appears in the navbar and a named cursor follows the collaborator around, except for the local session.',
         exposed: true,
         in: {

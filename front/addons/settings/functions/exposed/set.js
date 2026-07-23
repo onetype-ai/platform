@@ -11,7 +11,7 @@ platform.settings.FnExpose('set', function(id, value, instance = null)
 
     if(scope)
     {
-        const target = instance || this.Fn('scope.active', scope);
+        const target = instance || this.Fn('get.active', scope);
 
         if(!target)
         {

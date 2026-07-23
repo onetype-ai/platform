@@ -1,6 +1,6 @@
 onetype.SchemasRegister('platform.users.user', {
     description: 'The workspace user shape.',
-    addon: 'users',
+    addon: 'platform.users',
     config: {
         id: {
             type: 'number',

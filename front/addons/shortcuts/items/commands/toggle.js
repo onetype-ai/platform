@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'shortcuts:toggle',
-        addon: 'shortcuts',
+        addon: 'platform.shortcuts',
         description: 'Enable or disable a shortcut and persist it across reloads. Flips the current state unless enabled is passed explicitly. Emits platform.shortcuts.toggle. Does nothing when the shortcut is already in the requested state.',
         exposed: true,
         in: {

@@ -1,6 +1,6 @@
 onetype.EmitRegister('platform.shortcuts.trigger', {
     description: 'Fired when a shortcut runs, right before its callback executes.',
-    metadata: { addon: 'shortcuts' },
+    addon: 'platform.shortcuts',
     config: {
         id: {
             type: 'string',

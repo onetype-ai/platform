@@ -1,6 +1,6 @@
 onetype.SchemasRegister('platform.packages.manifest', {
     description: 'The platform package manifest shape.',
-    addon: 'packages',
+    addon: 'platform.packages',
     config: {
         slug: {
             type: 'string',

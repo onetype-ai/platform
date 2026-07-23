@@ -1,1 +1,4 @@
-platform.settings.ItemOn('removed', () => platform.settings.Fn('sync'));
+platform.settings.ItemOn('removed', () =>
+{
+    platform.settings.Fn('sync');
+});

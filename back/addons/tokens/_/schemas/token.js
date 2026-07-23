@@ -1,6 +1,6 @@
 onetype.SchemasRegister('platform.tokens.token', {
     description: 'The workspace token shape.',
-    addon: 'tokens',
+    addon: 'platform.tokens',
     config: {
         id: {
             type: 'number',

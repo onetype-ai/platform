@@ -2,7 +2,7 @@ onetype.AddonReady('commands', (commands) =>
 {
     commands.Item({
         id: 'collaborators:move',
-        addon: 'collaborators',
+        addon: 'platform.collaborators',
         description: 'Move the cursor of a collaborator to a viewport position. Fires constantly while a collaborator works, so the terminal skips it.',
         exposed: true,
         silent: true,

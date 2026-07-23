@@ -5,12 +5,8 @@
     "type": "module",
     "exports": {
         ".": "./index.js",
+        "./addon": "./back/addon.js",
         "./server": "./server.js",
-        "./config": "./back/addons/config/load.js",
-        "./packages": "./back/addons/packages/load.js",
-        "./runtimes": "./back/addons/runtimes/load.js",
-        "./users": "./back/addons/users/load.js",
-        "./tokens": "./back/addons/tokens/load.js",
         "./*": "./*"
     },
     "license": "SEE LICENSE IN LICENSE.md",

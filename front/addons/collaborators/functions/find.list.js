@@ -1,8 +1,8 @@
 platform.collaborators.Fn('find.list', function()
 {
-    return Object.values(this.Items()).sort((a, b) =>
+    return Object.values(this.Items()).sort((left, right) =>
     {
-        return (b.Get('self') - a.Get('self')) || a.Get('name').localeCompare(b.Get('name'));
+        return (right.Get('self') - left.Get('self')) || left.Get('name').localeCompare(right.Get('name'));
     }).map((item) =>
     {
         return {

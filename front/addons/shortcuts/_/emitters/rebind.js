@@ -1,6 +1,6 @@
 onetype.EmitRegister('platform.shortcuts.rebind', {
     description: 'Fired after the key combination of a shortcut changes through the modules:shortcuts:rebind command, both on a new key and on reset to default.',
-    metadata: { addon: 'shortcuts' },
+    addon: 'platform.shortcuts',
     config: {
         id: {
             type: 'string',
